@@ -1,0 +1,61 @@
+#main{
+	margin:auto;
+	width:600px;
+	}
+	h1{
+		font-family:arial;
+		font-size:40px;
+		color:#006666;
+		width:600px;
+		border-bottom: solid 1px;
+		clear:both;
+		font-weight: normal;
+		}
+	#contain{
+		width:600px;
+		margin:auto auto auto 50px;
+		clear: both;
+	}
+	#contain .left{
+		max-width:200px;
+		float:left;
+	}
+	#contain .right{
+		max-width:400px;
+		margin-left:200px;
+	}
+	#contain .right input{
+	background-color:#eee;
+	border:0;
+	width:300px;
+	height:30px;
+	padding:0 10px 0 10px;
+	}
+	#contain .right select{
+	padding: 5px;
+	height:30px;
+	width:80px;
+	background-color:#eee;
+	border:0;
+	}
+	#contain .right option{
+		margin-top:5px;
+	}
+	#contain .left p{
+		font-family:verdana;
+		font-size:15px;
+		padding:3px 0 27px 0;
+		margin: 0;
+	}
+	.inputs{
+		font-weight:bold;
+		width:120px;
+		height:40px;
+		background-color:#006666;
+		color:#FFFFFF;
+		border:0;
+		cursor:pointer;
+		}
+	.inputs:hover{color: #fff;
+	background-color: #333333;
+	}
