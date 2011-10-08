@@ -68,7 +68,7 @@ public class NavigationInfo {
 	}
 
 	public int getPrevIndex() {
-		int prev = currentPage - 1;
+		int prev = getIndexStart() - 1;
 		return prev < 0 ? 0 : prev;
 	}
 
@@ -146,12 +146,7 @@ public class NavigationInfo {
 	}
 
 	public int getIndexNext() {
-		int rang = (int) Math.ceil((double) currentPage / maxIndices);
-		if (rang == 1 || rang == 0) {
-			return maxIndices + 1;
-		} else {
-			return (rang * maxIndices) + 1;
-		}
+		return getIndexLast();
 	}
 
 	public boolean hasIndexNext() {
@@ -190,7 +185,7 @@ public class NavigationInfo {
 
 	public boolean hasIndexPrev() {
 		if ((getPageCount() > maxIndices)) {
-			if ((currentPage - maxIndices - 1) > 0) {
+			if ((currentPage - maxIndices + 1) > 0) {
 				return true;
 			}
 		}
@@ -202,8 +197,9 @@ public class NavigationInfo {
 		NavigationInfo n = new NavigationInfo();
 		n.setPageSize(3);
 		n.setRowCount(54);
-		n.setCurrentPage(11);
+		n.setCurrentPage(14);
 		n.setMaxIndices(3);
+		System.out.println("pagecount: "+n.getPageCount());
 		if (n.hasIndexPrev()) {
 			System.out.println("getPrevIndex(): " + n.getPrevIndex());
 		}
