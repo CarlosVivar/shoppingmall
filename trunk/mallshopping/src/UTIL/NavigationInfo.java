@@ -155,11 +155,11 @@ public class NavigationInfo {
 	}
 
 	public boolean hasIndexNext() {
-		System.out.println("getPageCount: " + getPageCount());
-		System.out.println("maxIndices: " + maxIndices);
+		//System.out.println("getPageCount: " + getPageCount());
+		//System.out.println("maxIndices: " + maxIndices);
 		if ((getPageCount() > maxIndices)) {
 			int rang = (int) Math.ceil((double) currentPage / maxIndices);
-			System.out.println("rang: " + rang);
+			//System.out.println("rang: " + rang);
 			if ((rang * maxIndices) < getPageCount()) {
 				// System.out.println("true");
 				return true;
@@ -170,11 +170,11 @@ public class NavigationInfo {
 	}
 
 	public boolean hasIndexNext_2() {
-		System.out.println("getPageCount: " + getPageCount());
-		System.out.println("maxIndices: " + maxIndices);
+		//System.out.println("getPageCount: " + getPageCount());
+		//System.out.println("maxIndices: " + maxIndices);
 
 		if ((maxIndices + currentPage) < (getPageCount() - 1)) {
-			System.out.println("true");
+			//System.out.println("true");
 			return true;
 
 		}
@@ -202,15 +202,16 @@ public class NavigationInfo {
 		NavigationInfo n = new NavigationInfo();
 		n.setPageSize(3);
 		n.setRowCount(54);
-		n.setCurrentPage(18);
+		n.setCurrentPage(11);
 		n.setMaxIndices(3);
-		System.out.println("n.getIndexStart(): " + n.getIndexStart());
-		System.out.println("n.getIndexLast(): " + n.getIndexLast());
-		if (n.hasIndexNext()) {
-			System.out.println("n.getIndexNext(): " + n.getIndexNext());
-		}
 		if (n.hasIndexPrev()) {
 			System.out.println("getPrevIndex(): " + n.getPrevIndex());
+		}
+		System.out.println("n.getIndexStart(): " + n.getIndexStart());
+		System.out.println("n.getIndexLast(): " + n.getIndexLast());
+
+		if (n.hasIndexNext()) {
+			System.out.println("n.getIndexNext(): " + n.getIndexNext());
 		}
 	}
 

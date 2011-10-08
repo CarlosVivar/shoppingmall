@@ -122,7 +122,7 @@ public class checkoutController extends HttpServlet {
 								save(pdt, session);
 								Deliver deliver = new Deliver();
 								deliver.setProductOrderDetail(pdt);
-								deliver.setDeliverstatusID(2);
+								deliver.setDeliverstatusID(1);
 								save(deliver, session);
 							}
 						}

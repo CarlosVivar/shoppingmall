@@ -158,7 +158,7 @@
 		                               			<td class="order_row" style="text-align:right"><%=ResourcesDefault.getTotalMoney(p.getPrice(),detail.getProductNumber(),optionPrice,shippingCost) %> </td>
 		                               			<td class="order_row" >
 		                               				<% 
-		                               					if(deliverStatus.getDeliverStatusId() == 1){ %>
+		                               					if(detail.getOrderDetailStatusId()== 1 && deliverStatus.getDeliverStatusId()==1){ %>
 		                               						<a href="payment.html?id=<%=detail.getProductOrderDetailId()%>"><img alt="payment" height="16" src="css/images/dolar.png" width="17" /></a>
 		                               				<%} %>
 		                               			</td>
