@@ -251,9 +251,7 @@
 									                if(!pagedcust.isFirstPage()){%>
 					                              <span ><a href="order.html?page=0"><%=LanguegeBUS.getValue("first", lang) %></a></span>&nbsp;&nbsp;
 					                               <% }
-									                else{%>
-									                <span class="active"><%=1%></span>
-									                <%}
+									               
 					                               if(pagedcust.hasIndexPrev()){
 					                            	   %>
 					                            	    <span><a href="order.html?page=<%=pagedcust.getIndexPrev()%>" ><%=LanguegeBUS.getValue("prev.",lang) %></a></span>
