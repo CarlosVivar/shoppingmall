@@ -38,5 +38,12 @@ public class ManufacturerDAO extends HibernateDAO{
         return HibernateDAO.delete(m, lang);
     }
     
+    public static Manufacturer getManufacturerByName(String manufacturerName,String lang){
+    	List<Manufacturer> list=HibernateDAO.getList("from Manufacturer where manufacturerName='"+manufacturerName+"'", lang);
+    	if(list!=null&&list.size()>0){
+    		return list.get(0);
+    	}
+    	return null;
+    }
     
 }

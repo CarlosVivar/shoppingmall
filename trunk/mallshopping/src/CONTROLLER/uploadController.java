@@ -147,8 +147,8 @@ public class uploadController extends HttpServlet {
 				final String categorySub = (String) params
 						.get("selectCategorySub");
 
-				final int manufacturer = Integer.parseInt((String) params
-						.get("selectManufactural"));
+				final String selectManufactural = (String) params.get("selectManufactural");
+				System.out.println("selectManufactural: "+selectManufactural);
 
 				final Date currentday = new Date();
 				SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -180,6 +180,14 @@ public class uploadController extends HttpServlet {
 							if (!categorySub.equals("0")) {
 								newProduct.setCategorySubId(categorySub);
 							}
+							int manufacturer=-1;
+							Manufacturer manu=ManufacturerBUS.getManufacturerByName(selectManufactural, lang);
+							if(manu==null){
+								manu=new Manufacturer(selectManufactural);
+								save(manu, session);								
+							}
+							manufacturer=manu.getManufacturerId();
+							
 							newProduct.setManufacturerId(manufacturer);
 							newProduct.setColor(color);
 							newProduct.setDetail(detail);
@@ -247,6 +255,13 @@ public class uploadController extends HttpServlet {
 							if (!categorySub.equals("0")) {
 								p.setCategorySubId(categorySub);
 							}
+							int manufacturer=-1;
+							Manufacturer manu=ManufacturerBUS.getManufacturerByName(selectManufactural, lang);
+							if(manu==null){
+								manu=new Manufacturer(selectManufactural);
+								save(manu, session);								
+							}
+							manufacturer=manu.getManufacturerId();
 							p.setManufacturerId(manufacturer);
 							p.setColor(color);
 							p.setDetail(detail);
