@@ -6,6 +6,7 @@ package BUS;
 
 import DAO.*;
 import POJO.*;
+
 import java.util.List;
 /**
  *
@@ -37,5 +38,12 @@ public class ManufacturerBUS {
     /** Delete Manufacturer **/
     public static boolean deleteManufacturer(Manufacturer m, String lang) {
         return ManufacturerDAO.deleteManufacturer(m, lang);
+    }
+    
+    /**
+     * get manufacturer by manufacturerName
+     * **/
+    public static Manufacturer getManufacturerByName(String manufacturerName,String lang){
+    	return ManufacturerDAO.getManufacturerByName(manufacturerName, lang);
     }
 }

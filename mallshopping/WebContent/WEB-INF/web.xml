@@ -1257,6 +1257,14 @@
     <servlet-name>ReturnExchangeController</servlet-name>
     <url-pattern>/ReturnExchangeController</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <servlet-name>changePasswordController</servlet-name>
+    <servlet-class>CONTROLLER.changePasswordController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>changePasswordController</servlet-name>
+    <url-pattern>/changePasswordController</url-pattern>
+  </servlet-mapping>
   <session-config>
     <session-timeout>30</session-timeout>
   </session-config>

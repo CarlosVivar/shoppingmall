@@ -140,8 +140,8 @@
 								var color = thisform.color1[myOption].value;
 								document.getElementById("size").value=size;
 								document.getElementById("color").value=color;
+								document.getElementById("selectManufactural")="<%=mf.getManufacturerName()%>";
 								
-								addOption(document.getElementById("selectManufactural"),"<%=mf.getManufacturerName()%>","<%=mf.getManufacturerId()%>",1);
 								addOption(document.getElementById("origin"),"<%=o.getOriginName() %>","<%=o.getOriginId()%>",1);
 								addOption(document.getElementById("productType"),"<%=pt.getProductTypeName()%>","<%=pt.getProductTypeId()%>",1);
 								
@@ -159,6 +159,15 @@
 						document.getElementById("product_name").focus();
         		} 
 				
+        		function loadMenufacturers(menufacturerid){
+        			var val="manufac_"+menufacturerid;
+        			document.getElementById("selectManufactural").value=document.getElementById(val).firstChild.nodeValue;
+        			document.getElementById("textmanu").value=document.getElementById(val).firstChild.nodeValue;
+        		}
+				function loadMenufacturer(){
+					document.getElementById("selectManufactural").value=document.getElementById("textmanu").value;
+					
+        		}
          </script>
 		<script type="text/javascript" src="<%=ServletUtils.getBaseUrl(request) %>/scripts/tiny_mce/tiny_mce.js"></script>
 		<script type="text/javascript">
@@ -599,7 +608,8 @@
        	  }
           
           //new
-          if(manufac==0){
+     
+          if(manufac==""){
               $("#validManufacturer").text("<%=LanguegeBUS.getValue("valid_manufac", lang) %>");
               document.getElementById("selectManufactural").focus();
               return false;
@@ -988,30 +998,42 @@ input1 {
 								<br>
 								<table>
 									<tr>
-										<td width="45%" style="text-align:left;border:none;">
+										<td width="45%" style="text-align:left;border:none;" rowspan="2">
 										<div class="info_profile_inside">
 											<div class="listing_input hgauto">
 												<div class="post_label_container">
 													<label class="postLabel"><%=LanguegeBUS.getValue("manufac", lang)%>:</label>
 												</div>
-													<select style="width:150px" name="selectManufactural" id="selectManufactural">
-			                                                    <option value="0">- <%=LanguegeBUS.getValue("manufac", lang)%> -</option>
-			                                                    <%
-			                                                        List<Manufacturer> listManu = ManufacturerBUS.lstManufacturer(lang);
-			                                                        if (listManu != null) {
-			                                                            for (int i = 0; i < listManu.size(); i++) {
-			                                                                Manufacturer Manu = listManu.get(i);
+													
+			                                       <div>
+			                                       		<div><input type="hidden"  name="selectManufactural" id="selectManufactural" value="" />
+			                                       		<input type="text" id="textmanu" onchange="loadMenufacturer()" style="width:150px"/>
+			                                       		<span class="error" id="validManufacturer" style="border:none;"></span>
+			                                       		</div>
+			                                      		 <div style="overflow: scroll;height: 100px">
+			                                      		 <ul>
+			                                      		 <%
+			                                                        List<Manufacturer> listManus = ManufacturerBUS.lstManufacturer(lang);
+			                                                        if (listManus != null) {
+			                                                            for (int i = 0; i < listManus.size(); i++) {
+			                                                                Manufacturer Manu = listManus.get(i);
 			
 			                                                    %>                                           
-			                                                    <option value="<%=Manu.getManufacturerId()%>">
-			                                                        <%=Manu.getManufacturerName()%>
-			                                                    </option>      
+			                                                    <li>
+			                                       					<a href="javascript:;" onclick="loadMenufacturers(<%=i%>);" style="margin: auto">
+			                                       						<span id="manufac_<%=i%>"><%=Manu.getManufacturerName() %></span>
+			                                       					</a>
+			                                      					 </li>	
+			                                      		 <li>      
 			                                                    <%
 			                                                            }
 			                                                        }
 			                                                    %> 
-			                                       </select>
-													<span class="error" id="validManufacturer" style="border:none;"></span>									
+			                                    			  </ul>
+			                                      			</div>
+			                                       
+			                                       </div>
+																						
 											</div>	
 										</div>
 										</td>
@@ -1043,32 +1065,6 @@ input1 {
 										</td>
 									</tr>
 									<tr>
-										<td style="text-align:left;border:none;">
-											<div class="info_profile_inside">
-												<div class="listing_input">
-													<div class="post_label_container">
-														<label class="postLabel"><%=LanguegeBUS.getValue("color", lang)%>:</label>
-				
-													</div>
-													<input id="color" name="color" style="width:150px" type="text" value="" class="register_text_input show_tip required" />
-													
-												</div>
-											</div>	
-										</td>
-										<td style="text-align:left;border:none;">
-											<div class="info_profile_inside">		
-												<div class="listing_input">
-													<div class="post_label_container">
-														<label class="postLabel"><%=LanguegeBUS.getValue("size", lang)%>:</label>
-				
-													</div>
-													<input id="size" name="size" style="width:150px" type="text" value="" class="register_text_input show_tip required" />
-													&nbsp;&nbsp;(M,L,XL,28,30,...)
-												</div>
-											</div>	
-										</td>
-									</tr>
-									<tr>
 										<td style="text-align:left;border:none;"><div class="listing_input">
 											<div class="info_profile_inside">
 												<div class="post_label_container">
@@ -1094,8 +1090,35 @@ input1 {
 											</div>
 										  </div>	
 										</td>
-										<td style="text-align:left;border:none;"> &nbsp; </td>
+										
 									</tr>
+									<tr>
+										<td style="text-align:left;border:none;">
+											<div class="info_profile_inside">
+												<div class="listing_input">
+													<div class="post_label_container">
+														<label class="postLabel"><%=LanguegeBUS.getValue("color", lang)%>:</label>
+				
+													</div>
+													<input id="color" name="color" style="width:150px" type="text" value="" class="register_text_input show_tip required" />
+													
+												</div>
+											</div>	
+										</td>
+										<td style="text-align:left;border:none;">
+											<div class="info_profile_inside">		
+												<div class="listing_input">
+													<div class="post_label_container">
+														<label class="postLabel"><%=LanguegeBUS.getValue("size", lang)%>:</label>
+				
+													</div>
+													<input id="size" name="size" style="width:150px" type="text" value="" class="register_text_input show_tip required" />
+													&nbsp;&nbsp;(M,L,XL,28,30,...)
+												</div>
+											</div>	
+										</td>
+									</tr>
+									
 								</table>	 
 							  
 							</div>
