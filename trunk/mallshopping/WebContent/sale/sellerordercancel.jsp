@@ -292,9 +292,9 @@ $('#confirmCancelStatus').live('keydown', function(e) {
 									                		 if(i!=pagedcust.getCurrentPage()){    	                
 									               %>
 					                              <!-- span class="active">1</span-->
-					                              <span><a href="<%=baseURL%>/sale/cancelorder.html?page=<%=i%>" ><%=i%></a></span>
+					                              <span><a href="<%=baseURL%>/sale/cancelorder.html?page=<%=i%>" ><%=i+1%></a></span>
 					                              <%}else{ %>	
-									                 	<span class="active"><%=i%></span>
+									                 	<span class="active"><%=i+1%></span>
 									                 <%}
 									                	 }
 									                	

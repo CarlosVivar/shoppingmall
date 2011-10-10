@@ -55,7 +55,7 @@ public class ManageReturnExchangeOrderController extends HttpServlet {
 
 		// setting the paging
 		navInfo.setPageSize(item);
-		navInfo.setMaxIndices(2);
+		navInfo.setMaxIndices(5);
 		String page = (String) request.getParameter("page");
 		if (null == page)
 			navInfo.setCurrentPage(0);

@@ -257,7 +257,7 @@
 					                            	    <span><a href="order.html?page=<%=pagedcust.getIndexPrev()%>" ><%=LanguegeBUS.getValue("prev.",lang) %></a></span>
 					                               <%}
 									                	 for(int i=pagedcust.getIndexStart();i<pagedcust.getIndexLast();i++){
-									                		 System.out.print("pagedcust.getCurrentPage(): "+pagedcust.getCurrentPage());
+									                		 //System.out.print("pagedcust.getCurrentPage(): "+pagedcust.getCurrentPage());
 									                		 if(i!=pagedcust.getCurrentPage()){    	                
 									               %>
 					                              <!-- span class="active">1</span-->
@@ -267,7 +267,7 @@
 									                 <%}
 									                	 }
 									                	
-									               if(pagedcust.hasIndexNext_2()){									            	 
+									               if(pagedcust.hasIndexNext()){									            	 
 									            	   %>
 									            	   <span><a href="order.html?page=<%=pagedcust.getIndexNext()%>" ><%=LanguegeBUS.getValue("next",lang) %></a></span>
 									               <%}

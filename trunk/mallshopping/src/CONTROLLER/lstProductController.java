@@ -48,7 +48,7 @@ public class lstProductController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
-        ServletContext app=getServletContext();;
+        ServletContext app=getServletContext();
         String lang=(String)app.getAttribute("MALL_LA");
         try {
         	int item = 12;
@@ -57,6 +57,7 @@ public class lstProductController extends HttpServlet {
             }
            
         	navInfo.setPageSize(item);
+        	navInfo.setMaxIndices(5);
         	String page = (String)request.getParameter("page");
             if (null == page)
             	navInfo.setCurrentPage(0);
