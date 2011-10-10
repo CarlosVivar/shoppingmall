@@ -79,21 +79,15 @@ public class NavigationInfo {
 	}
 
 	public boolean isFirstPage() {
-		if (currentPage != 0) {
+		if (getIndexStart()>0) {
 			return false;
 		}
 		return true;
 	}
 
 	public boolean isLastPage() {
-		int temp = getPageCount();
-		boolean result = false;
-		for (int i = (temp - maxIndices + 1); i < temp; i++) {
-			// System.out.println("i: "+i);
-			if (currentPage == i)
-				result = true;
-		}
-		return result;
+		if(getIndexLast()<getPageCount()) return false;
+		return true;
 	}
 
 	public int[] getIndexRange() {
@@ -152,13 +146,10 @@ public class NavigationInfo {
 	public boolean hasIndexNext() {
 		//System.out.println("getPageCount: " + getPageCount());
 		//System.out.println("maxIndices: " + maxIndices);
-		if ((getPageCount() > maxIndices)) {
-			int rang = (int) Math.ceil((double) currentPage / maxIndices);
-			//System.out.println("rang: " + rang);
-			if ((rang * maxIndices) < getPageCount()) {
-				// System.out.println("true");
-				return true;
-			}
+		if ((getIndexLast()+1) < getPageCount()) {
+			//System.out.println("true");
+			return true;
+
 		}
 		// System.out.println("false");
 		return false;
@@ -168,7 +159,7 @@ public class NavigationInfo {
 		//System.out.println("getPageCount: " + getPageCount());
 		//System.out.println("maxIndices: " + maxIndices);
 
-		if ((maxIndices + currentPage) < (getPageCount() - 1)) {
+		if ((getIndexLast()+1) < getPageCount()) {
 			//System.out.println("true");
 			return true;
 
@@ -178,8 +169,8 @@ public class NavigationInfo {
 	}
 
 	public int getIndexPrev() {
-		int rang = (int) Math.ceil((double) currentPage / maxIndices);
-		return ((rang - 1) * maxIndices);
+		int prev = getIndexStart() - 1;
+		return prev < 0 ? 0 : prev;
 
 	}
 
@@ -197,8 +188,12 @@ public class NavigationInfo {
 		NavigationInfo n = new NavigationInfo();
 		n.setPageSize(3);
 		n.setRowCount(54);
-		n.setCurrentPage(14);
+		n.setCurrentPage(17);
 		n.setMaxIndices(3);
+		if(!n.isFirstPage()){
+			System.out.println("dau: "+0);
+		}
+	
 		System.out.println("pagecount: "+n.getPageCount());
 		if (n.hasIndexPrev()) {
 			System.out.println("getPrevIndex(): " + n.getPrevIndex());
@@ -206,8 +201,11 @@ public class NavigationInfo {
 		System.out.println("n.getIndexStart(): " + n.getIndexStart());
 		System.out.println("n.getIndexLast(): " + n.getIndexLast());
 
-		if (n.hasIndexNext()) {
+		if (n.hasIndexNext_2()) {
 			System.out.println("n.getIndexNext(): " + n.getIndexNext());
+		}
+		if(!n.isLastPage()){
+			System.out.println("cuoi: "+(n.getPageCount()-1));
 		}
 	}
 

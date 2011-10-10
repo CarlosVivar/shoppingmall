@@ -125,7 +125,7 @@ public class uploadController extends HttpServlet {
 
 								inde++;
 								File savedFile = new File(RealPath);
-								// System.out.println("RealPath: "+RealPath);
+								System.out.println("RealPath: "+RealPath);
 								item.write(savedFile);
 							}
 

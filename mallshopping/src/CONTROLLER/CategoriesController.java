@@ -51,7 +51,7 @@ public class CategoriesController extends HttpServlet {
 		String lang = (String) app.getAttribute("MALL_LA");
 		// setting the paging
 		navInfo.setPageSize(item);
-		navInfo.setMaxIndices(2);
+		navInfo.setMaxIndices(5);
 		String page = (String) request.getParameter("page");
 
 		if (null == page)

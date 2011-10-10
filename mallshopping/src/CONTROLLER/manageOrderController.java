@@ -69,6 +69,7 @@ public class manageOrderController extends HttpServlet {
 	                }
 	               
 	            	navInfo.setPageSize(item);
+	            	navInfo.setMaxIndices(5);
 	            	String page = (String)request.getParameter("page");
 	                if (null == page)
 	                	navInfo.setCurrentPage(0);

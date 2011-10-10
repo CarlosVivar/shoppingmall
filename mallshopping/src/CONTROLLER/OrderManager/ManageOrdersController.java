@@ -46,31 +46,37 @@ public class ManageOrdersController extends HttpServlet {
 	public void process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		ServletContext app = getServletContext();;
+		ServletContext app = getServletContext();
+		
 		String user = (String) session.getAttribute("username");
 		String lang = (String) app.getAttribute("MALL_LA");
+		if (user == null) {
+			response.sendRedirect("../login.html");
+		} else {
 
-		String fromDate = request.getParameter("fromDate");
-		String toDate = request.getParameter("toDate");
-		// setting the paging
-		navInfo.setPageSize(item);
-		navInfo.setMaxIndices(2);
-		String page = (String) request.getParameter("page");
+			String fromDate = request.getParameter("fromDate");
+			String toDate = request.getParameter("toDate");
+			// setting the paging
+			navInfo.setPageSize(item);
+			navInfo.setMaxIndices(5);
+			String page = (String) request.getParameter("page");
 
-		if (null == page)
-			navInfo.setCurrentPage(0);
-		else
-			navInfo.setCurrentPage(Integer.parseInt(page));
-		// setting the paging
+			if (null == page)
+				navInfo.setCurrentPage(0);
+			else
+				navInfo.setCurrentPage(Integer.parseInt(page));
+			// setting the paging
 
-		List<Productorderdetail>[] arrays = ProductorderdetailBUS
-				.getListPODetailByBuyer(user, lang, fromDate, toDate,
-						navInfo.getCurrentPage(), navInfo.getPageSize());
-		navInfo.setRowCount(arrays[0] != null ? arrays[0].size() : 0);
-		List<Productorderdetail> lst = arrays[1];
-		request.setAttribute("pagedcust", navInfo);
-		request.setAttribute("listOrder", lst);
-		request.getRequestDispatcher("/order.html").forward(request, response);
+			List<Productorderdetail>[] arrays = ProductorderdetailBUS
+					.getListPODetailByBuyer(user, lang, fromDate, toDate,
+							navInfo.getCurrentPage(), navInfo.getPageSize());
+			navInfo.setRowCount(arrays[0] != null ? arrays[0].size() : 0);
+			List<Productorderdetail> lst = arrays[1];
+			request.setAttribute("pagedcust", navInfo);
+			request.setAttribute("listOrder", lst);
+			request.getRequestDispatcher("/order.html").forward(request,
+					response);
+		}
 	}
 
 	/**
