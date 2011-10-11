@@ -152,14 +152,16 @@
 		                               			<td class="order_row" ><%=p.getPrice() %></td>
 		                               			<td class="order_row" ><%=detail.getProductNumber() %></td>
 		                               			<td class="order_row" ><%=optionPrice %></td>		                               			
-		                               			<td class="order_row" style="text-align:right">
-		                               				<%=shippingCost %>
+		                               			<td class="order_row" style="text-align:right"><%=shippingCost %>
 		                               			</td>
 		                               			<td class="order_row" style="text-align:right"><%=ResourcesDefault.getTotalMoney(p.getPrice(),detail.getProductNumber(),optionPrice,shippingCost) %> </td>
 		                               			<td class="order_row" >
 		                               				<% 
 		                               					if(detail.getOrderDetailStatusId()== 1 && deliverStatus.getDeliverStatusId()==1){ %>
-		                               						<a href="payment.html?id=<%=detail.getProductOrderDetailId()%>"><img alt="payment" height="16" src="css/images/dolar.png" width="17" /></a>
+		                               						<a href="payment.html?id=<%=detail.getProductOrderDetailId()%>"><img
+																						alt="payment" height="16"
+																						src="css/images/dolar.png" width="17" />
+																				</a>
 		                               				<%} %>
 		                               			</td>
 		                               	</tr>
