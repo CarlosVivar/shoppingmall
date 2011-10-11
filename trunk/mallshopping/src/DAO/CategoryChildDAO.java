@@ -19,7 +19,7 @@ public class CategoryChildDAO extends HibernateDAO{
 
     //Get all CategoryChilds  in Category
     public static List<CategoryChild> lstCategoryChild(Category cat,String lang) {
-        return HibernateDAO.getList("from CategoryChild where categoryId='" + cat.getCategoryId()+"' order by priorities desc",lang);
+        return HibernateDAO.getList("from CategoryChild where categoryId='" + cat.getCategoryId()+"'",lang);
     }
      
     //Get CategoryChild in ID
