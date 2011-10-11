@@ -11,7 +11,7 @@
 			String cateId = (String)request.getParameter("Id");
 			String childId = (String)request.getParameter("childId");
 			String subId = (String)request.getParameter("subId");
-           	System.out.println("act:"+act);
+           	//System.out.println("act:"+act);
 			
 %>
 <html>
@@ -97,6 +97,7 @@
                                 	<td class="lstitle" width="100"><%=LanguegeBUS.getValue("category", lang) %></td>	
                                     <td class="lstitle" width="250"><%=LanguegeBUS.getValue("categorychild", lang) %></td>
                                     <td class="lstitle" width="250"><%=LanguegeBUS.getValue("categorysub", lang) %></td>
+                                    <td class="lstitle" width="20"><%=LanguegeBUS.getValue("priorities", lang) %></td>
                                     <td class="lstitle" width="20"><%=LanguegeBUS.getValue("add", lang) %></td>
                                     <td class="lstitle" width="20"><%=LanguegeBUS.getValue("update", lang) %></td>
                                     <td class="lstitle" width="20"><%=LanguegeBUS.getValue("delete", lang) %></td>
@@ -114,11 +115,12 @@
                                				for(int i=0;i<lstCate.size();i++){
                                					Category cate = (Category)lstCate.get(i);
                                					List<CategoryChild> lstCC = (List<CategoryChild>)CategoryChildBUS.lstCategoryChild(cate,lang);
+                               					String caPriorities=cate.getPriorities(),caChilPriorities="",caSubPriorities="";
                                					
                                		%>
                                		<tr class="order_row">
                                			
-                               			<td style="text-align:left " colspan="3" class="nonSearch">
+                               			<td style="text-align:left " colspan="4" class="nonSearch">
                                			<form action="<%=ServletUtils.getBaseUrl(request)%>/manageCategoryActionController" method="post">
                                				<%  
                                					if(null!=cateId && null!=act && act.equals("update") && cate.getCategoryId().compareTo(cateId)==0){ %>
@@ -126,13 +128,15 @@
                                						<input type="hidden" value="<%=cate.getCategoryId()%>" name="Id">
                                						<input id="catename" name="catename" type="text" value="<%=cate.getCategoryName() %>"  style="text-align:left"/>
                                						<input class="button" type="submit" value="<%=LanguegeBUS.getValue("submit", lang) %>" />
+                               						<input name="caPriorities" style="margin-right: 0; width:20px; text-align:center; float:right" type="text" value="<%=caPriorities %>"/>
                                				<%}else{ %>
                                					
 										        	<b><%=cate.getCategoryName() %></b>
-										         
+										        	<span style="margin-right: 0; width:20px; text-align:center; float:right"><%=caPriorities %></span>
                                				<%} %>
                                			</form>	
                                			</td>
+                               			
                                			<td class="nonSearch" align="center">
 				                            <a href="categoryadd.html" title="add">
 				                                <img alt="save" height="16" src="css/images/add.JPG" width="16" />
@@ -153,11 +157,12 @@
                                			for(int j=0;j<lstCC.size();j++){
                                				CategoryChild cc = (CategoryChild)lstCC.get(j);
                                				List<CategorySub> lstSub = (List<CategorySub>)CategorySubBUS.lstCategorySub(cc,lang);
+                               				caChilPriorities=cc.getPriorities();
                                		%>
                                		<tr class="order_row">
                                			
                                			<td class="nonSearch"></td>
-                               			<td style="text-align:left " colspan="2" class="nonSearch">
+                               			<td style="text-align:left " colspan="3" class="nonSearch">
                                			<form action="<%=ServletUtils.getBaseUrl(request)%>/manageCategoryActionController" method="post">
                                				<%  
                                					if(null!=childId && null!=act && act.equals("update") && cc.getCategoryChildId().equals(childId)){ %>
@@ -165,13 +170,15 @@
                                						<input type="hidden" value="<%=cc.getCategoryChildId()%>" name="childId">
                                						<input id="childname" name="childname" type="text" value="<%=cc.getCategoryChildName()%>"  style="text-align:left"/>
                                						<input class="button" type="submit" value="<%=LanguegeBUS.getValue("submit", lang) %>" />
+                               						<input name="caChilPriorities" style="margin-right: 0; width:20px; text-align:center; float:right" type="text" value="<%=caChilPriorities %>"/>
                                				<%}else{ %>
                                					
 										        	<%=cc.getCategoryChildName()%>
-										        
+										        <span style="margin-right: 0; width:20px; text-align:center; float:right"><%=caChilPriorities %></span>
                                				<%} %>
                                			</form>
                                			</td>
+                               			
                                			<td></td>
                                			
                                			<td class="nonSearch" align="center">
@@ -189,12 +196,13 @@
                                			if(null!=lstSub){
 	                               			for(int k=0;k<lstSub.size();k++){
 	                               				CategorySub cb = (CategorySub)lstSub.get(k);
+	                               				caSubPriorities=cb.getPriorities();
                                				
                                		%>
 	                               		<tr class="order_row">
 	                               			
 	                               			<td class="nonSearch" colspan="2"></td>
-	                               			<td style="text-align:left "  class="nonSearch">
+	                               			<td style="text-align:left "  class="nonSearch" colspan="2">
 	                               			<form action="<%=ServletUtils.getBaseUrl(request)%>/manageCategoryActionController" method="post">
 	                               				<%  
 	                               					if(null!=subId && null!=act && act.equals("update") && cb.getCategorySubId().equals(subId)){ %>
@@ -202,15 +210,17 @@
 	                               						<input type="hidden" value="<%=cb.getCategorySubId() %>" name="subId">
 	                               						<input id="subname" name="subname" type="text" value="<%=cb.getCategorySubName() %>"  style="text-align:left"/>
 	                               						<input class="button" type="submit" value="<%=LanguegeBUS.getValue("submit", lang) %>" />
+	                               						<input name="caSubPriorities" style="margin-right: 0; width:20px; text-align:center; float:right" type="text" value="<%=caSubPriorities %>"/>
 	                               				<%}else{ %>
 	                               					
 											        	<%=cb.getCategorySubName() %>
-											        
+											        <span style="margin-right: 0; width:20px; text-align:center; float:right"><%=caSubPriorities %></span>
 	                               				<%} %>
 	                               				
 	                               			</form>
 	                               			</td>
 	                               			<td></td>
+	                               			
 	                               			
 	                               			<td class="nonSearch" align="center">
 					                            <a href="category.html?act=update&subId=<%=cb.getCategorySubId() %>" title="Update">

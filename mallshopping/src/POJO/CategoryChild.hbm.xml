@@ -14,6 +14,9 @@
         <property name="categoryChildName" type="string">
             <column name="CategoryChildName" not-null="true" />
         </property>
+        	<property name="priorities" type="string">
+			<column name="Priorities"></column>
+		</property>
         <set inverse="true" name="products"  cascade="all">
 	      <key>
 	        <column length="10" name="CategoryChildId" not-null="true"/>

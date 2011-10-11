@@ -54,6 +54,9 @@
 		<property name="productTypeId" type="int">
 			<column name="ProductTypeId" length="10" not-null="true" />
 		</property>
+		<property name="priorities" type="string">
+			<column name="Priorities"></column>
+		</property>
 		<set name="productorderdetails" inverse="true" cascade="all">
 			<key>
 				<column name="ProductId" not-null="true" />

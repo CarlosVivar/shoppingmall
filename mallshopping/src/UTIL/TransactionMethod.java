@@ -95,7 +95,7 @@ public class TransactionMethod {
 		catch(Exception e){
 			//System.out.println("rollback");
 			rollBack();
-			System.out.println(e);
+			System.out.println(e.getMessage());
 			return false;
 		}
 	}

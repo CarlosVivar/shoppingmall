@@ -28,6 +28,7 @@ public class Products  implements java.io.Serializable {
 	 private User user;
 	 private Date uploadDate;
 	 private Delivercost deliverCost;
+	 private String priorities;
      private Set productorderdetails = new HashSet(0);
      private Set productphotos = new HashSet(0);
      private Set promotions = new HashSet(0);
@@ -241,6 +242,20 @@ public class Products  implements java.io.Serializable {
 
 	public void setOptions(Set options) {
 		this.options = options;
+	}
+
+	/**
+	 * @return the priorities
+	 */
+	public String getPriorities() {
+		return priorities;
+	}
+
+	/**
+	 * @param priorities the priorities to set
+	 */
+	public void setPriorities(String priorities) {
+		this.priorities = priorities;
 	}
 	
 }

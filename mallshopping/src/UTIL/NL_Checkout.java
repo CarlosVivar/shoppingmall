@@ -223,6 +223,7 @@ public class NL_Checkout {
 	
 	
 	public static void main(String[] args) {
+		//nl_completed.jsp?transaction_info=Payment+for+shopping&order_code=65&price=10000&payment_id=311451&payment_type=2&error_text=&secure_code=4e13ea2af141ed9f996371c947066ff2
 		verifyUpdatePaymentUrl("", "", "", "", "");
 	}
 

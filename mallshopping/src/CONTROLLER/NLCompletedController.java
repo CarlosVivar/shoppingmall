@@ -96,11 +96,16 @@ public class NLCompletedController extends HttpServlet {
 						//update orderstatus
 						Productorderdetail pODetail= ProductorderdetailBUS.getProductorderdetail(Integer.parseInt(orderCode), lang);
 						pODetail.setOrderDetailStatusId(2);
+						System.out.println("orderCode: "+orderCode);
+						System.out.println("test1");
 						update(pODetail, session);
-						
+						System.out.println("test2");
+						System.out.println("lang: "+lang);
 						Deliver deliver=DeliverBUS.getDeliverByPODetail(Integer.parseInt(orderCode), lang);
 						deliver.setDeliverstatusID(2);
+						System.out.println("test3");
 						update(deliver, session);
+						System.out.println("test4");
 						//save payment
 						//Payment payment=new Payment();
 						//payment.setOrderDetailId(pODetail.getProductOrderDetailId());
