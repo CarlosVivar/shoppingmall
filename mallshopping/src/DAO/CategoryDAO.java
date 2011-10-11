@@ -14,7 +14,7 @@ public class CategoryDAO extends HibernateDAO{
     
     //Get all Category
     public static List<Category> lstCategory(String lang) {
-        return HibernateDAO.getList("from Category", lang);
+        return HibernateDAO.getList("from Category  order by priorities desc", lang);
     }
      
     //Get Category in ID
