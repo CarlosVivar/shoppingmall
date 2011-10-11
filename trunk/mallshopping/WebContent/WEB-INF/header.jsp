@@ -24,7 +24,7 @@ String hlang = (String)happ.getAttribute("MALL_LA"); %>
 <script type="text/javascript">
 	var message_prevent="<%=LanguegeBUS.getValue("prevent_click_right",hlang )%>";
 </script>
-	<script type="text/javascript" src="<%=ServletUtils.getBaseUrl(request)%>/scripts/prevent.js"></script>
+	<%--<script type="text/javascript" src="<%=ServletUtils.getBaseUrl(request)%>/scripts/prevent.js"></script>--%>
 	<script type="text/javascript" src="<%=ServletUtils.getBaseUrl(request)%>/FancyBox/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
 	<script type="text/javascript" src="<%=ServletUtils.getBaseUrl(request)%>/FancyBox/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
 	<link rel="stylesheet" type="text/css" href="<%=ServletUtils.getBaseUrl(request)%>/FancyBox/fancybox/jquery.fancybox-1.3.4.css"/>
