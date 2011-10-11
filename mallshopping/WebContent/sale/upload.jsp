@@ -615,7 +615,7 @@
               //document.getElementById("selectManufactural").focus();
               return false;
           }
-          alert("nulls");
+          //alert("nulls");
           if(origin==0){
 	              $("#validOrigin").text("<%=LanguegeBUS.getValue("valid_orgin", lang) %>");
 	              document.getElementById("origin").focus();

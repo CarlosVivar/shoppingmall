@@ -13,6 +13,7 @@ public class Category  implements java.io.Serializable {
 
      private String categoryId;
      private String categoryName;
+     private String priorities;
      private Set categoryChilds = new HashSet(0);
      
 	public Category() {
@@ -49,6 +50,14 @@ public class Category  implements java.io.Serializable {
 
 	public void setCategoryChilds(Set categoryChilds) {
 		this.categoryChilds = categoryChilds;
+	}
+
+	public String getPriorities() {
+		return priorities;
+	}
+
+	public void setPriorities(String priorities) {
+		this.priorities = priorities;
 	}
 
 
