@@ -38,7 +38,7 @@
 		%>
 		
 		<div style="width:598px;height:30px; border-bottom: #cccccc solid 2px; clear:both; padding-top:10px">
-		<h4 style="padding: 0 10px 0 10px;padding-top:8px; margin:0; height:30px; color:#0968d4; float:left"><%=category.getCategoryName() %></h4>
+		<a href="categories.html?caID=<%=category.getCategoryId()%>"><h4 style="padding: 0 10px 0 2px;padding-top:8px; margin:0; height:30px; color:#0968d4; float:left"><%=category.getCategoryName() %></h4></a>
 		</div>
 		<UL class="prodlist" style="clear:left">
          <%

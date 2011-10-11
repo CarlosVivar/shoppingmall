@@ -84,7 +84,7 @@ String categoryID=request.getParameter("caID");
 															<div
 																style="width: 598px; height: 30px; border-bottom: #1272e8 solid 2px; clear: both; padding-top: 10px">
 																<h4
-																	style="padding: 0 10px 0 10px; margin: 0;padding-top:8px;padding-bottom:5px; background: url('images/11_03.gif') repeat-x; height: 30px; color: white; float: left"><%=category.getCategoryName()%></h4>
+																	style="padding: 0 10px 0 2px; margin: 0;padding-top:8px;padding-bottom:5px; height: 30px; color: #0968d4; float: left"><%=category.getCategoryName()%></h4>
 															</div>
 															<UL class="prodlist" style="clear: left">
 																<%

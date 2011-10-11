@@ -220,7 +220,7 @@ String hlang = (String)happ.getAttribute("MALL_LA"); %>
          %>    
            			<ul class="object_menu">
 
-					 <li class="first"><a rel="permalink" href="product.html"><%=cat.getCategoryName() %></a></li>
+					 <li class="first"><a rel="permalink" href="categories.html?caID=<%=cat.getCategoryId()%>"><%=cat.getCategoryName() %></a></li>
 					 <% 
 		                for(int k=0;k<lstChild.size();k++){
 		                    CategoryChild child = (CategoryChild)lstChild.get(k); 
