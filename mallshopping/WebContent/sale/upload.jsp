@@ -608,19 +608,21 @@
        	  }
           
           //new
-     
+    	  //alert("numanufac: "+manufac);
           if(manufac==""){
+        	  //alert("null");
               $("#validManufacturer").text("<%=LanguegeBUS.getValue("valid_manufac", lang) %>");
-              document.getElementById("selectManufactural").focus();
+              //document.getElementById("selectManufactural").focus();
               return false;
           }
+          alert("nulls");
           if(origin==0){
 	              $("#validOrigin").text("<%=LanguegeBUS.getValue("valid_orgin", lang) %>");
 	              document.getElementById("origin").focus();
 	              return false;
 	       }
           
-          	     
+          	      
 	       if(pType==0){
 	              $("#validProducttype").text("<%=LanguegeBUS.getValue("valid_producttype", lang) %>");
 	              document.getElementById("productType").focus();
@@ -1005,7 +1007,7 @@ input1 {
 													<label class="postLabel"><%=LanguegeBUS.getValue("manufac", lang)%>:</label>
 												</div>
 													
-			                                       <div>
+			                                       <div style="width: 150px; float:left" >
 			                                       		<div><input type="hidden"  name="selectManufactural" id="selectManufactural" value="" />
 			                                       		<input type="text" id="textmanu" onchange="loadMenufacturer()" style="width:150px"/>
 			                                       		<span class="error" id="validManufacturer" style="border:none;"></span>
