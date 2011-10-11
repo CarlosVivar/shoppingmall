@@ -175,8 +175,8 @@
 																		}
 																		}
 																	%>
-																</select> &nbsp;&nbsp;&nbsp;&nbsp;<%=LanguegeBUS.getValue("invenstate", lang)%>
-																<select style="width: 130px" name="optionStateInvenId">
+																</select> <%-- &nbsp;&nbsp;&nbsp;&nbsp;<%=LanguegeBUS.getValue("invenstate", lang)%> --%>
+																<%-- <select style="width: 130px" name="optionStateInvenId">
 																	<option value="0">
 																		-
 																		<%=LanguegeBUS.getValue("invenstate", lang)%>
@@ -187,7 +187,7 @@
 																	<option value="2"><%=LanguegeBUS.getValue("outputsto", lang)%></option>
 																	<option value="3"><%=LanguegeBUS.getValue("orther", lang)%>
 																	</option>
-																</select>
+																</select> --%>
 															</div>
 														</td>
 
@@ -204,7 +204,7 @@
 													<td bgcolor="#A79BCA" width="81"><%=LanguegeBUS.getValue("manufac", lang)%></td>
 													<td bgcolor="#A79BCA" width="111"><%=LanguegeBUS.getValue("nventoryid", lang)%></td>
 													<td bgcolor="#A79BCA" width="78"><%=LanguegeBUS.getValue("expDate", lang)%></td>
-													<td bgcolor="#A79BCA" width="78"><%=LanguegeBUS.getValue("invenstate", lang)%></td>
+													<%-- <td bgcolor="#A79BCA" width="78"><%=LanguegeBUS.getValue("invenstate", lang)%></td> --%>
 
 
 												</tr>
@@ -236,7 +236,7 @@
 													<td><%=manu.getManufacturerName()%></td>
 													<td><%=inven.getInventoryId()%></td>
 													<td><%=inven.getLimitDate()%></td>
-													<td colspan="1"><%=insta.getStateName()%></td>
+													<%-- <td colspan="1"><%=insta.getStateName()%></td> --%>
 
 
 												</tr>

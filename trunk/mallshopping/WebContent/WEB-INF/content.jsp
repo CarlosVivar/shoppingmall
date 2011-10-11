@@ -27,7 +27,7 @@
         </div> -->
       
 
-        <H2>Welcome to ELI Mall Shopping</H2>
+        <H2>Welcome to Khongmac.com</H2>
         <div class="blog">
         	<%=LanguegeBUS.getValue("mIndex", clang)%>
         </div>
@@ -37,8 +37,8 @@
 		for(Category category : categories){
 		%>
 		
-		<div style="width:598px;height:30px; border-bottom: #1272e8 solid 2px; clear:both; padding-top:10px">
-		<h4 style="padding: 0 10px 0 10px;padding-top:8px; margin:0; background: url('images/11_03.gif') repeat-x;height:30px; color:white; float:left"><%=category.getCategoryName() %></h4>
+		<div style="width:598px;height:30px; border-bottom: #cccccc solid 2px; clear:both; padding-top:10px">
+		<h4 style="padding: 0 10px 0 10px;padding-top:8px; margin:0; height:30px; color:#0968d4; float:left"><%=category.getCategoryName() %></h4>
 		</div>
 		<UL class="prodlist" style="clear:left">
          <%

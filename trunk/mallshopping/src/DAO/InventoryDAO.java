@@ -53,7 +53,7 @@ public class InventoryDAO extends HibernateDAO {
 					" and inventory.LimitDate < '"+currentDate+"' " +
 					" and products.Account= '"+username+"'";
 			helper.open(lang);
-			
+		
 			ResultSet rs = helper.executeQuery(sql);
 			while (rs.next()) {
 				Inventory inventory = new Inventory();
@@ -69,13 +69,13 @@ public class InventoryDAO extends HibernateDAO {
 		return lstInven;
 	}
 	public static ArrayList<Inventory> lstSearchInventory(String username, String lang,String fromDate,String toDate,
-			int manufactureId,String namekey,int invenstateId) {
+			int manufactureId,String namekey) {
 		ArrayList<Inventory> lstInven = new ArrayList<Inventory>();
 		MySqlDataAccessHelper helper = new MySqlDataAccessHelper();
 		SimpleDateFormat simp=new SimpleDateFormat("yyyy-MM-dd");
     	String currentDate=simp.format(new Date());
 		try {
-			String sqlsearch = "select inventory.InventoryId,inventory.LimitDate,inventory.SateId,inventory.ProductId " +
+			String sqlsearch = "select inventory.InventoryId,inventory.LimitDate,inventory.ProductId " +
 					"from inventory,products,manufacturer,invenstate " +
 					" where inventory.ProductId=products.ProductID  " +
 					" and inventory.SateId=invenstate.StateId"+
@@ -84,18 +84,18 @@ public class InventoryDAO extends HibernateDAO {
 					" and inventory.LimitDate between '"+fromDate+"' and '"+toDate+"' " +
 					" and products.ProductName like'%"+namekey+"%'" +
 					" and manufacturer.ManufacturerId="+manufactureId+" "+
-					" and invenstate.StateId="+invenstateId+" " +
+					/*" and invenstate.StateId="+invenstateId+" " +*/
 					" and inventory.LimitDate < '"+currentDate+"' " +
 					" Group by products.ProductID";
 			helper.open(lang);
-			
+			System.out.print("sql6:"+sqlsearch);
 			ResultSet rs = helper.executeQuery(sqlsearch);
 			while (rs.next()) {
 				Inventory inventory = new Inventory();
 				inventory.setInventoryId(rs.getInt("InventoryId"));
 				inventory.setLimitDate(rs.getDate("LimitDate"));
 				inventory.setProductId(rs.getInt("ProductId"));
-				inventory.setSateId(rs.getInt("SateId"));
+				/*inventory.setSateId(rs.getInt("SateId"));*/
 				lstInven.add(inventory);
 			}
 		} catch (Exception ex) {
@@ -111,7 +111,7 @@ public class InventoryDAO extends HibernateDAO {
 		SimpleDateFormat simp=new SimpleDateFormat("yyyy-MM-dd");
     	String currentDate=simp.format(new Date());
 		try {
-			String sqlDate = "select inventory.InventoryId,inventory.LimitDate,inventory.SateId,inventory.ProductId " +
+			String sqlDate = "select inventory.InventoryId,inventory.LimitDate,inventory.ProductId " +
 					"from inventory,products,manufacturer,invenstate " +
 					" where inventory.ProductId=products.ProductID  " +
 					" and inventory.SateId=invenstate.StateId"+
@@ -121,14 +121,14 @@ public class InventoryDAO extends HibernateDAO {
 					" and inventory.LimitDate < '"+currentDate+"' " +
 					" Group by products.ProductID";
 			helper.open(lang);
-			 
+			System.out.print("sql5:"+sqlDate);
 			ResultSet rs = helper.executeQuery(sqlDate);
 			while (rs.next()) {
 				Inventory inventory = new Inventory();
 				inventory.setInventoryId(rs.getInt("InventoryId"));
 				inventory.setLimitDate(rs.getDate("LimitDate"));
 				inventory.setProductId(rs.getInt("ProductId"));
-				inventory.setSateId(rs.getInt("SateId"));
+				/*inventory.setSateId(rs.getInt("SateId"));*/
 				lstInven.add(inventory);
 			}
 		} catch (Exception ex) {
@@ -156,7 +156,7 @@ public class InventoryDAO extends HibernateDAO {
 					" and inventory.LimitDate < '"+currentDate+"' " +
 					" Group by products.ProductID";
 			helper.open(lang);
-			
+			System.out.print("sql4:"+sqlnamekey);
 			ResultSet rs = helper.executeQuery(sqlnamekey);
 			while (rs.next()) {
 				Inventory inventory = new Inventory();
@@ -191,7 +191,7 @@ public class InventoryDAO extends HibernateDAO {
 					" and inventory.LimitDate < '"+currentDate+"' " +
 					" Group by products.ProductID";
 			helper.open(lang);
-			 
+			System.out.print("sql3:"+sql);
 			ResultSet rs = helper.executeQuery(sql);
 			while (rs.next()) {
 				Inventory inventory = new Inventory();
@@ -208,8 +208,7 @@ public class InventoryDAO extends HibernateDAO {
 	}
 	
 
-	public static ArrayList<Inventory> lstSearchInventoryState(String username, String lang,String fromDate,String toDate,
-			int invenstateId) {
+	public static ArrayList<Inventory> lstSearchInventoryState(String username, String lang,String fromDate,String toDate) {
 		ArrayList<Inventory> lstInven = new ArrayList<Inventory>();
 		MySqlDataAccessHelper helper = new MySqlDataAccessHelper();
 		SimpleDateFormat simp=new SimpleDateFormat("yyyy-MM-dd");
@@ -222,18 +221,18 @@ public class InventoryDAO extends HibernateDAO {
 					" and products.ManufacturerId=manufacturer.ManufacturerId"+
 					" and products.Account= '"+username+"' " +
 					" and inventory.LimitDate between '"+fromDate+"' and '"+toDate+"' " +
-					" and invenstate.StateId="+invenstateId+" " +
+					/*" and invenstate.StateId="+invenstateId+" " +*/
 					" and inventory.LimitDate < '"+currentDate+"' " +
 					" Group by products.ProductID";
 			helper.open(lang);
-			 
+			System.out.print("sql2:"+sql);
 			ResultSet rs = helper.executeQuery(sql);
 			while (rs.next()) {
 				Inventory inventory = new Inventory();
 				inventory.setInventoryId(rs.getInt("InventoryId"));
 				inventory.setLimitDate(rs.getDate("LimitDate"));
 				inventory.setProductId(rs.getInt("ProductId"));
-				inventory.setSateId(rs.getInt("SateId"));
+				/*inventory.setSateId(rs.getInt("SateId"));*/
 				lstInven.add(inventory);
 			}
 		} catch (Exception ex) {
@@ -249,7 +248,7 @@ public class InventoryDAO extends HibernateDAO {
 		SimpleDateFormat simp=new SimpleDateFormat("yyyy-MM-dd");
     	String currentDate=simp.format(new Date());
 		try {
-			String sql = "select inventory.InventoryId,inventory.LimitDate,inventory.SateId,inventory.ProductId " +
+			String sql = "select inventory.InventoryId,inventory.LimitDate,inventory.ProductId " +
 					"from inventory,products,manufacturer,invenstate " +
 					" where inventory.ProductId=products.ProductID  " +
 					" and inventory.SateId=invenstate.StateId"+
@@ -261,12 +260,13 @@ public class InventoryDAO extends HibernateDAO {
 			
 			helper.open(lang);
 			ResultSet rs = helper.executeQuery(sql);
+			System.out.print("sql:"+sql);
 			while (rs.next()) {
 				Inventory inventory = new Inventory();
 				inventory.setInventoryId(rs.getInt("InventoryId"));
 				inventory.setLimitDate(rs.getDate("LimitDate"));
 				inventory.setProductId(rs.getInt("ProductId"));
-				inventory.setSateId(rs.getInt("SateId"));
+				/*inventory.setSateId(rs.getInt("SateId"));*/
 				lstInven.add(inventory);
 			}
 		} catch (Exception ex) {

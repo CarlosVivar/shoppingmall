@@ -33,6 +33,7 @@ public class SearchInvenCotroller extends HttpServlet {
 	protected void processRequest(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
 		try {
 			
@@ -53,7 +54,7 @@ public class SearchInvenCotroller extends HttpServlet {
 			String dateto = (String) request.getParameter("datepickerdateTo");
 			String keyname = (String) request.getParameter("txtkeyName");
 			int manufactureId = Integer.parseInt(request.getParameter("optionManuId"));
-			int InvenStateId = Integer.parseInt(request.getParameter("optionStateInvenId"));
+		/*	int InvenStateId = Integer.parseInt(request.getParameter("optionStateInvenId"));*/
 			//System.out.print(datefrom);
 			//System.out.print(dateto);
 			//System.out.print(keyname);
@@ -63,8 +64,8 @@ public class SearchInvenCotroller extends HttpServlet {
 			String btnSearch = (String) request.getParameter("Submit");
 			
 			if (btnSearch != null ) {
-				if(datefrom != null && dateto != null && keyname!= null && manufactureId != 0 && InvenStateId != 0 ){
-				List<Inventory> lstInven = InventoryDAO.lstSearchInventory((String) session.getAttribute("username"),lang, datefrom,dateto, manufactureId, keyname, InvenStateId);
+				if(datefrom != null && dateto != null && keyname!= null && manufactureId != 0  ){
+				List<Inventory> lstInven = InventoryDAO.lstSearchInventory((String) session.getAttribute("username"),lang, datefrom,dateto, manufactureId, keyname);
 				request.setAttribute("lstInven", lstInven);
 					if (lstInven == null || lstInven.size() == 0) {
 						request.setAttribute("Message", "Product not exist");
@@ -73,7 +74,7 @@ public class SearchInvenCotroller extends HttpServlet {
 						}
 						
 					}
-				else if(datefrom != null && dateto != null && keyname!= null && ( manufactureId == 0 && InvenStateId == 0) ){
+				else if(datefrom != null && dateto != null && keyname!= null && ( manufactureId == 0 ) ){
 					List<Inventory> lstInvenKey = InventoryDAO.lstSearchInventoryDateKey((String) session.getAttribute("username"),lang, datefrom,dateto, keyname);
 					request.setAttribute("lstInven", lstInvenKey);
 					if (lstInvenKey == null || lstInvenKey.size() == 0) {
@@ -83,8 +84,7 @@ public class SearchInvenCotroller extends HttpServlet {
 					}
 					
 				}
-				else if((datefrom != null && dateto != null) &&  manufactureId == 0 && InvenStateId == 0 &&  keyname== null){
-					
+				else if((datefrom != null && dateto != null) &&  manufactureId == 0  &&  keyname== null){	
 					List<Inventory> lstInvendate = InventoryDAO.lstSearchInventoryDate((String) session.getAttribute("username"),lang, datefrom,dateto);
 					request.setAttribute("lstInven", lstInvendate);
 					if (lstInvendate == null || lstInvendate.size() == 0) {
@@ -105,8 +105,8 @@ public class SearchInvenCotroller extends HttpServlet {
 					}
 					
 				}
-				else if((datefrom != null && dateto != null && InvenStateId != 0)){
-					List<Inventory> lstInvenState = InventoryDAO.lstSearchInventoryState((String) session.getAttribute("username"),lang, datefrom,dateto, InvenStateId);
+				else if((datefrom != null && dateto != null )){
+					List<Inventory> lstInvenState = InventoryDAO.lstSearchInventoryState((String) session.getAttribute("username"),lang, datefrom,dateto);
 					request.setAttribute("lstInven", lstInvenState);
 					if (lstInvenState == null || lstInvenState.size() == 0) {
 						request.setAttribute("Message", "Product not exist");
@@ -115,7 +115,7 @@ public class SearchInvenCotroller extends HttpServlet {
 					}
 					
 				}
-				else if((datefrom == null && dateto == null)&& keyname!= null  && (manufactureId == 0 && InvenStateId == 0) ){
+				else if( (datefrom == null && dateto == null && manufactureId == 0) && keyname!=null ){
 					List<Inventory> lstInvenKey = InventoryDAO.lstSearchInventoryKey((String) session.getAttribute("username"),lang,keyname);
 					request.setAttribute("lstInven", lstInvenKey);
 					if (lstInvenKey == null || lstInvenKey.size() == 0) {
