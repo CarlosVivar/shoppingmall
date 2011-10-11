@@ -23,10 +23,6 @@
 if(request.getAttribute("payment")==null){
 	getServletContext().getRequestDispatcher("/NLCompletedController")
 	.forward(request, response);
-}else{
-	if(request.getAttribute("payment")!=null){
-		response.sendRedirect("unavailable.jsp");
-	}
 }
 
 %>

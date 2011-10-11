@@ -72,6 +72,8 @@ public class InventoryDAO extends HibernateDAO {
 			int manufactureId,String namekey) {
 		ArrayList<Inventory> lstInven = new ArrayList<Inventory>();
 		MySqlDataAccessHelper helper = new MySqlDataAccessHelper();
+		String where=hanldeSearch( fromDate, toDate,namekey ,
+				 manufactureId );
 		SimpleDateFormat simp=new SimpleDateFormat("yyyy-MM-dd");
     	String currentDate=simp.format(new Date());
 		try {
@@ -81,11 +83,9 @@ public class InventoryDAO extends HibernateDAO {
 					" and inventory.SateId=invenstate.StateId"+
 					" and products.ManufacturerId=manufacturer.ManufacturerId"+
 					" and products.Account= '"+username+"' " +
-					" and inventory.LimitDate between '"+fromDate+"' and '"+toDate+"' " +
-					" and products.ProductName like'%"+namekey+"%'" +
-					" and manufacturer.ManufacturerId="+manufactureId+" "+
+				
 					/*" and invenstate.StateId="+invenstateId+" " +*/
-					" and inventory.LimitDate < '"+currentDate+"' " +
+					" and inventory.LimitDate < '"+currentDate+"' "+where +
 					" Group by products.ProductID";
 			helper.open(lang);
 			System.out.print("sql6:"+sqlsearch);
@@ -105,6 +105,23 @@ public class InventoryDAO extends HibernateDAO {
 	}
 	
 	
+	private static String hanldeSearch(String fromDate,String toDate,String keyname,
+			int manufactureId) {
+		String where="";
+		if(manufactureId != 0){
+			where+=" and manufacturer.ManufacturerId="+manufactureId+" ";
+		}
+		//System.out.println("fromDate: "+fromDate);
+		if(fromDate != null && toDate != null && !"".equals(fromDate) && !"".equals(toDate)){
+			where+=" and inventory.LimitDate between '"+fromDate+"' and '"+toDate+"' ";
+		}
+		if(keyname!= null){
+			where+=" and products.ProductName like '%"+keyname+"%' ";
+		}
+		return where;
+		
+	}
+
 	public static ArrayList<Inventory> lstSearchInventoryDate(String username, String lang,String fromDate,String toDate) {
 		ArrayList<Inventory> lstInven = new ArrayList<Inventory>();
 		MySqlDataAccessHelper helper = new MySqlDataAccessHelper();

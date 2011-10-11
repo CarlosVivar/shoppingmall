@@ -41,7 +41,7 @@ public class NLUpdateOrderController extends HttpServlet implements Servlet {
     public void process(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException{
     	HttpSession session=request.getSession();
     	final String basicURL=ServletUtils.getBaseUrl(request);
-    	ServletContext app=getServletContext();;
+    	ServletContext app=getServletContext();
     	String lang=(String) app.getAttribute("MALL_LA");
     	String login = (String) session.getAttribute("username");
 		   if(login==null || login.isEmpty()){
@@ -64,7 +64,8 @@ public class NLUpdateOrderController extends HttpServlet implements Servlet {
 //			 response.sendRedirect("unavailable.html");
 //		}
 //		else{
-			
+		System.out.println("transactionInfo: "+transactionInfo);
+		System.out.println("orderCode: "+orderCode);
 			boolean updateOrder = NL_Checkout.verifyUpdatePaymentUrl(transactionInfo,
 					orderCode, paymentID, paymentType,	secureCode);
 			if(updateOrder){

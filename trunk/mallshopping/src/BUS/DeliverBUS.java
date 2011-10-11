@@ -44,6 +44,8 @@ public class DeliverBUS {
 	}
 	
 	public static void main(String[] args) {
-		updateDeliverstatus(1, 5,"MALL_EN");
+		System.out.println(getDeliverByPODetail(65,"MALL_VN").getDeliverstatusID());
 	}
+	
+
 }

@@ -23,7 +23,7 @@ public class CategorySubDAO extends HibernateDAO{
 
     //Get all CategorySubs  in CategoryChild
     public static List<CategorySub> lstCategorySub(CategoryChild cc,String lang) {
-        return HibernateDAO.getList("from CategorySub where categoryChildId='" + cc.getCategoryChildId()+"'",lang);
+        return HibernateDAO.getList("from CategorySub where categoryChildId='" + cc.getCategoryChildId()+"' order by priorities desc",lang);
     }
     
   

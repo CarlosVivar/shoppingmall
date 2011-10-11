@@ -184,8 +184,8 @@ public class DeliverDAO extends HibernateDAO {
 		
 		return getListHomeDeliverView(seller, where, lang);
 	}
+	@SuppressWarnings("unchecked")
 	public static Deliver getDeliverByPODetail(int pODetailID,String lang){
-		@SuppressWarnings("unchecked")
 		List<Deliver> list=HibernateDAO.getList("from Deliver where productOrderDetail.productOrderDetailId='"+pODetailID+"'", lang);		
 		return (list.size()>0) ? list.get(0) : null;
 	}

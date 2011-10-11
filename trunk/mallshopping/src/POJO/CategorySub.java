@@ -15,6 +15,7 @@ public class CategorySub  implements java.io.Serializable {
      private String categorySubId;
      private String categoryChildId;
      private String categorySubName;
+     private String priorities;
      private Set products = new HashSet(0);
 
    
@@ -62,6 +63,20 @@ public class CategorySub  implements java.io.Serializable {
 
 	public void setProducts(Set products) {
 		this.products = products;
+	}
+
+	/**
+	 * @return the priorities
+	 */
+	public String getPriorities() {
+		return priorities;
+	}
+
+	/**
+	 * @param priorities the priorities to set
+	 */
+	public void setPriorities(String priorities) {
+		this.priorities = priorities;
 	}
 
 

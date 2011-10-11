@@ -129,7 +129,7 @@
                                                                 <span class="option"><span class="label"><%=LanguegeBUS.getValue("color", lang) %>:</span> <%=pPojo.getColor()%></span>
 
 
-                                                                <span class="option"><span class="label"><%=LanguegeBUS.getValue("price", lang) %>:</span><strong class="price ex"><%=pPojo.getPrice()%>&nbsp;$</strong><br /></span>
+                                                                <span class="option"><span class="label"><%=LanguegeBUS.getValue("price", lang) %>:</span><strong class="price ex"><%=pPojo.getPrice()%>&nbsp;<%=LanguegeBUS.getValue("dolar", lang) %></strong><br /></span>
                                                                 <span class="option clear" id="rating_product" style="display:none"></span>
 
 

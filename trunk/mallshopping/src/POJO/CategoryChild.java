@@ -15,6 +15,7 @@ public class CategoryChild  implements java.io.Serializable {
      private String categoryChildId;
      private String categoryId;
      private String categoryChildName;
+     private String priorities;
      private Set products = new HashSet(0);
      private Set categorysubs = new HashSet(0);
    
@@ -72,6 +73,14 @@ public class CategoryChild  implements java.io.Serializable {
 
 	public void setCategorysubs(Set categorysubs) {
 		this.categorysubs = categorysubs;
+	}
+
+	public String getPriorities() {
+		return priorities;
+	}
+
+	public void setPriorities(String priorities) {
+		this.priorities = priorities;
 	}
 
 
