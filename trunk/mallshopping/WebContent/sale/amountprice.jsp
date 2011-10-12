@@ -271,7 +271,7 @@
 													
 													<td style="text-align:left"><%=pro.getProductName()%></td>
 													<td style="text-align:right"><%=pro.getPrice()%></td>
-													<td>&nbsp;</td>
+													<td style="text-align:right"><%=pro.getPrice()%></td>
 													<td>&nbsp;</td>
 												</tr>
 												<%
