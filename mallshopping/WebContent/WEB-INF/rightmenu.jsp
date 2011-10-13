@@ -63,8 +63,8 @@
     <body>
         <DIV class="main-block">
          
-            <a href="promotion.html"><img alt="women fashion" width="180" src="images/adv/km-hangtuan.gif"/></a>
-         <br>   
+          <!--   <a href="promotion.html"><img alt="women fashion" width="180" src="images/adv/km-hangtuan.gif"/></a>
+         <br>  -->  
          <DIV class="border-bot"><DIV class="border-left"><DIV class="border-right"><DIV class="corner-left-top"><DIV class="corner-right-top">
           <DIV class="corner-left-bot"><DIV class="corner-right-bot">
            <DIV class="title-block">
