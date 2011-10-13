@@ -129,6 +129,10 @@
 	border: none;
 	display: block;
 }
+#fancybox-frame img{
+	width: 500;
+	height: 500;
+	}
 
 #fancybox-left, #fancybox-right {
 	position: absolute;

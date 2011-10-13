@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" import="POJO.*,BUS.*, java.util.List" %>
 <!DOCTYPE html>
  <% 
- ServletContext capp=getServletContext();;
+ ServletContext capp=getServletContext();
  String clang = (String)capp.getAttribute("MALL_LA"); %>      
 <html>
     <head>

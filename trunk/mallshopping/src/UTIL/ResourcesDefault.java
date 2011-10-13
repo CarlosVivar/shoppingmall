@@ -4,7 +4,15 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import javax.servlet.GenericServlet;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServlet;
+
+import org.apache.catalina.core.ApplicationContext;
+import org.apache.catalina.core.StandardContext;
 import org.apache.commons.mail.Email;
+
+import com.sun.org.apache.bcel.internal.generic.GETSTATIC;
 
 import BUS.CategoryChildBUS;
 import BUS.EmailConfigureBUS;
@@ -12,7 +20,10 @@ import POJO.CategoryChild;
 import POJO.Emailconfigure;
 import POJO.Products;
 
-public class ResourcesDefault {
+public class ResourcesDefault extends HttpServlet{
+	// get servletcontext
+	
+
 	// Deliver status:
 	public static final int PENDING_DELIVER = 1;
 	public static final int PROCESS_DELIVER = 3;
@@ -112,7 +123,8 @@ public class ResourcesDefault {
 	}
 
 	/** sort list products by category **/
-	public static List<Products> sortListProductByCategory(List<Products> list,final String lang) {
+	public static List<Products> sortListProductByCategory(List<Products> list,
+			final String lang) {
 		Comparator<Products> c = new Comparator<Products>() {
 			@Override
 			public int compare(Products p1, Products p2) {

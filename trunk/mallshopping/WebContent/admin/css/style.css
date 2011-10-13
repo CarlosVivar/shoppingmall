@@ -804,8 +804,8 @@ ul.action_log .desc{display:block;float:right;width:420px;height:15px;overflow:h
 .box_sale .group_listing_input{padding:15px 10px 15px 0}
 .box_sale .listing_input{position:relative;clear:both;height:20px;padding:5px 0}
 .box_sale .listing_input .tip_listing_input{position:absolute;left:452px;top:8px;background:url(images/icon_tip.jpg) left 0 no-repeat;width:260px;padding-left:10px;color:#666}
-.box_sale .post_label_container{float:left;width:120px;padding-right:10px;padding-top:4px}
-.box_sale .postLabel{float:right;text-align:right;vertical-align:middle;width:120px}
+.box_sale .post_label_container{float:left;padding-right:10px;padding-top:4px}
+.box_sale .postLabel{text-align:right;vertical-align:middle;width:120px}
 .box_sale label{color:#666;font-size:12px;font-weight:normal;vertical-align:middle}
 .box_sale select{border:1px solid #BDC7D8;font-family:Arial;font-size:12px;padding:2px}
 .box_sale input{border:1px solid #BDC7D8;font-family:Arial;font-size:12px;padding:2px}

@@ -20,6 +20,45 @@
         <script type="text/javascript" src="scripts/js/ttabc.js"></script>
         
     </head>
+    <%
+    if(session.getAttribute("loadIntroduce")!=null){
+    %>    
+    <script type="text/javascript">
+	
+	$(document).ready(function() {
+		setTimeout("loadPopup()", 1000);
+	})
+;
+	function loadPopup(){
+		createTag();
+		$("#showIntroduces").fancybox({
+			'width' : 1000,
+			'height' : 720,
+			'autoScale' : false,
+			'transitionIn' : 'none',
+			'transitionOut' : 'none',
+			'type' : 'iframe',
+			'hideOnOverlayClick' : true,
+			'hideOnContentClick' : false
+		}).trigger('click');
+	    //launch on load after 5 second delay
+		setTimeout("parent.$.fancybox.close()", 42000);
+		setTimeout("removeTag()", 43000);
+	}
+	function createTag(){
+		myA=document.createElement("A");
+		myA.setAttribute("id","showIntroduces");
+		myA.setAttribute("href","welcome.html");
+		document.body.appendChild(myA);
+	}
+	function removeTag(){
+		myA=document.getElementById("showIntroduces");
+		document.body.removechild(myA);
+	}
+</script>
+<%
+session.removeAttribute("loadIntroduce");
+    } %>
     <body>
     
         <DIV class="site-container">
