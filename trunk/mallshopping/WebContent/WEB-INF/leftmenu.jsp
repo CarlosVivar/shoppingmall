@@ -145,8 +145,8 @@
 										</div>
 										
 										<div>
-										<h3 >Bảo Khuyên</h3>
-										<h3 style="margin-top:0"><span style="color: red" >call:</span>&nbsp<span style="color: #0066FF; size: 10px">0938944067</span></h3>
+										<h3>Như Thùy</h3>
+										<h3 style="margin-top:0"><span style="color: red" >call:</span>&nbsp<span style="color: #0066FF; size: 10px"> 01698757981</span></h3>
 											<h3 style="height: 30px;margin-top:0">
 												
 												<a href='ymsgr:SendIM?jeny_bora8983'><img
@@ -155,16 +155,7 @@
 													src='images/online1.gif?u=beyourself_bk&amp;m=g&amp;t=1' />
 												</a>
 											</h3>
-											</div>
-										
-
-
-
-
-
-
-
-
+											</div>						
 										<!--End .boxes_content-->
 									</div>
 								</DIV>
