@@ -75,8 +75,8 @@ public class uploadController extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		ServletContext app = getServletContext();
-
-		try {
+		
+		try { 
 			String url = null;
 			// test login
 			String login = (String) session.getAttribute("username");
@@ -106,14 +106,16 @@ public class uploadController extends HttpServlet {
 				int inde = 0;
 				while (iter.hasNext()) {
 					FileItem item = (FileItem) iter.next();
-					// System.out.println("item: "+item);
+					
 					if (item.isFormField()) {
 						// System.out.println("item.getFieldName(): "+item.getFieldName());
 						params.put(item.getFieldName(), item.getString("UTF-8"));
 					} else {
 						try {
 							String itemName = item.getName();
+							
 							if (!"".equals(itemName)) {
+							
 								// System.out.println("itemName: "+itemName);
 								String filename = itemName.substring(itemName
 										.lastIndexOf("\\") + 1);
@@ -121,12 +123,14 @@ public class uploadController extends HttpServlet {
 								String RealPath = getServletContext()
 										.getRealPath("/")
 										+ "images/fashion/"
-										+ fileName.get(inde);
+										+ itemName;
 
 								inde++;
 								File savedFile = new File(RealPath);
-								System.out.println("RealPath: "+RealPath);
+								
 								item.write(savedFile);
+							}else{
+								fileName.add("");
 							}
 
 						} catch (Exception e) {
@@ -148,7 +152,7 @@ public class uploadController extends HttpServlet {
 						.get("selectCategorySub");
 
 				final String selectManufactural = (String) params.get("selectManufactural");
-				System.out.println("selectManufactural: "+selectManufactural);
+			
 
 				final Date currentday = new Date();
 				SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -216,13 +220,14 @@ public class uploadController extends HttpServlet {
 							// insert images of this product
 							int productid = newProduct.getProductId();
 							for (int i = 0; i < fileName.size(); i++) {
-								Productphotos newProductphoto = new Productphotos();
-								newProductphoto.setProductPhotoName(fileName
-										.get(i));
-								newProductphoto.setProductId(productid);
-
-								// ProductPhotoBUS.insertProductPhotos(newProductphoto,lang);
-								save(newProductphoto, session);
+								if(!"".equals(fileName.get(i))){
+									Productphotos newProductphoto = new Productphotos();
+									newProductphoto.setProductPhotoName(fileName
+											.get(i));
+									newProductphoto.setProductId(productid);
+									// ProductPhotoBUS.insertProductPhotos(newProductphoto,lang);
+									save(newProductphoto, session);
+								}
 							}
 							// insert inventory
 							Inventory iv = new Inventory();
@@ -283,6 +288,31 @@ public class uploadController extends HttpServlet {
 							}
 							// /ProductBUS.updateProducts(p,lang);
 							update(p, session);
+							//
+							List<Productphotos> currentPhotos=ProductPhotoBUS.lstProductPhotoAll(p, lang);
+							int productid = p.getProductId();
+							//update current photo
+							for (int i = 0; i < currentPhotos.size(); i++) {
+								if(!"".equals(fileName.get(i))){
+									
+									Productphotos oldProductphoto =currentPhotos.get(i);
+									oldProductphoto.setProductPhotoName(fileName.get(i));
+									update(oldProductphoto, session);
+								}
+							}
+							//save new photo
+							for (int i = currentPhotos.size(); i < fileName.size(); i++) {
+								if(!"".equals(fileName.get(i))){
+									Productphotos newProductphoto = new Productphotos();
+									newProductphoto.setProductPhotoName(fileName
+										.get(i));
+									newProductphoto.setProductId(productid);
+
+									// ProductPhotoBUS.insertProductPhotos(newProductphoto,lang);
+									save(newProductphoto, session);
+								}
+							}
+							
 							if (Integer.parseInt(vPeriod) > 0) {
 
 								// Insert Limit Date

@@ -27,7 +27,33 @@
 <%
 String categoryID=request.getParameter("caID");
 %>
+	<script type="text/javascript">
+	
+	$(document).ready(function() {
+		loadPopup();
+	})
+;
+	function loadPopup(){
+		
+		$("a.fancybox").fancybox({
+			'width' : 500,
+			
+			'autoScale' : true,
+			'autoDimensions' : true, 
+			'transitionIn' : 'none',
+			'transitionOut' : 'none',
+			'type' : 'iframe',
+			'hideOnOverlayClick' : true,
+			'hideOnContentClick' : false,
+		   
 
+		});
+	    //launch on load after 5 second delay
+		//setTimeout("parent.$.fancybox.close()", 5000);
+		//setTimeout("removeTag()", 6000);
+	}
+	
+</script>
 <body>
 
 	<DIV class="site-container">
@@ -83,8 +109,8 @@ String categoryID=request.getParameter("caID");
 
 															<div
 																style="width: 598px; height: 30px; border-bottom: #1272e8 solid 2px; clear: both; padding-top: 10px">
-																<h4
-																	style="padding: 0 10px 0 2px; margin: 0;padding-top:8px;padding-bottom:5px; height: 30px; color: #0968d4; float: left"><%=category.getCategoryName()%></h4>
+															<a id="categorypoup" ><h4
+																	style="padding: 0 10px 0 2px; margin: 0;padding-top:8px;padding-bottom:5px; height: 30px; color: #0968d4; float: left"><%=category.getCategoryName()%></h4></a>
 															</div>
 															<UL class="prodlist" style="clear: left">
 																<%
@@ -95,6 +121,7 @@ String categoryID=request.getParameter("caID");
 																				Products pr = (Products) lst.get(p);
 																				Productphotos pic = ProductPhotoBUS.lstProductPhoto(pr,
 																						lang);
+																				String baseURL=ServletUtils.getBaseUrl(request);
 																%>
 
 
@@ -118,7 +145,7 @@ String categoryID=request.getParameter("caID");
 																		</div>
 																	</div> <img src="images/hot.gif" />
 																	<p>
-																		<span class="title"><%=pr.getProductName()%></span>
+																		<a href="images/fashion/<%=pic.getProductPhotoName()%>" class="fancybox"><span class="title"><%=pr.getProductName()%></span></a>
 																	</p>
 																	<p class="price"><%=pr.getPrice()%>$
 																	</p>
@@ -161,6 +188,7 @@ String categoryID=request.getParameter("caID");
 
 		</DIV>
 	</DIV>
+
 </body>
 </html>
 
