@@ -32,8 +32,8 @@
 	function loadPopup(){
 		createTag();
 		$("#showIntroduces").fancybox({
-			'width' : 1000,
-			'height' : 720,
+			'width' : 720,
+			'height' : 520,
 			'autoScale' : false,
 			'transitionIn' : 'none',
 			'transitionOut' : 'none',
