@@ -19,6 +19,7 @@
 <meta name="verify-v1"
 	content="FFBgLdpbVMyXsynOVfy9zQzLpkphTZbllfq76+TnsAk=" />
 <link href="css/style.css" rel="stylesheet" type="text/css">
+
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.6.4.js"></script>
 <script type="text/javascript" src="scripts/js/ttabc.js"></script>
@@ -36,7 +37,7 @@ String categoryID=request.getParameter("caID");
 	function loadPopup(){
 		
 		$("a.fancybox").fancybox({
-			'width' : 500,
+			'width' : 500,		
 			
 			'autoScale' : true,
 			'autoDimensions' : true, 
@@ -54,6 +55,11 @@ String categoryID=request.getParameter("caID");
 	}
 	
 </script>
+<style type="text/css">
+	#fancybox-content {
+	height:none !important;
+	}
+</style>
 <body>
 
 	<DIV class="site-container">
@@ -108,7 +114,7 @@ String categoryID=request.getParameter("caID");
 															%>
 
 															<div
-																style="width: 598px; height: 30px; border-bottom: #1272e8 solid 2px; clear: both; padding-top: 10px">
+																style="width: 598px; height: 30px; border-bottom: #CCCCCC solid 2px; clear: both; padding-top: 10px">
 															<a id="categorypoup" ><h4
 																	style="padding: 0 10px 0 2px; margin: 0;padding-top:8px;padding-bottom:5px; height: 30px; color: #0968d4; float: left"><%=category.getCategoryName()%></h4></a>
 															</div>
