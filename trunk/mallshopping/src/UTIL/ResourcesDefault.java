@@ -3,6 +3,7 @@ package UTIL;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.GenericServlet;
 import javax.servlet.ServletContext;
@@ -117,10 +118,6 @@ public class ResourcesDefault extends HttpServlet{
 
 	}
 
-	public static void main(String[] args) {
-		System.out.println(Math.round(1.4));
-		System.out.println(Round(1.144f, 2));
-	}
 
 	/** sort list products by category **/
 	public static List<Products> sortListProductByCategory(List<Products> list,
@@ -138,6 +135,15 @@ public class ResourcesDefault extends HttpServlet{
 
 		Collections.sort(list, c);
 		return list;
+	}
+	
+	//create capcha
+	public static String getCapcha(){
+		return "adfa";
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(getCapcha());
 	}
 
 }

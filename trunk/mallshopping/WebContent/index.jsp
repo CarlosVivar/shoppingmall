@@ -32,18 +32,20 @@
 	function loadPopup(){
 		createTag();
 		$("#showIntroduces").fancybox({
-			'width' : 720,
-			'height' : 520,
+			'width' : 1000,
+			'height' : 620,
+			'padding' : 0,
 			'autoScale' : false,
 			'transitionIn' : 'none',
 			'transitionOut' : 'none',
 			'type' : 'iframe',
 			'hideOnOverlayClick' : true,
-			'hideOnContentClick' : false
+			'hideOnContentClick' : false,
+			
 		}).trigger('click');
 	    //launch on load after 5 second delay
-		setTimeout("parent.$.fancybox.close()", 42000);
-		setTimeout("removeTag()", 43000);
+		//setTimeout('$("#showIntroduces").fancybox.close()', 42000);
+		//setTimeout("removeTag()", 43000);
 	}
 	function createTag(){
 		myA=document.createElement("A");
