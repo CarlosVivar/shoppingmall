@@ -120,7 +120,7 @@
 	
                 
 	
-		var i_add=0;
+		var i_add=1;
 		
 		var flag=true;
         var maxWidth=220;
@@ -183,7 +183,7 @@
                 +fileTypes.join(", "));
             }
 
-            setTimeout("applyChanges()",200);
+            //setTimeout("applyChanges()",200);
             
           //  var upfile0 = $("#upfile0").val();
            // var upfile1 = $("#upfile1").val();
@@ -1038,22 +1038,42 @@ input1 {
 							<table >
 							<tr><td>
 							<div class="group_listing_input">
+								<%
+								int currentPhotosSize=0;
 								
+								List<Productphotos> currentPhotos=ProductPhotoBUS.lstProductPhotoAll(p, lang);
+								if(currentPhotos!=null){
+									for(int i=1;i<=currentPhotos.size();i++){
+										
+										%>
+										<br>
+										<div class="listing_input">
+									<div class="post_label_container">
+										<label class="postLabel"><%=LanguegeBUS.getValue("file", hlang)%> <%=i%>:</label>
+									</div>
+									<input class="register_text_input show_tip required" onChange="preview(this)" name="upfile0"  size="30" type="file" >
+									
+								</div>
+									<%}
+									currentPhotosSize=currentPhotos.size();
+								}else{
+								%>
 								<div class="listing_input">
 									<div class="post_label_container">
-										<label class="postLabel"><%=LanguegeBUS.getValue("file", hlang)%> 01:</label>
+										<label class="postLabel"><%=LanguegeBUS.getValue("file", hlang)%> 1:</label>
 									</div>
 									<input class="register_text_input show_tip required" onChange="preview(this)" name="upfile0" id="upfile0" size="30" type="file" >
 									
 								</div>
-											
-							<%
+								currentPhotosSize=1;			
+							<%}
+								int ipBegin=1;
+								int ipLong=100;
 									String mylabel="";
 									String mynamefileup="";
 									String btn="";
 									String mytag1="";
-									int ipBegin=0;
-									int ipLong=100;
+									
 																							
 									for(int i=ipBegin;i<ipBegin+ipLong;i++){
 											mylabel="lbfile"+i;
@@ -1068,7 +1088,7 @@ input1 {
 								<div  id="<%=mytag1 %>" class="hide1">
 									<br/>
 									<div class="post_label_container" id="<%=mylabel %>">
-										<label class="postLabel"><%=LanguegeBUS.getValue("file", hlang)%> <%if(i+2<=9){%><%=0%><%}%><%=i+2 %>:</label>
+										<label class="postLabel"><%=LanguegeBUS.getValue("file", hlang)%> <%=i+currentPhotosSize%>:</label>
 									</div>
 									<input class="register_text_input show_tip required" onChange="preview(this)" name="<%=mynamefileup %>" id="<%=mynamefileup %>" size="30" type="file">
 									
@@ -1085,9 +1105,9 @@ input1 {
 								
 							</div>
 							</td>
-							<td>
+							<!-- <td>
 							 &nbsp;&nbsp;&nbsp;&nbsp; <img  id="testImg" name="testImg" alt="View Images"  />  
-							</td></tr>
+							</td> --></tr>
 							</table>
 							<div class="line clear"></div>
 							<h3 class="n3"><%=LanguegeBUS.getValue("deliver", lang)%></h3>

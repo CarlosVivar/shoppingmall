@@ -80,8 +80,7 @@ public class languageController extends HttpServlet {
              session.removeAttribute("cart");
              session.removeAttribute("username");
 	         session.removeAttribute("Role");
-	         session.removeAttribute("lastpage");
-             session.setAttribute("loadIntroduce", "loadIntroduce");
+	         session.removeAttribute("lastpage");            
              response.sendRedirect("index.html");
             
             

@@ -5,6 +5,7 @@
 			
             String lang1 = (String)request.getParameter("lang");	
             if (null!=lang1) {
+            	
                 String url = "/languageController";
                 getServletContext().getRequestDispatcher(url).forward(request, response);
             }
@@ -34,13 +35,13 @@ p {color: #333333;
 		
 </head>
 <body >
-<div style="width:700px; height:500px;">
+<div style="width:980px; height:600px;">
   <script type="text/javascript">
-AC_FL_RunContent( 'codebase','http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0','width','700','height','500','src','scripts/3','quality','high','pluginspage','http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash','movie','scripts/3' ); //end AC code
-</script><noscript><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" width="700" height="500">
-  <param name="movie" value="scripts/3.swf" />
+AC_FL_RunContent( 'codebase','http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0','width','980','height','600','src','scripts/3','quality','high','pluginspage','http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash','movie','scripts/final' ); //end AC code
+</script><noscript><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" width="980" height="600">
+  <param name="movie" value="scripts/final.swf" />
   <param name="quality" value="high" />
-  <embed src="scripts/3.swf" quality="high" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="700" height="500"></embed>
+  <embed src="scripts/final.swf" quality="high" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="980" height="600"></embed>
 </object></noscript>
 
 </div>
