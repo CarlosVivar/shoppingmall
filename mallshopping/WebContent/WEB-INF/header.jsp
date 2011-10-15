@@ -210,6 +210,7 @@ String hlang = (String)happ.getAttribute("MALL_LA"); %>
 			<% } %>  
 			  
             <li class="end"><a id="menu_expand" href="#"><%=LanguegeBUS.getValue("all", hlang)%>&nbsp;<img class="hot" src="css/images/icon_menu_up.1.0.1.jpg" alt="<%=LanguegeBUS.getValue("all", hlang)%>" /> </a></li>
+        	<%--<li class="cat"><a id="menu_expand" href="support.html"><%=LanguegeBUS.getValue("help", hlang)%>&nbsp;</a></li> --%>
         </ul>
         <div id="content_menu_expand" style="display:none">            
           <%
