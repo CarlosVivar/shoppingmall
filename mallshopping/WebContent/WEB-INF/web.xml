@@ -13,7 +13,26 @@
 		<servlet-name>welcome</servlet-name>
 		<url-pattern>/welcome.html</url-pattern>
 	</servlet-mapping>
-	
+	<servlet>
+		<description></description>
+		<display-name>CaptchaServlet</display-name>
+		<servlet-name>CaptchaServlet</servlet-name>
+		<servlet-class>CONTROLLER.CaptchaServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CaptchaServlet</servlet-name>
+		<url-pattern>/captchaServlet.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>CaptchaServletRefresh</display-name>
+		<servlet-name>CaptchaServletRefresh</servlet-name>
+		<servlet-class>CONTROLLER.CaptchaServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CaptchaServletRefresh</servlet-name>
+		<url-pattern>/CaptchaServletRefresh</url-pattern>
+	</servlet-mapping>
 	<servlet>
 		<servlet-name>support</servlet-name>
 		<jsp-file>/support.jsp</jsp-file>
@@ -1215,6 +1234,14 @@
 		<url-pattern>/uploadController</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>supportcontroller</servlet-name>
+		<servlet-class>CONTROLLER.supportcontroller</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>supportcontroller</servlet-name>
+		<url-pattern>/supportcontroller</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>useOrderController</servlet-name>
 		<servlet-class>CONTROLLER.useOrderController</servlet-class>
 	</servlet>
@@ -1296,14 +1323,5 @@
 		<servlet-name>d</servlet-name>
 		<url-pattern>/d</url-pattern>
 	</servlet-mapping>
-	<servlet>
-		<description></description>
-		<display-name>CaptchaServlet</display-name>
-		<servlet-name>CaptchaServlet</servlet-name>
-		<servlet-class>CONTROLLER.CaptchaServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>CaptchaServlet</servlet-name>
-		<url-pattern>/captchaServlet.do</url-pattern>
-	</servlet-mapping>
+	
 </web-app>

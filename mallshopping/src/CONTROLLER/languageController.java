@@ -42,7 +42,7 @@ public class languageController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         HttpSession session=request.getSession();
-        ServletContext app=getServletContext();;
+        ServletContext app=getServletContext();
         try {
             /* TODO output your page here
             out.println("<html>");
