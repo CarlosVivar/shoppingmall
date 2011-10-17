@@ -1,41 +1,26 @@
-package CONTROLLER;
+package UTIL;
 
 import java.awt.Color;
-
 import java.awt.Font;
-
 import java.awt.GradientPaint;
-
 import java.awt.Graphics2D;
-
 import java.awt.RenderingHints;
-
 import java.awt.image.BufferedImage;
-
 import java.io.IOException;
-
 import java.io.OutputStream;
-
 import java.util.Random;
 
 import javax.imageio.ImageIO;
-
-import javax.servlet.ServletException;
-
-import javax.servlet.http.HttpServlet;
-
 import javax.servlet.http.HttpServletRequest;
-
 import javax.servlet.http.HttpServletResponse;
 
-public class CaptchaServlet extends HttpServlet {
+public class CreateCaptcha {
+	
+	public CreateCaptcha() {
+		// TODO Auto-generated constructor stub
+	}
 
-	private static final long serialVersionUID = 1L;
-
-	protected void processRequest(HttpServletRequest request,
-
-	HttpServletResponse response) throws ServletException, IOException {
-
+	public static void creat(HttpServletRequest request,HttpServletResponse response,String s) throws IOException {
 		final int width = 150;
 
 		final int height = 40;
@@ -74,11 +59,10 @@ public class CaptchaServlet extends HttpServlet {
 
 		g2d.setPaint(gradientPaint);
 		g2d.drawRect(2, 2, width, height);
-		g2d.setColor(new Color(222,231,245));
+		g2d.setColor(new Color(222, 231, 245));
 		g2d.fillRect(0, 0, width, height);
-		
 
-		g2d.setColor(new Color(107,118,156));
+		g2d.setColor(new Color(107, 118, 156));
 
 		Random random = new Random();
 
@@ -113,27 +97,6 @@ public class CaptchaServlet extends HttpServlet {
 		ImageIO.write(bufferedImage, "png", outputStream);
 
 		outputStream.close();
-
-	}
-
-	protected void doGet(HttpServletRequest request,
-
-	HttpServletResponse response) throws ServletException, IOException {
-
-		processRequest(request, response);
-
-	}
-
-	protected void doPost(HttpServletRequest request,
-
-	HttpServletResponse response) throws ServletException, IOException {
-
-		processRequest(request, response);
-
-	}
-	
-	public void refreshCaptcha(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
-		doPost(request, response);
 	}
 
 	public static String getRandomNumber(int length) {
@@ -153,5 +116,4 @@ public class CaptchaServlet extends HttpServlet {
 		return new String(buf);
 
 	}
-
 }

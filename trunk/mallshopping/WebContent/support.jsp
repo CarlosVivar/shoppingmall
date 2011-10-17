@@ -4,6 +4,7 @@
     Author     : admin
 --%>
 
+<%@page import="nl.captcha.CaptchaBean"%>
 <%@page import="nl.captcha.Captcha"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="library.jsp"%>
@@ -41,19 +42,49 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
+	$("#messages").hide();
+	$("#invalidName").hide();
+	$("#invalidEmail").hide();
+	$("#invalidPhone").hide();
+	$("#invalidCode").hide();
+	$("#invalidMessage").hide();
+	
 	<%if(session.getAttribute("message")!=null){
 		session.removeAttribute("message");
 		%>
-	$("#messages").show();
-	<%} else{%>
-	$("#messages").hide();
+	alert("<%=LanguegeBUS.getValue("alertcontactsuccessfull",lang)%>");
 	<%}%>
+
+	validCode();
 });
+
+function validCode(){
+	<%if(session.getAttribute("invalidCode")!=null){
+		session.removeAttribute("invalidCode");
+		%>
+	$("#invalidCode").show();
+	<%}%>
+}
+function hidenInvalidName(){
+	$("#invalidName").hide();
+}
+function hidenInvalidEmail(){
+	$("#invalidEmail").hide();
+}
+function hidenInvalidPhone(){
+	$("#invalidPhone").hide();
+}
+function hidenInvalidMessage(){
+	$("#invalidMessage").hide();
+}
+function hidenInvalidCode(){
+	$("#invalidCode").hide();
+}
 
 </script>
 
 
-<body>
+<body onload="validCode()">
 
 	<DIV class="site-container">
 		<DIV class="page">
@@ -99,71 +130,66 @@ $(document).ready(function(){
 													<DIV class="category-title">
 														
 														<div align="center">
-														<br> 
-														<label id="messages">You have contacted successfull !</label>
+													
 														<br> <br> 
-														<h3>Welcome to khongmac.com</h3>
+														<label style="font-weight: bold;font-size: 16"><%=LanguegeBUS.getValue("welcometowebsite",lang)%></label>
+													
 														
 														<br> <br>
-															<form name="supportform" action="supportcontroller">
+															<form name="supportform" action="supportcontroller" onsubmit="return validSubmit();">
 																<table>
 																	<tr>
 																		<td align="right"
 																			style="width: 100px; padding-right: 10px"
-																			height="30px"><b>Name</b></td>
-																		<td style="width: 200px" height="30px"><input name="name"
+																			height="30px"><b><%=LanguegeBUS.getValue("fullname",lang)%></b></td>
+																		<td style="width: 200px" height="30px"><input name="name" id="name"
 																			type="text"
-																			style="width: 200px; padding: 2px; border: 1p solid;" />
+																			style="width: 200px; padding: 2px; border: 1p solid;" onchange="hidenInvalidName()"/>
+																			<span style="color: red" id="invalidName">x</span>
 																		</td>
 																	</tr>
 																	<tr>
 																		<td align="right" style="padding-right: 10px"
-																			height="30px"><b>Email</b></td>
-																		<td height="30px"><input name="email" type="text"
+																			height="30px"><b><%=LanguegeBUS.getValue("email",lang)%></b></td>
+																		<td height="30px"><input name="email" type="text" id="email"  onchange="hidenInvalidEmail()"
 																			style="width: 200px; padding: 2px" />
+																			<span style="color: red" id="invalidEmail">x</span>
 																		</td>
 																	</tr>
 																	<tr>
 																		<td align="right" style="padding-right: 10px"
-																			height="30px"><b>Phone</b></td>
-																		<td height="30px"><input name="phone" type="text"
+																			height="30px"><b><%=LanguegeBUS.getValue("exc_phone",lang)%></b></td>
+																		<td height="30px"><input name="phone" type="text" id="phone"  onchange="hidenInvalidPhone()"
 																			style="width: 200px; padding: 2px" />
+																			<span style="color: red" id="invalidPhone">x</span>
 																		</td>
 																	</tr>
 																	<tr>
 																		<td align="right" style="padding-right: 10px"
-																			height="30px"><b>Message</b></td>
-																		<td height="30px"><textarea name="message" rows="8" cols="30"
+																			height="30px"><b><%=LanguegeBUS.getValue("message",lang)%></b></td>
+																		<td height="30px" width="320px"><textarea name="message" rows="8" cols="30" id="message"  onchange="hidenInvalidMessage()"
 																				style="width: 300px; height: 120px"></textarea>
+																				<span style="color: red" id="invalidMessage">x</span>
 																		</td>
 																	</tr>
 																	<tr>
 																		<td align="right" style="padding-right: 10px;padding-bottom: 5px;vertical-align: bottom"
-																			height="30px"><b>Code</b></td>
-																		<td style="padding-top: 5px"><input type="text" name="code" id="code"
+																			height="30px"><b><%=LanguegeBUS.getValue("exc_id",lang)%></b></td>
+																		<td style="padding-top: 5px"><input type="text" name="code" id="code"  onchange="hidenInvalidCode()"
 																			style="width: 50px; padding: 2px">
-																			<img  src="<c:url value="captchaServlet.do"  />" width="150">																			
+																			<span style="color: red" id="invalidCode">x</span>
+																			<img id="imageCaptcha" src="captchaServlet.do" width="150">	
+																			<span style="text-decoration: underline;color: gray;cursor: pointer;" id="refresh" onclick="window.location.href=window.location.href"><%=LanguegeBUS.getValue("refresh",lang)%></span>																		
 																			</td>
 																	</tr>
 																	<tr>
 																	
 																		<td colspan="2" align="center">
-																		<script type="text/javascript">
-																		function validSubmit(){
-																			<%String captcha=(String)request.getSession().getAttribute("captcha");%>
-																			alert('<%=captcha%>');
-																			var code=document.getElementById('code').value;
-																			//alert(code);
-																			var captcha='<%=captcha%>';
-																			//alert(captcha);
-																			if(code==captcha){alert("true");}
-																			else{ alert("false");}
-																			return false;
-																		}
-																		</script>
+																		
+																		
 																		<br>
 																		<input
-																			type="button" value="Submit" onclick="validSubmit()"/></td>
+																			type="submit" value="Submit" /></td>
 
 																	</tr>
 																</table>
@@ -198,6 +224,34 @@ $(document).ready(function(){
 	</DIV>
 
 </body>
+<script type="text/javascript">
+																	
+																		function validSubmit(){
+																			if(document.getElementById('name').value.length==0){
+																				$("#invalidName").show();
+																				return false;
+																			}
+																			if(document.getElementById('email').value.length==0){
+																				$("#invalidEmail").show();
+																				return false;
+																			}
+																			if(document.getElementById('phone').value.length==0){
+																				$("#invalidPhone").show();
+																				return false;
+																			}
+																			if(document.getElementById('message').value.length==0){
+																				$("#invalidMessage").show();
+																				return false;
+																			}
+																			if(document.getElementById('code').value.length==0){
+																				$("#invalidCode").show();
+																				return false;
+																			}
+																			else{
+																				return true;
+																			}
+																		}
+																		</script>
 </html>
 
 

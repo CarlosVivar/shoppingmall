@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import nl.captcha.Captcha;
+
+import BUS.LanguegeBUS;
 import UTIL.ResourcesDefault;
 
 /**
@@ -26,28 +29,44 @@ public class supportcontroller extends HttpServlet {
     public void process(HttpServletRequest request,HttpServletResponse response){
     	String lang=(String) getServletContext().getAttribute("MALL_LA");
     	HttpSession session=request.getSession();
-    	String name="",email="",phone="",message="";
-    	name=request.getParameter("name");
-    	email=request.getParameter("email");
-    	phone=request.getParameter("phone");
-    	message=request.getParameter("message");
+    	String code=request.getParameter("code");
+    	System.out.println("code: "+code);
+    	String captcha=(String) session.getAttribute("captcha");
+    	System.out.println("captcha: "+captcha);
+    	if(captcha!=null && !captcha.equalsIgnoreCase(code)){
+    		System.out.println("invalid");
     	
-    	//save mail to supportemail
-    	String content="",receiver="luanle19@gmail.com",receiverName="Luan",subject="Contact from the customer";
-    	content="Your have a contact from the customer on the khongmac.com !" +
-    			"<br>CustomerName:&nbsp;"+name+" <br>" +
-    			"<br>Customer's email:&nbsp;"+email+" <br>" +
-    			"<br>Customer's phone:&nbsp;"+phone+" <br>" +
-    			"<br>Customer's message: <br>";
-    	content+=message;
-    	try {
-			ResourcesDefault.sendSimpleEMail(receiver, receiverName, content, subject, lang);
-			session.setAttribute("message", "message");
-			response.sendRedirect("support.html");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			try {
+				session.setAttribute("invalidCode", "invalidCode");
+				response.sendRedirect("support.html");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+    	}else{
+    		String name="",email="",phone="",message="";
+        	name=request.getParameter("name");
+        	email=request.getParameter("email");
+        	phone=request.getParameter("phone");
+        	message=request.getParameter("message");
+        	
+        	//save mail to supportemail
+        	String content="",receiver="luanle19@gmail.com",receiverName="Luan",subject="Contact from the customer";
+        	content= LanguegeBUS.getValue("you_have_a_contact", lang) +
+        			"<br>"+LanguegeBUS.getValue("customername", lang)+":&nbsp;"+name+" <br>" +
+        			"<br>"+LanguegeBUS.getValue("customeremail", lang)+":&nbsp;"+email+" <br>" +
+        			"<br>"+LanguegeBUS.getValue("customerphone", lang)+":&nbsp;"+phone+" <br>" +
+        			"<br>"+LanguegeBUS.getValue("customermessage", lang)+": <br>";
+        	content+=message;
+        	try {
+    			ResourcesDefault.sendSimpleEMail(receiver, receiverName, content, subject, lang);
+    			session.setAttribute("message", "message");
+    			response.sendRedirect("support.html");
+    		} catch (Exception e) {
+    			// TODO Auto-generated catch block
+    			e.printStackTrace();
+    		}
+    	}
+    	
     }
 
 	/**
