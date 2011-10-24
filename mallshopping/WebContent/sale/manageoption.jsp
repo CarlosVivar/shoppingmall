@@ -1,4 +1,3 @@
-<%@page import="com.sun.xml.internal.txw2.Document"%>
 <%@page import="DAO.OptionDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"
 	import="POJO.*,BUS.*,UTIL.*,java.util.List"%>

@@ -23,18 +23,15 @@ import javax.servlet.GenericServlet;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.java.swing.plaf.windows.resources.windows;
 
 /**
  *
  * @author wwe
  */
-@WebServlet(name = "registerControler", urlPatterns = {"/registerControler"})
 public class registerControler extends HttpServlet {
    
     /** 

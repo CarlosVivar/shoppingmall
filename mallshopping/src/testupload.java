@@ -1,7 +1,5 @@
-import nl.captcha.Captcha;
 import nl.captcha.CaptchaBean;
 
-import org.apache.tomcat.util.http.fileupload.DiskFileUpload;
 
 
 public class testupload extends CaptchaBean{
