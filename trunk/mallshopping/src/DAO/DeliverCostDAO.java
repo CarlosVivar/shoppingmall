@@ -19,29 +19,28 @@ import UTIL.MySqlDataAccessHelper;
 import UTIL.ResourcesDefault;
 
 public class DeliverCostDAO extends HibernateDAO {
-	public static Delivercost getDeliverProductId(int productId,String lang){
-		Delivercost deliCost=null;
-		 MySqlDataAccessHelper helper = new MySqlDataAccessHelper();
-	        try {
-	            String sql = "select delivercost.Cost,delivercost.FeeExtra " +
-	            		"from delivercost,products " +
-	            		"where products.DeliverCost=DeliverCost.DeliverCostID " +
-	            		"and products.ProductID="+productId ;
-	            helper.open(lang);
-	            ResultSet rs = helper.executeQuery(sql);
-	            while (rs.next()) {
-	            	deliCost=new Delivercost();
-	            	deliCost.setCost(rs.getFloat("Cost"));
-	            	deliCost.setFeeExtra(rs.getFloat("FeeExtra"));
-	            }
-	        } catch (Exception e) {
-	            System.out.println(e.getMessage());
-	        } finally {
-	            helper.close();
-	        }
-	        return deliCost;
-	    }
-	
+	public static Delivercost getDeliverProductId(int productId, String lang) {
+		Delivercost deliCost = null;
+		MySqlDataAccessHelper helper = new MySqlDataAccessHelper();
+		try {
+			String sql = "select delivercost.Cost,delivercost.FeeExtra "
+					+ "from delivercost,products "
+					+ "where products.DeliverCost=DeliverCost.DeliverCostID "
+					+ "and products.ProductID=" + productId;
+			helper.open(lang);
+			ResultSet rs = helper.executeQuery(sql);
+			while (rs.next()) {
+				deliCost = new Delivercost();
+				deliCost.setCost(rs.getFloat("Cost"));
+				deliCost.setFeeExtra(rs.getFloat("FeeExtra"));
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			helper.close();
+		}
+		return deliCost;
+	}
 
 	public static boolean insert(User seller, String deliverName, float cost,
 			Date updateDate, String typeFee, float feeExtra,
@@ -69,19 +68,21 @@ public class DeliverCostDAO extends HibernateDAO {
 	public static List<Delivercost> getListDeliverCostBySeller(String seller,
 			String lang) {
 		return HibernateDAO.getList("from Delivercost where seller.account='"
-				+ seller + "'",lang);
+				+ seller + "'", lang);
 	}
-	
+
 	public static Map getListDeliverCostBySellerPaging(String seller,
-			String lang,int currentPage,int pageSize) {
-		return HibernateDAO.getListMap("from Delivercost where seller.account='"
-				+ seller + "'",currentPage,pageSize, lang);
+			String lang, int currentPage, int pageSize) {
+		return HibernateDAO.getListMap(
+				"from Delivercost where seller.account='" + seller + "'",
+				currentPage, pageSize, lang);
 	}
-	
-	public static Map getListDeliverCostBySellerUse(String seller,
-			String lang,int currentPage,int pageSize) {
-		return HibernateDAO.getListMap("from Delivercost where seller.account='"
-				+ seller + "' and isUser='Y'",currentPage,pageSize, lang);
+
+	public static Map getListDeliverCostBySellerUse(String seller, String lang,
+			int currentPage, int pageSize) {
+		return HibernateDAO.getListMap(
+				"from Delivercost where seller.account='" + seller
+						+ "' and isUser='Y'", currentPage, pageSize, lang);
 	}
 
 	public static Delivercost getDeliverCostByOrderDetailID(int orderDetailID,
@@ -157,10 +158,10 @@ public class DeliverCostDAO extends HibernateDAO {
 		}
 		return lstDeliverAndFee;
 	}
-	
+
 	public static Map getListDeliverAndFeePaging(String where,
-			String AccountSeller, String lang,int currentPage,int pageSize) {
-		Map map=new HashMap();
+			String AccountSeller, String lang, int currentPage, int pageSize) {
+		Map map = new HashMap();
 		List<DeliverCostView> lstDeliverAndFee = new ArrayList<DeliverCostView>();
 
 		MySqlDataAccessHelper helper = new MySqlDataAccessHelper();
@@ -180,20 +181,20 @@ public class DeliverCostDAO extends HibernateDAO {
 
 		String wheres = "  where p.Account='" + AccountSeller
 				+ "' and m.ManufacturerId=p.ManufacturerId ";
-		String limit=" limit "+currentPage+","+pageSize;
+		String limit = " limit " + currentPage + "," + pageSize;
 
 		if (where != null) {
 			wheres += where;
 		}
 		try {
-			String sql = fields + tables + wheres;			
+			String sql = fields + tables + wheres;
 			helper.open(lang);
 
 			ResultSet rs = helper.executeQuery(sql);
 			rs.last();
 			map.put("rows", rs.getRow());
-			sql+=limit;
-			rs=helper.executeQuery(sql);
+			sql += limit;
+			rs = helper.executeQuery(sql);
 			while (rs.next()) {
 				DeliverCostView dCView = new DeliverCostView();
 				dCView.setProductID((rs.getString("ProductID") != null) ? Integer
@@ -265,27 +266,37 @@ public class DeliverCostDAO extends HibernateDAO {
 		return total;
 
 	}
-	
-	//get shippingcost , totalMoney=price*quantity
-	public static float getDeliverCostByProduct(Products product,float totalMoney,int transportID,
-			String lang) {
+
+	// get shippingcost , totalMoney=price*quantity
+	public static float getDeliverCostByProduct(Products product,
+			float totalMoney, int transportID, String lang) {
 		float total = 0;
-		if(transportID==1){
+		if (transportID == 1) {
 			if (product.getDeliverCost() != null) {
 				Delivercost delivercost = getDeliverCostById(product
 						.getDeliverCost().getDeliverCostId(), lang);
 
-				if (totalMoney < delivercost.getConditionForFree()) {
+				if (totalMoney > delivercost.getConditionForFree()) {
 					total = delivercost.getCost();
 				}
-				total+=delivercost.getFeeExtra();
 				
+
+			}
+		} else if (transportID == 2) {
+			if (product.getDeliverCost() != null) {
+				Delivercost delivercost = getDeliverCostById(product
+						.getDeliverCost().getDeliverCostId(), lang);
+
+				if (totalMoney > delivercost.getConditionForFree()) {
+					total = delivercost.getCost();
+				}
+				total += delivercost.getFeeExtra();
+
 			}
 		}
 		return total;
 
 	}
-	
 
 	public static void main(String[] args) {
 		// updateDeliverCostDefault("sell01","MALL_EN");
