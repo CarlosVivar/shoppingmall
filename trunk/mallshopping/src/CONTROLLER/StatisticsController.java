@@ -16,7 +16,6 @@ import java.util.logging.Logger;
 import javax.servlet.GenericServlet;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,7 +32,6 @@ import BUS.*;
  * 
  * @author Admin
  */
-@WebServlet(name = "StatisticsController", urlPatterns = { "/StatisticsController" })
 public class StatisticsController extends HttpServlet {
 
 	private NavigationInfo navInfo = new NavigationInfo();

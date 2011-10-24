@@ -1,12 +1,6 @@
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.http.HttpServlet;
 
-import UTIL.ResourcesDefault;
 
 public class Test extends HttpServlet{
 	public  void uploadFile(){

@@ -7,7 +7,6 @@ import javax.servlet.GenericServlet;
 import javax.servlet.Servlet;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,7 +26,6 @@ import UTIL.TransactionMethod;
 /**
  * Servlet implementation class NLUpdateOrderController
  */
-@WebServlet("/NLUpdateOrderController")
 public class NLUpdateOrderController extends HttpServlet implements Servlet {
 	private static final long serialVersionUID = 1L;
        

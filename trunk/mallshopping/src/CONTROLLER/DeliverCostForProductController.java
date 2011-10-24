@@ -8,7 +8,6 @@ import java.util.Map;
 import javax.servlet.GenericServlet;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,7 +24,6 @@ import UTIL.NavigationInfo;
 /**
  * Servlet implementation class DeliverCostForProductController
  */
-@WebServlet("/DeliverCostForProductController")
 public class DeliverCostForProductController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private NavigationInfo navInfo = new NavigationInfo();

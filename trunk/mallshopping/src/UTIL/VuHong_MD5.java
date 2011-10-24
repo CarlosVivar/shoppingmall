@@ -5,8 +5,8 @@ import java.security.NoSuchAlgorithmException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import javax.transaction.SystemException;
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
+
+import org.apache.commons.codec.binary.Base64;
 
 public class  VuHong_MD5 {
 	
@@ -16,7 +16,7 @@ public class  VuHong_MD5 {
 	
 	public static String encodeBase64(String text){
 		try {
-			return new BASE64Encoder().encode(toByteArray(text));
+			return new String(new Base64().encode(toByteArray(text)));
 		} catch (SystemException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -24,13 +24,24 @@ public class  VuHong_MD5 {
 		}
 	}
 	
-	public static String decodeBase64(String text) throws IOException{
-		byte[] myBytes = new BASE64Decoder().decodeBuffer(text);
 	
-		String ss = new String(myBytes,0,myBytes.length,"UTF-8");
+	public static String decodeBase64(String text){	
+		
+		String ss="";
+		try {
+			byte[] myBytes = new Base64().decode(toByteArray(text));	
+			ss = new String(myBytes,0,myBytes.length,"UTF-8");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return ss;
 	}
-	
+	public static void main(String[] args) throws IOException, SystemException {
+		String end=encodeBase64("luân")+"";
+		System.out.println(end);
+		System.out.println(decodeBase64(end));
+	}
 	private static byte[] toByteArray(String s) throws SystemException {
 	    try {
 	        return s.getBytes("UTF-8");

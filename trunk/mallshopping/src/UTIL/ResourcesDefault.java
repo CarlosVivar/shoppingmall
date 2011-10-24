@@ -3,17 +3,9 @@ package UTIL;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Random;
 
-import javax.servlet.GenericServlet;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServlet;
 
-import org.apache.catalina.core.ApplicationContext;
-import org.apache.catalina.core.StandardContext;
-import org.apache.commons.mail.Email;
-
-import com.sun.org.apache.bcel.internal.generic.GETSTATIC;
 
 import BUS.CategoryChildBUS;
 import BUS.EmailConfigureBUS;

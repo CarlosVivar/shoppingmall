@@ -7,7 +7,6 @@ import java.util.Set;
 import javax.servlet.GenericServlet;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,7 +26,6 @@ import UTIL.ResourcesDefault;
 /**
  * Servlet implementation class DeliverstatusController
  */
-@WebServlet("/DeliverstatusController")
 public class DeliverStatusController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private int item = 7;

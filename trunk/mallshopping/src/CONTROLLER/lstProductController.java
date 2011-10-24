@@ -15,7 +15,6 @@ import javax.servlet.GenericServlet;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,7 +23,6 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author
  */
-@WebServlet(name = "lstProductController", urlPatterns = {"/lstProductController"})
 public class lstProductController extends HttpServlet {
 
 	private NavigationInfo navInfo = new NavigationInfo();
