@@ -30,9 +30,9 @@
 		<property name="conditionForFree" type="java.lang.Float">
 			<column name="ConditionForFree"></column>
 		</property>
-		<property name="deliverCostDefault" type="string">
+		<!-- <property name="deliverCostDefault" type="string">
 			<column name="DeliverCostDefault" length="100"></column>
-		</property>
+		</property> -->
 		<property name="isUser" type="string">
 			<column name="IsUser" length="100"></column>
 		</property>

@@ -862,7 +862,7 @@ input1 {
 										<label class="postLabel"><%=LanguegeBUS.getValue("price", lang)%>:</label>
 									</div>
 									<input  id="product_price" name="product_price" type="text" value="<%=p.getPrice() %>" style="width:150px" class="medium_text_input show_tip required" />
-									&nbsp;&nbsp;<% if(null==lang || lang.length() == 0 || lang.equals("MALL_EN")){ %>(USD)<%} %>
+									&nbsp;&nbsp;<% if(null==lang || lang.length() == 0 || lang.equals("MALL_EN")){ %>(<%=LanguegeBUS.getValue("dolar",lang) %>)<%} %>
 										<% if(null!=lang && lang.equals("MALL_VN")){%> (VND)  <%}%> 
 										<% if(null!=lang && lang.equals("MALL_KR")){%>(WON) <%}%> 
 										
@@ -1154,13 +1154,13 @@ input1 {
 
 																											feeExtra = ("null".equals(feeExtra)) ? "--" : feeExtra;
 																											String useornot = delivercost.getIsUser();
-																											String IsDefault = delivercost.getDeliverCostDefault();
+																											/* String IsDefault = delivercost.getDeliverCostDefault(); */
 																							%>
 																							<tr class="order_row"
 																								onmouseover="this.style.backgroundColor='#FFEBDA'"
 																								onmouseout="this.style.backgroundColor='#FFFFFF'"
 																								onmousedown="this.style.backgroundColor='#FFEBDA'"
-																								onClick="loadFormEdit(this,'<%=deliverCostID%>','<%=deliverCostName%>','<%=type%>','<%=fee%>','<%=conditionFree%>','<%=feeExtra%>','<%=useornot%>','<%=IsDefault%>')">
+																								onClick="loadFormEdit(this,'<%=deliverCostID%>','<%=deliverCostName%>','<%=type%>','<%=fee%>','<%=conditionFree%>','<%=feeExtra%>','<%=useornot%>'<%-- ,'<%=IsDefault%>' --%>)">
 																								<td><input type="radio"  name="de_CostID" <%if(p.getDeliverCost()!=null && delivercost.getDeliverCostId()==p.getDeliverCost().getDeliverCostId()){ %> checked="checked" <%} %>
 																									value="<%=deliverCostID%>">
 																								</td>

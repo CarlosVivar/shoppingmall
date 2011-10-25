@@ -574,6 +574,10 @@
           var origin = $("#origin").val();
           var pType = $("#productType").val();
           var vPeriod = $("#validityPeriod").val();
+          var price=$("#product_price").val();
+          if(price.length==0||price.indexOf("")){
+        	  
+          }
        
           if(category==0){
               $("#validCategory").text("<%=LanguegeBUS.getValue("valid_cate", lang) %>");
@@ -951,9 +955,7 @@ input1 {
 										<label class="postLabel"><%=LanguegeBUS.getValue("price", lang)%>:</label>
 									</div>
 									<input  id="product_price" name="product_price" type="text" value="1.00" style="width:150px" class="medium_text_input show_tip required" />
-									&nbsp;&nbsp;<% if(null==lang || lang.length() == 0 || lang.equals("MALL_EN")){ %>(USD)<%} %>
-										<% if(null!=lang && lang.equals("MALL_VN")){%> (VND)  <%}%> 
-										<% if(null!=lang && lang.equals("MALL_KR")){%>(WON) <%}%> 
+									&nbsp;&nbsp;(<%=LanguegeBUS.getValue("dolar",lang) %>)
 										
 									
 								</div>
@@ -1228,14 +1230,14 @@ input1 {
 
 																											feeExtra = ("null".equals(feeExtra)) ? "--" : feeExtra;
 																											String useornot = delivercost.getIsUser();
-																											String IsDefault = delivercost.getDeliverCostDefault();
+																											/* String IsDefault = delivercost.getDeliverCostDefault(); */
 																							%>
 																							<tr class="order_row"
 																								onmouseover="this.style.backgroundColor='#FFEBDA'"
 																								onmouseout="this.style.backgroundColor='#FFFFFF'"
 																								onmousedown="this.style.backgroundColor='#FFEBDA'"
-																								onClick="loadFormEdit(this,'<%=deliverCostID%>','<%=deliverCostName%>','<%=type%>','<%=fee%>','<%=conditionFree%>','<%=feeExtra%>','<%=useornot%>','<%=IsDefault%>')">
-																								<td><input type="radio"  name="de_CostID" <%if(IsDefault.equals("true") || listDeliverCost.get(0).equals(delivercost)){ %> checked="checked" <%} %>
+																								onClick="loadFormEdit(this,'<%=deliverCostID%>','<%=deliverCostName%>','<%=type%>','<%=fee%>','<%=conditionFree%>','<%=feeExtra%>','<%=useornot%>'<%-- ,'<%=IsDefault%>' --%>)">
+																								<td><input type="radio"  name="de_CostID" <%-- <%if(IsDefault.equals("true") || listDeliverCost.get(0).equals(delivercost)){ %> checked="checked" <%} %> --%>
 																									value="<%=deliverCostID%>">
 																								</td>
 																								<td><label><%=deliverCostID%></label></td>

@@ -157,17 +157,17 @@ public class DeliverCostController extends HttpServlet {
 			feeExtra = Float.parseFloat(extraCost);
 		}
 		String feeDefault = request.getParameter("feeDefault");
-		if ("on".equals(feeDefault)) {
+		/*if ("on".equals(feeDefault)) {
 			deliverCostDefault = ResourcesDefault.TRUE;
 			// update the current deliverCostDefault]
 			DeliverCostBUS.updateDeliverCostDefault(account, account, lang);
 
-		}
+		}*/
 		User seller = UserBUS.getUser(account, lang);
 		DeliverCostBUS
 				.insert(seller, deliverName, cost, new Date(), typeFee,
 						feeExtra, conditionForFree, userornot,
-						deliverCostDefault, lang);
+						 lang);
 
 		// response.sendRedirect("sale/delivercost.html");
 
@@ -183,7 +183,7 @@ public class DeliverCostController extends HttpServlet {
 		float feeExtra = 0;
 		float conditionForFree = 0;
 		String userornot = "Y";
-		String deliverCostDefault = ResourcesDefault.FALSE;
+		/*String deliverCostDefault = ResourcesDefault.FALSE;*/
 		if (ResourcesDefault.FREE.equals(typeFee)) {
 
 		} else if (ResourcesDefault.HAS_FEE.equals(typeFee)) {
@@ -241,14 +241,14 @@ public class DeliverCostController extends HttpServlet {
 			deliverCost.setTypeFee(typeFee);
 			deliverCost.setFeeExtra(feeExtra);
 			deliverCost.setConditionForFree(conditionForFree);
-			deliverCost.setIsUser(userornot);
+			/*deliverCost.setIsUser(userornot);
 			if ("on".equals(feeDefault)) {
 				deliverCostDefault = ResourcesDefault.TRUE;
 				// update the current deliverCostDefault]
 				DeliverCostBUS.updateDeliverCostDefault(account, deliverCostID,
 						lang);
 			}
-			deliverCost.setDeliverCostDefault(deliverCostDefault);
+			deliverCost.setDeliverCostDefault(deliverCostDefault);*/
 
 			DeliverCostBUS.update(deliverCost, lang);
 		} catch (Exception e) {
