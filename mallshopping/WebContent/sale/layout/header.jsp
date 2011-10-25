@@ -91,11 +91,11 @@
 						<a href="<%=ServletUtils.getBaseUrl(request)%>/accountdetail.html"><b><%=session.getAttribute("username")%></b>
 					</a>
 				</span> &nbsp;&nbsp;(<a
-					href="<%=ServletUtils.getBaseUrl(request)%>/logoutController"><%=LanguegeBUS.getValue("logout", hlang) %></a>)
+					href="<%=ServletUtils.getBaseUrl(request)%>/manageLogoutController"><%=LanguegeBUS.getValue("logout", hlang) %></a>)
 				</li>
-				<li><a rel="nofollow"
+				<%-- <li><a rel="nofollow"
 					href="<%=ServletUtils.getBaseUrl(request)%>/sale/sellerinfo.html"><%=LanguegeBUS.getValue("manage", hlang) %></a>
-				</li>
+				</li> --%>
 				<%} %>
 				<li class="end"><a rel="nofollow"
 					href="javascript:OpenWin('<%=ServletUtils.getBaseUrl(request)%>/guide.html',600,590);"><%=LanguegeBUS.getValue("help", hlang)%></a>

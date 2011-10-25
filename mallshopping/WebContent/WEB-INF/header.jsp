@@ -115,7 +115,7 @@ String hlang = (String)happ.getAttribute("MALL_LA"); %>
     <body>      
        
     <div id="header">	    	
-     <a id="branding" href=""><div style="width: 160px;height: 50px"></div></a> 
+     <a id="branding" href=""><div style="width: 160px;height: 50px"><img  src="css/images/logo2_11.png" style="height: 60px; width: 180px "/></div></a> 
  
     <div class="search">
         
@@ -133,11 +133,12 @@ String hlang = (String)happ.getAttribute("MALL_LA"); %>
 				 	<li><span class="me_uname"><%=LanguegeBUS.getValue("welcome",hlang) %>,&nbsp;
 				 	 <a href="accountdetail.html"><b><%=session.getAttribute("username")%></b></a></span>
 				 	&nbsp;(<a href="logoutController" id="logout"><%=LanguegeBUS.getValue("logout",hlang) %></a>)</li>
-				 	<% if(session.getAttribute("Role").equals("Seller")){%>
+				 	
+				 	<%-- <% if(session.getAttribute("Role").equals("Seller")){%>
 				 		<li><a rel="nofollow" href="<%=ServletUtils.getBaseUrl(request)%>/sale/notice.html" ><%=LanguegeBUS.getValue("manage", hlang) %></a></li>
 				 	<% }else{%>
-				 		
-				 	<%}
+				 		 --%>
+				 	<%
 				 		int amount = 0;
 				 		List<Productorderdetail> cart = (List<Productorderdetail>)session.getAttribute("cart");
 				 		if(cart != null && !cart.isEmpty()){
@@ -148,8 +149,8 @@ String hlang = (String)happ.getAttribute("MALL_LA"); %>
 				<%} %>
 				<%if(session.getAttribute("Role")==null){%>
 				<li><a id="register" href="RegisterUser/index.jsp" ><%=LanguegeBUS.getValue("register", hlang) %></a></li>
-				<% }else if(session.getAttribute("Role").equals("User")){%>
-				<li><a id="seller" href="RegisterSeller/index.jsp" ><%=LanguegeBUS.getValue("seller_register", hlang) %></a></li>
+				<%-- <% }else if(session.getAttribute("Role").equals("User")){%>
+				<li><a id="seller" href="RegisterSeller/index.jsp" ><%=LanguegeBUS.getValue("seller_register", hlang) %></a></li> --%>
 				<%} %>
 				 
 				 <li class="end"><a rel="nofollow" href="javascript:OpenWin('/guide.html',600,590);"><%=LanguegeBUS.getValue("help", hlang)%></a></li>

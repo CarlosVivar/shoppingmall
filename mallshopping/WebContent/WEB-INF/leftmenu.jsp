@@ -137,7 +137,7 @@
 												<a href='ymsgr:SendIM?beyourself_bk'><img
 													style=" margin-right: 1px; vertical-align: middle;"
 													border='0'
-													src='images/online1.gif?u=beyourself_bk&amp;m=g&amp;t=1' />
+													src='images/online.gif?u=beyourself_bk&amp;m=g&amp;t=1' />
 												</a>
 											</h3>
 											
@@ -152,7 +152,7 @@
 												<a href='ymsgr:SendIM?jeny_bora8983'><img
 													style=" margin-right: 1px; vertical-align: middle;"
 													border='0'
-													src='images/online1.gif?u=beyourself_bk&amp;m=g&amp;t=1' />
+													src='images/online.gif?u=beyourself_bk&amp;m=g&amp;t=1' />
 												</a>
 											</h3>
 											</div>						
@@ -166,13 +166,13 @@
 			</DIV>
 		</DIV>
 	</div>
-	<div>
+	<!-- <div>
 		<a href="#"><img alt="women fashion" width="180"
 			src="images/adv/Ogage.png" /> </a> <br> <br> <a href="#"><img
 			alt="women fashion" width="180"
 			src="images/adv/britney-spears-blackout-com.jpg" /> </a>
 
-	</DIV>
+	</DIV> -->
 
 
 	<!-- <DIV class="corner-right-bot">
