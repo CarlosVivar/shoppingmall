@@ -65,7 +65,23 @@ public class mangeLoginController extends HttpServlet {
 //	                    }
                     	response.sendRedirect("admin/user.html");	
                                        
-                }else if(kq != null &&  kq.getRole().getRoleId()==1 && kq.getState().equals("lock")) {
+                }
+                else   if(kq != null &&  kq.getRole().getRoleId()==4 && kq.getState().equals("unlock")){
+                    request.setAttribute("Message","Login successfull !");
+                    session.setAttribute("username", kq.getAccount());
+                    Role role = (Role)RoleBUS.getRole(kq.getRole().getRoleId(),lang); 
+                    session.setAttribute("Role", role.getRoleName());
+                    String str = (String)session.getAttribute("lastpage");
+                   
+//                    	if(str==null){
+//	                        url= "/admin/index.jsp";
+//	                    }else{
+//	                        url = "/admin/"+str;
+//	                    }
+                    	response.sendRedirect("sale/notice.html");	
+                                       
+                }
+                else if(kq != null &&  kq.getRole().getRoleId()==1 && kq.getState().equals("lock")) {
 	                	request.setAttribute("Message","This account has been locked!!!");
 	                    url = "/admin/login.html";
 	                    RequestDispatcher rd = getServletContext().getRequestDispatcher(url);

@@ -141,7 +141,7 @@
                
         </div></DIV></DIV></DIV></DIV></DIV></DIV></DIV>
                
-        <a href="#"><img alt="women fashion" width="180" src="images/adv/banner_aothun.gif"/></a>
+      <!--   <a href="#"><img alt="women fashion" width="180" src="images/adv/banner_aothun.gif"/></a> -->
         
         </DIV>
     </body>

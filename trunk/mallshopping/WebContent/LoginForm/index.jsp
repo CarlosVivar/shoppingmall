@@ -17,10 +17,10 @@ function login(){
 	}
 	$.post("../loginControler?username="+ user+ "&password="+ pass,	function(j) {
 			if (j == "user") {
-				parent.location.reload();
-			} else if (j == "seller") {
+				parent.location.reload();}
+			/* } else if (j == "seller") {
 				parent.location = "../sale/notice.html";
-			} else if (j == "lock") {
+			} */ else if (j == "lock") {
 				alert("<%=LanguegeBUS.getValue("accountlocked",lang) %>");
 			} else {
 				alert("<%=LanguegeBUS.getValue("wronglogin",lang) %>");
