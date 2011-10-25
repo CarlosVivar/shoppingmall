@@ -99,7 +99,7 @@
 		resetAllFields();
 		hideAllInvalid();
 	}
-	function loadFormEdit(row,delivercostID,deliverCostName,type,fee,conditionFree,feeExtra,useornot,IsDefault) {	
+	function loadFormEdit(row,delivercostID,deliverCostName,type,fee,conditionFree,feeExtra,useornot/* ,IsDefault */) {	
 		document.getElementById("save").value = "edit";
 		
 		<%List<Delivercost> list = (List<Delivercost>) request
@@ -161,12 +161,12 @@
 				
 			}
 		
-			if("false"==IsDefault){
+			/* if("false"==IsDefault){
 				document.form1.feeDefault.checked=false;
 			}
 			else{
 				document.form1.feeDefault.checked=true;
-			}
+			} */
 			
 			if(feeExtra==feeExtra){
 				document.form1.checkExtraCost.checked=false;
@@ -641,13 +641,13 @@ input1 {
 
 																										feeExtra = ("null".equals(feeExtra)) ? "--" : feeExtra;
 																										String useornot = delivercost.getIsUser();
-																										String IsDefault = delivercost.getDeliverCostDefault();
+																										/* String IsDefault = delivercost.getDeliverCostDefault(); */
 																							%>
 																							<tr class="order_row"
 																								onmouseover="this.style.backgroundColor='#FFEBDA'"
 																								onmouseout="this.style.backgroundColor='#FFFFFF'"
 																								onmousedown="this.style.backgroundColor='#FFEBDA'"
-																								onClick="loadFormEdit(this,'<%=deliverCostID%>','<%=deliverCostName%>','<%=type%>','<%=fee%>','<%=conditionFree%>','<%=feeExtra%>','<%=useornot%>','<%=IsDefault%>')">
+																								onClick="loadFormEdit(this,'<%=deliverCostID%>','<%=deliverCostName%>','<%=type%>','<%=fee%>','<%=conditionFree%>','<%=feeExtra%>','<%=useornot%>'<%-- ,'<%=IsDefault%>' --%>)">
 																								<td><input type="radio" name="select">
 																								</td>
 																								<td><label><%=deliverCostID%></label>

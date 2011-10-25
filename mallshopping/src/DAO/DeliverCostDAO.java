@@ -45,10 +45,10 @@ public class DeliverCostDAO extends HibernateDAO {
 	public static boolean insert(User seller, String deliverName, float cost,
 			Date updateDate, String typeFee, float feeExtra,
 			float conditionForFree, String userornot,
-			String deliverCostDefault, String lang) {
+			 String lang) {
 		Delivercost delivercost = new Delivercost(deliverName, cost,
 				updateDate, typeFee, feeExtra, conditionForFree, seller,
-				userornot, deliverCostDefault);
+				userornot);
 		return HibernateDAO.insert(delivercost, lang);
 	}
 
@@ -227,7 +227,7 @@ public class DeliverCostDAO extends HibernateDAO {
 		return map;
 	}
 
-	public static Delivercost getDeliverCostDefault(String seller, String lang) {
+/*	public static Delivercost getDeliverCostDefault(String seller, String lang) {
 		List<Delivercost> list = HibernateDAO.getList(
 				"from Delivercost where seller.account='" + seller
 						+ "' and deliverCostDefault='true'", lang);
@@ -235,11 +235,11 @@ public class DeliverCostDAO extends HibernateDAO {
 			return list.get(0);
 		}
 		return null;
-	}
+	}*/
 
 	// set the current DeliverCostDefault become the delivercost isn't not
 	// default
-	public static boolean updateDeliverCostDefault(String seller,
+	/*public static boolean updateDeliverCostDefault(String seller,
 			String deliverCostID, String lang) {
 		Delivercost deCostDefaultCurrent = getDeliverCostDefault(seller, lang);
 		if (deCostDefaultCurrent != null
@@ -250,7 +250,7 @@ public class DeliverCostDAO extends HibernateDAO {
 		}
 		return false;
 
-	}
+	}*/
 
 	public static float getCostByProduct(Products product, float totalMoney,
 			String lang) {

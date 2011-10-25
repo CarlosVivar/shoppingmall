@@ -14,7 +14,6 @@ public class Delivercost implements Serializable {
 	private Float feeExtra;
 	private Float conditionForFree;
 	private User seller;
-	private String deliverCostDefault;
 	private String isUser;
 	private Set products=new HashSet(0);
 	
@@ -46,7 +45,7 @@ public class Delivercost implements Serializable {
 	}
 	
 	public Delivercost(String deliverCostName, Float cost, Date updateDate,
-			String typeFee,Float feeExtra,Float conditionForFree,User seller,String isUse,String deliverCostDefault,Set products) {
+			String typeFee,Float feeExtra,Float conditionForFree,User seller,String isUse,Set products) {
 		this.deliverCostName = deliverCostName;
 		this.cost = cost;
 		this.updateDate = updateDate;
@@ -55,12 +54,11 @@ public class Delivercost implements Serializable {
 		this.conditionForFree=conditionForFree;
 		this.seller=seller;
 		this.isUser=isUse;
-		this.deliverCostDefault=deliverCostDefault;
 		this.products=products;
 	}
 	
 	public Delivercost(String deliverCostName, Float cost, Date updateDate,
-			String typeFee,Float feeExtra,Float conditionForFree,User seller,String isUse,String deliverCostDefault) {
+			String typeFee,Float feeExtra,Float conditionForFree,User seller,String isUse) {
 		this.deliverCostName = deliverCostName;
 		this.cost = cost;
 		this.updateDate = updateDate;
@@ -69,7 +67,6 @@ public class Delivercost implements Serializable {
 		this.conditionForFree=conditionForFree;
 		this.seller=seller;
 		this.isUser=isUse;
-		this.deliverCostDefault=deliverCostDefault;
 		
 	}
 
@@ -140,14 +137,6 @@ public class Delivercost implements Serializable {
 
 	public void setSeller(User seller) {
 		this.seller = seller;
-	}
-
-	public String getDeliverCostDefault() {
-		return deliverCostDefault;
-	}
-
-	public void setDeliverCostDefault(String deliverCostDefault) {
-		this.deliverCostDefault = deliverCostDefault;
 	}
 
 	

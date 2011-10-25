@@ -725,13 +725,13 @@ input1 {
 
 																											feeExtra = ("null".equals(feeExtra)) ? "--" : feeExtra;
 																											String useornot = delivercost.getIsUser();
-																											String IsDefault = delivercost.getDeliverCostDefault();
+																											/* String IsDefault = delivercost.getDeliverCostDefault(); */
 																							%>
 																							<tr class="order_row"
 																								onmouseover="this.style.backgroundColor='#FFEBDA'"
 																								onmouseout="this.style.backgroundColor='#FFFFFF'"
 																								onmousedown="this.style.backgroundColor='#FFEBDA'"
-																								onClick="loadFormEdit(this,'<%=deliverCostID%>','<%=deliverCostName%>','<%=type%>','<%=fee%>','<%=conditionFree%>','<%=feeExtra%>','<%=useornot%>','<%=IsDefault%>')">
+																								onClick="loadFormEdit(this,'<%=deliverCostID%>','<%=deliverCostName%>','<%=type%>','<%=fee%>','<%=conditionFree%>','<%=feeExtra%>','<%=useornot%>'<%--, '<%=IsDefault%>' --%>)">
 																								<td><input type="radio" name="de_CostID"
 																									value="<%=deliverCostID%>"></td>
 																								<td><label><%=deliverCostID%></label>

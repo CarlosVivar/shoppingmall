@@ -19,10 +19,10 @@ public class DeliverCostBUS {
 	public static boolean insert(User seller, String deliverName, float cost,
 			Date updateDate, String typeFee, float feeExtra,
 			float conditionForFree, String userornot,
-			String deliverCostDefault, String lang) {
+			 String lang) {
 		return DeliverCostDAO.insert(seller, deliverName, cost, updateDate,
 				typeFee, feeExtra, conditionForFree, userornot,
-				deliverCostDefault, lang);
+				 lang);
 	}
 
 	public static boolean update(Delivercost deliverCost, String lang) {
@@ -62,9 +62,9 @@ public class DeliverCostBUS {
 			String AccountSeller, String lang,int currentPage,int pageSize) {
 		return DeliverCostDAO.getListDeliverAndFeePaging(where, AccountSeller, lang,currentPage,pageSize);
 	}
-	public static boolean updateDeliverCostDefault(String seller,String deliverCostID, String lang){
+	/*public static boolean updateDeliverCostDefault(String seller,String deliverCostID, String lang){
 		return DeliverCostDAO.updateDeliverCostDefault(seller,deliverCostID, lang);
-	}
+	}*/
 	
 	public static float getDeliverCostByProduct(Products product,float totalMoney,int transportID,
 			String lang) {
