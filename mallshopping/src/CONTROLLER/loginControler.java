@@ -39,14 +39,17 @@ public class loginControler extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        System.out.println("sdfasdfASDF");
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
         ServletContext app=getServletContext();;
         String lang=(String)app.getAttribute("MALL_LA");
+        System.out.println("lang: "+lang);
         try {
             String url = null;
+            System.out.println("dafadfad");
             	VuHong_MD5 v = new VuHong_MD5();
                 String user = request.getParameter("username");
                 String pass = v.encrypt(request.getParameter("password"));
@@ -67,6 +70,7 @@ public class loginControler extends HttpServlet {
                 }else if(kq != null && kq.getState().equals("lock")){
 	                	out.print("lock");
                 }else{
+                	System.out.println("daf");
                         out.print("failed");
                 }
 

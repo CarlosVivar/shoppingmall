@@ -138,7 +138,7 @@
 				}
 				
 			}
-			else if(type=="Prepay"){
+			/* else if(type=="Prepay"){
 				hideFeesType();
 				$("#prepay").show();
 				document.form1.typeFee[3].checked="checked"; 
@@ -159,7 +159,7 @@
 					document.form1.yesno3[1].checked="checked";
 				}
 				
-			}
+			} */
 		
 			/* if("false"==IsDefault){
 				document.form1.feeDefault.checked=false;
@@ -206,7 +206,7 @@
 	function hideFeesType() {
 		$("#hasFee").hide();
 		$("#freeHasCondition").hide();
-		$("#prepay").hide();
+		/* $("#prepay").hide(); */
 	}
 
 	function selectFeeType(feeType) {
@@ -214,20 +214,20 @@
 		if (feeType == "Free") {
 			$("#hasFee").hide();
 			$("#freeHasCondition").hide();
-			$("#prepay").hide();
+			/* $("#prepay").hide(); */
 		} else if (feeType == "Has fee") {
 			$("#hasFee").show();
 			$("#freeHasCondition").hide();
-			$("#prepay").hide();
+			/* $("#prepay").hide(); */
 		} else if (feeType == "Free has condition") {
 			$("#hasFee").hide();
 			$("#freeHasCondition").show();
-			$("#prepay").hide();
-		} else if (feeType == "Prepay") {
+			/* $("#prepay").hide(); */
+		} /* else if (feeType == "Prepay") {
 			$("#hasFee").hide();
 			$("#freeHasCondition").hide();
 			$("#prepay").show();
-		}
+		} */
 	}
 	
 	function enableText(){
@@ -722,9 +722,9 @@ input1 {
 																									<input type="radio" name="typeFee"
 																									onClick="selectFeeType(this.value)"
 																									value="Free has condition"><%=LanguegeBUS.getValue("de_cost_fee_has_condition", lang)%>&nbsp;&nbsp;
-																									<input type="radio" name="typeFee"
+																									<%-- <input type="radio" name="typeFee"
 																									onClick="selectFeeType(this.value)"
-																									value="Prepay"><%=LanguegeBUS.getValue("de_cost_prepay", lang)%>
+																									value="Prepay"><%=LanguegeBUS.getValue("de_cost_prepay", lang)%> --%>
 																									<div id="hasFee"
 																										style="background-color: #FFEBDA">
 																										<%=LanguegeBUS.getValue("de_cost_deliver_cost", lang)%>&nbsp;&nbsp;
@@ -758,7 +758,7 @@ input1 {
 																												id="invalidConditionFee2"><%=LanguegeBUS.getValue("de_cost_invalid", lang)%></label>
 																										</div>
 																									</div>
-																									<div id="prepay"
+																									<%-- <div id="prepay"
 																										style="background-color: #FFEBDA">
 																										<%=LanguegeBUS.getValue("de_cost_deliver_cost", lang)%>&nbsp;&nbsp;
 																										<input type="text" name="cost3" id="cost3"
@@ -783,15 +783,15 @@ input1 {
 																											<input type="radio" name="yesno3" value="N" /><%=LanguegeBUS.getValue("de_cost_no", lang)%><label
 																												style="color: red" id="invalidConditionFee3"><%=LanguegeBUS.getValue("de_cost_invalid", lang)%></label>
 																										</div>
-																									</div></td>
+																									</div> --%></td>
 																							</tr>
-																							<tr>
+																							<%-- <tr>
 																								<td colspan="2"
 																									style="border: none !important; text-align: left"><input
 																									type="checkbox" name="feeDefault" /> <label><%=LanguegeBUS.getValue("de_cost_setting_fee_default", lang)%></label>
 																								</td>
 
-																							</tr>
+																							</tr> --%>
 																						</table>
 																					</div></td>
 																			</tr>

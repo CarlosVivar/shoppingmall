@@ -6,16 +6,14 @@ import java.util.List;
 
 import javax.servlet.http.HttpServlet;
 
-
 import BUS.CategoryChildBUS;
 import BUS.EmailConfigureBUS;
 import POJO.CategoryChild;
 import POJO.Emailconfigure;
 import POJO.Products;
 
-public class ResourcesDefault extends HttpServlet{
+public class ResourcesDefault extends HttpServlet {
 	// get servletcontext
-	
 
 	// Deliver status:
 	public static final int PENDING_DELIVER = 1;
@@ -54,6 +52,22 @@ public class ResourcesDefault extends HttpServlet{
 	public static String SECURE_PASS = "p123456";
 	public static String MERCHANT_SITE_CODE = "20207";
 	public static String RETURN_ULR = "http://14.63.212.204:8080/mallshopping/nl_completed.jsp";
+
+	// format view price for lang vn
+	public static String priceVNFormat(float price) {
+		String prices = String.valueOf(new Float(price).intValue());
+		String temp = "";
+		int i;
+		for (i = prices.length(); i >= 3; i -= 3) {
+			temp = prices.substring(i - 3, i) + "." + temp;
+
+		}
+		if (i != 0) {
+			temp = prices.substring(0, i) + "." + temp;
+
+		}
+		return temp.substring(0, temp.length() - 1);
+	}
 
 	// round the float number
 	public static float Round(float Rval, int Rpl) {
@@ -110,7 +124,6 @@ public class ResourcesDefault extends HttpServlet{
 
 	}
 
-
 	/** sort list products by category **/
 	public static List<Products> sortListProductByCategory(List<Products> list,
 			final String lang) {
@@ -128,12 +141,12 @@ public class ResourcesDefault extends HttpServlet{
 		Collections.sort(list, c);
 		return list;
 	}
-	
-	//create capcha
-	public static String getCapcha(){
+
+	// create capcha
+	public static String getCapcha() {
 		return "adfa";
 	}
-	
+
 	public static void main(String[] args) {
 		System.out.println(getCapcha());
 	}

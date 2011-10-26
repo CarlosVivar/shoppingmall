@@ -45,7 +45,7 @@ String categoryID=request.getParameter("caID");
 			'transitionOut' : 'none',
 			'type' : 'iframe',
 			'hideOnOverlayClick' : true,
-			'hideOnContentClick' : false,
+			'hideOnContentClick' : false
 		   
 
 		});
@@ -153,7 +153,7 @@ String categoryID=request.getParameter("caID");
 																	<p>
 																		<a href="images/fashion/<%=pic.getProductPhotoName()%>" class="fancybox"><span class="title"><%=pr.getProductName()%></span></a>
 																	</p>
-																	<p class="price"><%=pr.getPrice()%>$
+																	<p class="price"><%if("MALL_VN".equals(lang)){%><%=ResourcesDefault.priceVNFormat(pr.getPrice())%><%}else{%><%=pr.getPrice()%><%}%><%=LanguegeBUS.getValue("dolar",lang) %>
 																	</p>
 																</li>
 																<%

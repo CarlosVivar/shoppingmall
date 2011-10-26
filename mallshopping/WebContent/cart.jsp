@@ -111,21 +111,19 @@
                             Manufacturer ma = ManufacturerBUS.getManufacturer(p.getManufacturerId(),lang);
                             String optionDescription="";
                             String optionPrice="";
+                            float tempTotal=0;
                             if(ct.getOption() !=null){
                             	Options option= OptionBUS.getOptionByID(ct.getOption().getOptionId(),lang);
                             	if(option!=null){
                             		optionDescription=option.getDescription();
-                            		optionPrice=option.getOptionPrice()+"";
-                            		
-                            		float temp=(ct.getProducts().getPrice()*ct.getProductNumber())+option.getOptionPrice();
-                            		tongtien =tongtien+temp;
-                            		
+                            		tempTotal=(ct.getProducts().getPrice()*ct.getProductNumber())+option.getOptionPrice();                         		
                             	}
-                            }else{
-                            
-                            	tongtien +=ct.getProducts().getPrice()*ct.getProductNumber();
+                            }else{                            	
+                            	tempTotal=ct.getProducts().getPrice()*ct.getProductNumber();
                            
                             }
+                            tongtien+=tempTotal;
+                          
                     %>         
                         <tr class="order_row" >
                             <td class="order_row" style="text-align:center ; vertical-align: middle;" valign="middle">
@@ -145,13 +143,13 @@
                               <form method="post" action="cartController">
                                  <ul>
                                     <li>
-                                        &nbsp;&nbsp;<%=LanguegeBUS.getValue("price", lang) %>: <b style="color: red" ><%=p.getPrice() %></b> (<%=LanguegeBUS.getValue("dolar",lang) %>)
+                                        &nbsp;&nbsp;<%=LanguegeBUS.getValue("price", lang) %>: <b style="color: red" ><%=ResourcesDefault.priceVNFormat(p.getPrice())%></b> (<%=LanguegeBUS.getValue("dolar",lang) %>)
                                        
                                         <br>&nbsp;&nbsp;<input type="text" value="<%=ct.getProductNumber() %>" name="number" size="4" />
                                      </li>
                                      
                                      <%if(optionPrice!=""){ %>
-                                     <li>&nbsp;&nbsp;<%=LanguegeBUS.getValue("productoptions", lang) %>: <b style="color: red" ><%=optionPrice %> </b>(<%=LanguegeBUS.getValue("dolar",lang) %>)</li>
+                                     <li>&nbsp;&nbsp;<%=LanguegeBUS.getValue("productoptions", lang) %>: <b style="color: red" ><%=optionPrice%> </b>(<%=LanguegeBUS.getValue("dolar",lang) %>)</li>
                                
                                      <%} %>
                             		 
@@ -170,7 +168,7 @@
                             <td style="text-align:right;"  class="order_row">
                                  <ul>
                                     <li><br>
-                                        <b style="font-size:10pt;font-weight:bold" ><%if(optionPrice==""){ %><%=p.getPrice()*ct.getProductNumber() %><%}else{ %><%=ResourcesDefault.Round(((p.getPrice()*ct.getProductNumber())+Float.parseFloat(optionPrice)),2) %><%} %>  &nbsp;&nbsp;</b>
+                                        <b style="font-size:10pt;font-weight:bold" ><%if("MALL_VN".equals(lang)){ %><%=ResourcesDefault.priceVNFormat(tempTotal) %><%}else{ %><%=ResourcesDefault.Round(tempTotal,2)%><%} %>  &nbsp;&nbsp;</b>
                                         
                                      </li>
                                  </ul>    
@@ -185,7 +183,7 @@
                  
                     <br/>
                     <hr/><br>
-                    <b><%=LanguegeBUS.getValue("total", lang) %>:</b> <strong style="color: red"> <%=ResourcesDefault.Round(tongtien,2)%></strong> &nbsp; (<%=LanguegeBUS.getValue("dolar", lang) %>)
+                    <b><%=LanguegeBUS.getValue("total", lang) %>:</b> <strong style="color: red"> <%if("MALL_VN".equals(lang)){ %><%=ResourcesDefault.priceVNFormat(tongtien) %><%}else{ %><%=tongtien%><%} %></strong> &nbsp; (<%=LanguegeBUS.getValue("dolar", lang) %>)
                     <br/>
                     <hr>
                     <br/>

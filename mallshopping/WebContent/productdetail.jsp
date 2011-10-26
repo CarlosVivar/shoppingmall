@@ -121,13 +121,13 @@
                 
                 <div>
                 	<p class="top15"><b><%=LanguegeBUS.getValue("price", lang)%>:</b></p> 
-                	<p class="price"><span style="text-decoration:line-through;font-size:12pt;"><%=pPojo.getPrice()%> <%=LanguegeBUS.getValue("dolar",lang) %></span> &nbsp;&nbsp;&nbsp; <%=pPojo.getPrice()-pPojo.getPrice()*(Float.parseFloat(pr.getRate())) %> <%=LanguegeBUS.getValue("dolar",lang) %></p>
+                	<p class="price"><span style="text-decoration:line-through;font-size:12pt;"><%=ResourcesDefault.priceVNFormat(pPojo.getPrice())%> <%=LanguegeBUS.getValue("dolar",lang) %></span> &nbsp;&nbsp;&nbsp; <%=pPojo.getPrice()-pPojo.getPrice()*(Float.parseFloat(pr.getRate())) %> <%=LanguegeBUS.getValue("dolar",lang) %></p>
                  	</div>
                
                 <%  }else{ %>
                     <div>
                       <p class="top15"><%=LanguegeBUS.getValue("price", lang)%>:</p>   
-                      <p class="price"><%=pPojo.getPrice()%> <%=LanguegeBUS.getValue("dolar",lang) %></p></div>
+                      <p class="price"><%=ResourcesDefault.priceVNFormat(pPojo.getPrice())%> <%=LanguegeBUS.getValue("dolar",lang) %></p></div>
                 <% } %>
                  <form name="formAddToCart" action="<%=ServletUtils.getBaseUrl(request) %>/cartController" method="post">
                 <div class="detail-section">

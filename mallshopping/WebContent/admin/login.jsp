@@ -5,6 +5,10 @@
 <%
 session.removeAttribute("username");
 session.removeAttribute("Role");
+if(getServletContext().getAttribute("MALL_LA")==null){
+	String url = "/AdminLanguageController";
+	getServletContext().getRequestDispatcher(url).forward(request, response);
+}
 %>
 <html>
 <head>
@@ -26,11 +30,11 @@ session.removeAttribute("Role");
 		            var user = $("#username").val();
 		            var pass = $("#password").val();
 		            if(user.length==0){
-		                $("#validUser").text("Please enter username!!");
+		                $("#validUser").text("<%=LanguegeBUS.getValue("pleaseenterusername",lang)%>");
 		                return false;
 		            }
 		            if(pass.length==0){
-		                $("#validPass").text("Please enter password!!");
+		                $("#validPass").text("<%=LanguegeBUS.getValue("pleaseenterpassword",lang)%>");
 		                return false;
 		            }
 		

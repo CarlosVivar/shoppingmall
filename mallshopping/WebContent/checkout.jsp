@@ -176,6 +176,7 @@
                             Products p = (Products)ProductBUS.getProducts(ct.getProducts().getProductId(),lang);
                             Manufacturer ma = ManufacturerBUS.getManufacturer(p.getManufacturerId(),lang);
                             Delivercost deliCost=DeliverCostDAO.getDeliverProductId(p.getProductId(),lang);
+                            String price="",shippingCostStr="",optionPriceStr="",totalStr="";
                             float shippingCost=0;
                             if(null!=p.getDeliverCost()){
                    				Delivercost dc = DeliverCostBUS.getDeliverCostById(p.getDeliverCost().getDeliverCostId(),lang);	
@@ -189,15 +190,26 @@
                             		optionPrice=option.getOptionPrice();
                             	}
                             }
+                            if("MALL_VN".equals(lang)){
+                            	price=ResourcesDefault.priceVNFormat(p.getPrice());
+                            	shippingCostStr=ResourcesDefault.priceVNFormat(shippingCost);
+                            	optionPriceStr=ResourcesDefault.priceVNFormat(optionPrice);
+                            	totalStr=ResourcesDefault.priceVNFormat(tongtien+shippingCost+optionPrice);
+                            }else{
+                            	price=p.getPrice()+"";
+                            	shippingCostStr=shippingCost+"";
+                            	optionPriceStr=optionPrice+"";
+                            	totalStr=(tongtien+shippingCost+optionPrice)+"";
+                            }
                     %>         
                         <tr style="border: #fff 1px solid;">                       
                             
                                <td ><%=p.getProductName() %></td>           
-                               <td ><%=p.getPrice() %></td>
-                                <td ><%=ct.getProductNumber() %></td>
-                               <td ><%=optionPrice %></td>
-                                <td><%=shippingCost %></td> 
-                               <td><%=tongtien+shippingCost+optionPrice%></td>
+                               <td ><%=price %></td>
+                               <td ><%=ct.getProductNumber() %></td>
+                               <td ><%=optionPriceStr %></td>
+                                <td ><%=shippingCostStr %></td> 
+                               <td ><%=totalStr %></td>
                         </tr>
                     <%  }}//end for
                      %>    
@@ -222,12 +234,13 @@
                             Products p = (Products)ProductBUS.getProducts(ct.getProducts().getProductId(),lang);
                             Manufacturer ma = ManufacturerBUS.getManufacturer(p.getManufacturerId(),lang);
                             //Delivercost deliCost=DeliverCostDAO.getDeliverProductId(p.getProductId(),lang);
-                            float shippingCost=0;
+                            float shippingCost1=0;
                             if(null!=p.getDeliverCost()){
                    				Delivercost dc = DeliverCostBUS.getDeliverCostById(p.getDeliverCost().getDeliverCostId(),lang);	
                    				//Stateorder st = StateorderBUS.getStateorder(order.getStateorder().getStateOrderId(), lang); 
-                   				shippingCost = DeliverCostBUS.getDeliverCostByProduct(p,p.getPrice()*ct.getProductNumber(),2,lang);
+                   				shippingCost1 = DeliverCostBUS.getDeliverCostByProduct(p,p.getPrice()*ct.getProductNumber(),2,lang);
                             }
+                            String price="",shippingCostStr="",optionPriceStr="",totalStr="";
                             float optionPrice1=0;
                             if(ct.getOption() !=null){
                             	Options option= OptionBUS.getOptionByID(ct.getOption().getOptionId(),lang);
@@ -235,14 +248,25 @@
                             		optionPrice1=option.getOptionPrice();
                             	}
                             }
+                            if("MALL_VN".equals(lang)){
+                            	price=ResourcesDefault.priceVNFormat(p.getPrice());
+                            	shippingCostStr=ResourcesDefault.priceVNFormat(shippingCost1);
+                            	optionPriceStr=ResourcesDefault.priceVNFormat(optionPrice1);
+                            	totalStr=ResourcesDefault.priceVNFormat(tongtien1+shippingCost1+optionPrice1);
+                            }else{
+                            	price=p.getPrice()+"";
+                            	shippingCostStr=shippingCost1+"";
+                            	optionPriceStr=optionPrice1+"";
+                            	totalStr=(tongtien1+shippingCost1+optionPrice1)+"";
+                            }
                     %>         
                         <tr style="border: #fff 1px solid;">                       
                                <td ><%=p.getProductName() %></td>  
-                               <td ><%=p.getPrice() %></td>
+                               <td ><%=price %></td>
                                <td ><%=ct.getProductNumber() %></td>
-                               <td ><%=optionPrice1 %></td>
-                                <td ><%=shippingCost %></td> 
-                               <td ><%=tongtien1+shippingCost+optionPrice1 %></td>
+                               <td ><%=optionPriceStr %></td>
+                                <td ><%=shippingCostStr %></td> 
+                               <td ><%=totalStr %></td>
                         </tr>
                     <%  }}//end for
                      %>    
