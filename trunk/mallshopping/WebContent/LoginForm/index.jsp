@@ -7,6 +7,17 @@
 <link href="style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="<%=ServletUtils.getBaseUrl(request)%>/scripts/jquery.js"></script> 
 <script type="text/javascript">
+$(document).ready(function() {
+	$('#loginForm').bind('keypress',function(e) {
+		if (e.keyCode == 13) {
+			login();
+		}
+	});
+	$('#ok').click(function(){
+		login();
+	});
+});
+
 function login(){
 	
 	var user = $("#username").val();
@@ -23,21 +34,11 @@ function login(){
 			} */ else if (j == "lock") {
 				alert("<%=LanguegeBUS.getValue("accountlocked",lang) %>");
 			} else {
-				alert("<%=LanguegeBUS.getValue("wronglogin",lang) %>");
+				alert("<%=LanguegeBUS.getValue("wronglogin",lang) %>"); 
 			}
 	});
 }
 
-$(document).ready(function() {
-	$('#loginForm').bind('keypress',function(e) {
-		if (e.keyCode == 13) {
-			login();
-		}
-	});
-	$('#ok').click(function(){
-		login();
-	});
-});
 </script>
 
 </head>
@@ -48,7 +49,7 @@ $(document).ready(function() {
 				<p><%=LanguegeBUS.getValue("login",lang) %></p>
 			</div><br/><br/>		
 			<div id="inputs">
-				<div >
+				<div>
 					<input id="username" name="user" type="text" placeholder="<%=LanguegeBUS.getValue("username",lang) %>"/>
 				</div>
 			</div>
@@ -61,10 +62,8 @@ $(document).ready(function() {
 				<a href="#"><%=LanguegeBUS.getValue("lpass",lang) %></a>
 				<button class="submits" type="button" name="ok" id="ok"><%=LanguegeBUS.getValue("login",lang) %></button>
 			</div>
-			<div id="footer">
 				
 			</div>
-		</div>
 	</form>
 </body>
 </html>

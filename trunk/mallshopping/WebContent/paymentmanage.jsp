@@ -128,6 +128,7 @@
                                			Deliver deliver = DeliverBUS.getDeliverByPODetail(detail.getProductOrderDetailId(),lang);
 										Deliverstatus deliverStatus = DeliverStatusBUS.getDeliverStatus(deliver.getDeliverstatusID(), lang);
 										float optionPrice=0,shippingCost=0;
+										String price="",shippingCostStr="",optionPriceStr="",totalStr="";
 			                            if(detail.getOption() !=null){
 			                            	Options option= OptionBUS.getOptionByID(detail.getOption().getOptionId(),lang);
 			                            	if(option!=null){
@@ -145,16 +146,28 @@
                                				//	shippingCost=dc.getCost()+ dc.getFeeExtra();
                                				//}
                                			} 
+                           				float tongtien=ResourcesDefault.getTotalMoney(p.getPrice(),detail.getProductNumber(),optionPrice,shippingCost);
+                           			 if("MALL_VN".equals(lang)){
+                                     	price=ResourcesDefault.priceVNFormat(p.getPrice());
+                                     	shippingCostStr=ResourcesDefault.priceVNFormat(shippingCost);
+                                     	optionPriceStr=ResourcesDefault.priceVNFormat(optionPrice);
+                                     	totalStr=ResourcesDefault.priceVNFormat(tongtien+shippingCost+optionPrice);
+                                     }else{
+                                     	price=p.getPrice()+"";
+                                     	shippingCostStr=shippingCost+"";
+                                     	optionPriceStr=optionPrice+"";
+                                     	totalStr=(tongtien+shippingCost+optionPrice)+"";
+                                     }
                                	%>
 		                               	<tr class="order_row">
 		                               			<td class="order_row" ><%=detail.getProductOrderDetailId() %></td>
 		                               			<td class="order_row" style="text-align:left" ><a href="productdetail.html?Id=<%=p.getProductId()%>"> <%=p.getProductName()%></a></td>
-		                               			<td class="order_row" ><%=p.getPrice() %></td>
+		                               			<td class="order_row" ><%=price %></td>
 		                               			<td class="order_row" ><%=detail.getProductNumber() %></td>
-		                               			<td class="order_row" ><%=optionPrice %></td>		                               			
-		                               			<td class="order_row" style="text-align:right"><%=shippingCost %>
+		                               			<td class="order_row" ><%=optionPriceStr %></td>		                               			
+		                               			<td class="order_row" style="text-align:right"><%=shippingCostStr %>
 		                               			</td>
-		                               			<td class="order_row" style="text-align:right"><%=ResourcesDefault.getTotalMoney(p.getPrice(),detail.getProductNumber(),optionPrice,shippingCost) %> </td>
+		                               			<td class="order_row" style="text-align:right"><%=totalStr %> </td>
 		                               			<td class="order_row" >
 		                               				<% 
 		                               					if(detail.getOrderDetailStatusId()== 1 && deliverStatus.getDeliverStatusId()==1){ %>

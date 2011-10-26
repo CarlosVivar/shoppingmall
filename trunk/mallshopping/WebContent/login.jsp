@@ -23,7 +23,7 @@ session.removeAttribute("Role");
 
        <script type="text/javascript">
             $('document').ready(function(){	
-                $('#ok').click(function(){
+                $('#oks').click(function(){
                 	
                 	var user = $("#lusername").val();
                     var pass = $("#lpassword").val();
@@ -88,7 +88,7 @@ if("active".equals(action)){ %>
 	        	</div>
 	        	
 	        	<div style="text-align: right;width: 300px">
-	        	<input type="button" name="ok" id="ok" value="Login" class="bt" style="width: 100px;" />  
+	        	<input type="button" name="oks" id="oks" value="Login" class="bt" style="width: 100px;" />  
 	        	</div>
 	        </div>
         

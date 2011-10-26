@@ -21,9 +21,9 @@ String hlang = (String)happ.getAttribute("MALL_LA"); %>
          <link href="css/style.css" rel="stylesheet" type="text/css"/>       
 
 <!-- disabled mouse click right -->
-<script type="text/javascript">
+<%-- <script type="text/javascript">
 	var message_prevent="<%=LanguegeBUS.getValue("prevent_click_right",hlang )%>";
-</script>
+</script> --%>
 	<%--<script type="text/javascript" src="<%=ServletUtils.getBaseUrl(request)%>/scripts/prevent.js"></script>--%>
 	<script type="text/javascript" src="<%=ServletUtils.getBaseUrl(request)%>/FancyBox/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
 	<script type="text/javascript" src="<%=ServletUtils.getBaseUrl(request)%>/FancyBox/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
@@ -56,7 +56,7 @@ String hlang = (String)happ.getAttribute("MALL_LA"); %>
 		'hideOnOverlayClick':false,
 	      'hideOnContentClick':false
 	});	
-	$("#login1").fancybox({
+	$("#login11").fancybox({
 		'width'				: 500,
 		'height'			: 302,
 		'autoScale'			: false,
@@ -128,7 +128,7 @@ String hlang = (String)happ.getAttribute("MALL_LA"); %>
 				<%
                     if(session.getAttribute("username") == null){
          		%>    
-				 	<li><a id="login1" href="LoginForm/index.jsp"><%=LanguegeBUS.getValue("login",hlang)%></a></li>
+				 	<li><a id="login11" href="LoginForm/index.jsp"><%=LanguegeBUS.getValue("login",hlang)%></a></li>
 				<%}else{ %> 
 				 	<li><span class="me_uname"><%=LanguegeBUS.getValue("welcome",hlang) %>,&nbsp;
 				 	 <a href="accountdetail.html"><b><%=session.getAttribute("username")%></b></a></span>
@@ -240,17 +240,17 @@ String hlang = (String)happ.getAttribute("MALL_LA"); %>
         <div class="end_menu">
            <form action="<%=ServletUtils.getBaseUrl(request)%>/languageController" method="POST" id="languageForm" > 
                <div  class="fl">              
-	                 <a href="welcome.html?lang=1"><img title="<%=LanguegeBUS.getValue("en", hlang)%>" width="24" height="15" src="<%=ServletUtils.getBaseUrl(request)%>/css/images/flag_en.gif"></a>
+	                 <a href="languageController?lang=1"><img title="<%=LanguegeBUS.getValue("en", hlang)%>" width="24" height="15" src="<%=ServletUtils.getBaseUrl(request)%>/css/images/flag_en.gif"></a>
 	                 &nbsp;&nbsp;&nbsp;
 	             </div>
 	             <div  class="fl">              
-	                 <a href="welcome.html?lang=2"><img title="<%=LanguegeBUS.getValue("ko", hlang)%>" width="24" height="15" src="<%=ServletUtils.getBaseUrl(request)%>/css/images/flag_kr.gif"></a>
+	                 <a href="languageController?lang=2"><img title="<%=LanguegeBUS.getValue("ko", hlang)%>" width="24" height="15" src="<%=ServletUtils.getBaseUrl(request)%>/css/images/flag_kr.gif"></a>
 	                 &nbsp;
 	             </div>
 	            
        		   <div  style="display: block;" class="jewel hidden">
                 	<div class="jewelToggler" >
-                	<a href="welcome.html?lang=3"><img title="<%=LanguegeBUS.getValue("vi", hlang)%>" width="26" height="16" src="<%=ServletUtils.getBaseUrl(request)%>/css/images/flag_vn.gif"></a>
+                	<a href="languageController?lang=3"><img title="<%=LanguegeBUS.getValue("vi", hlang)%>" width="26" height="16" src="<%=ServletUtils.getBaseUrl(request)%>/css/images/flag_vn.gif"></a>
 	              </div>
 	           </div>   
             </form>

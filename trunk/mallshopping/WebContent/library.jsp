@@ -11,4 +11,4 @@
 ServletContext app=getServletContext();
 String lang = (String)app.getAttribute("MALL_LA"); 
 
-//System.out.print("lang: "+lang);%> 
+System.out.print("lang: "+lang);%> 

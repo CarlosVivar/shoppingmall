@@ -9,6 +9,7 @@
     "http://www.w3.org/TR/html4/loose.dtd">
 
 <%
+			String Id=request.getParameter("Id");
             Object obj = request.getAttribute("ProductPOJOs");
             if (obj == null) {
                 String url = "/lstProductController";
@@ -225,7 +226,7 @@
                         <% 
                                if(pr == null || Float.parseFloat(pr.getRate()) == 0){     
                         %>
-                        <p class="price"> <%=emp.getPrice() %> <%=LanguegeBUS.getValue("dolar",lang) %></p>
+                        <p class="price"> <%if("MALL_VN".equals(lang)){%><%=ResourcesDefault.priceVNFormat(emp.getPrice())%><%}else{%><%=emp.getPrice()%><%}%><%=LanguegeBUS.getValue("dolar",lang) %></p>
                         <% 
                                }else{     
                         %>
@@ -250,20 +251,20 @@
                  <% if(pagedcust!=null && pagedcust.getPageCount()- 1 > 0){
                 if(!pagedcust.isFirstPage()){%>
                 
-                		<li><a href="product.html?page=0">First</a></li> 
+                		<li><a href="product.html?Id=<%=Id%>&page=0">First</a></li> 
                        
                  <% }
                 	 for(int i=1;i< pagedcust.getIndexList().length;i++){
                 		 if(i!=pagedcust.getCurrentPage()){    	                
                  %>
-                 	<li class="pagir"><a href="product.html?page=<%=i%>"><%=i%></a></li>
+                 	<li class="pagir"><a href="product.html?Id=<%=Id%>&page=<%=i%>"><%=i%></a></li>
                  <%}else{ %>	
-                 	<li class="pagir"><a href="#" class="currentpage"><%=i%></a></li>
+                 	<li class="pagir"><a class="currentpage"><%=i%></a></li>
                  <%}
                 	 }
                 	if(!pagedcust.isLastPage()){	 
                  %>
-                    <li><a href="product.html?page=<%=(pagedcust.getPageCount()- 1)%>">Last</a></li>
+                    <li><a href="product.html?Id=<%=Id%>&page=<%=(pagedcust.getPageCount()- 1)%>">Last</a></li>
                  <%} 
                   }%>   
                 <!--li><a href="#">First</a></li> 

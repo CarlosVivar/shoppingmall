@@ -29,7 +29,7 @@
 		setTimeout("loadPopup()", 1000);
 	})
 ;
-	function loadPopup(){
+	 function loadPopup(){
 		createTag();
 		$("#showIntroduces").fancybox({
 			'width' : 1000,
@@ -46,7 +46,7 @@
 	    //launch on load after 5 second delay
 		//setTimeout('$("#showIntroduces").fancybox.close()', 42000);
 		//setTimeout("removeTag()", 43000);
-	}
+	} 
 	function createTag(){
 		myA=document.createElement("A");
 		myA.setAttribute("id","showIntroduces");

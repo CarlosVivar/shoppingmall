@@ -124,14 +124,14 @@
 									<DIV class="title-block">
 										<DIV class="top"></DIV>
 										<DIV class="middle">
-											<H2>Hỗ trợ</H2>
+											<H2><%=LanguegeBUS.getValue("support",mlang) %></H2>
 										</DIV>
 
 									</DIV>
 									<div>
 										<div>
-										<h3 >Bảo Khuyên</h3>
-										<h3 style="margin-top:0"><span style="color: red" >call:</span>&nbsp<span style="color: #0066FF; size: 10px">0938944067</span></h3>
+										<h3 ><%=LanguegeBUS.getValue("baokhuyen", mlang)%></h3>
+										<h3 style="margin-top:0"><span style="color: red" ><%=LanguegeBUS.getValue("call", mlang)%>:</span>&nbsp<span style="color: #0066FF; size: 10px"><%=LanguegeBUS.getValue("0938944067", mlang)%></span></h3>
 											<h3 style="height: 30px;margin-top:0">
 												
 												<a href='ymsgr:SendIM?beyourself_bk'><img
@@ -145,8 +145,8 @@
 										</div>
 										
 										<div>
-										<h3>Như Thùy</h3>
-										<h3 style="margin-top:0"><span style="color: red" >call:</span>&nbsp<span style="color: #0066FF; size: 10px"> 01698757981</span></h3>
+										<h3><%=LanguegeBUS.getValue("nhuthuy", mlang)%></h3>
+										<h3 style="margin-top:0"><span style="color: red" ><%=LanguegeBUS.getValue("call", mlang)%>:</span>&nbsp<span style="color: #0066FF; size: 10px"> <%=LanguegeBUS.getValue("01698757981", mlang)%></span></h3>
 											<h3 style="height: 30px;margin-top:0">
 												
 												<a href='ymsgr:SendIM?jeny_bora8983'><img
