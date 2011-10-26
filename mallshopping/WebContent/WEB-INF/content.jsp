@@ -59,7 +59,7 @@
         </A></div></div>
         <img src="images/hot.gif"/>
         <p><span class="title"><%=pr.getProductName()%></span></p>
-        <p class="price"><%=pr.getPrice()%><%=LanguegeBUS.getValue("dolar", clang) %></p>
+        <p class="price"><%if("MALL_VN".equals(clang)){%><%=ResourcesDefault.priceVNFormat(pr.getPrice())%><%}else{%><%=pr.getPrice()%><%}%><%=LanguegeBUS.getValue("dolar", clang) %></p>
         </li>
          <%  } %>
         </ul>
