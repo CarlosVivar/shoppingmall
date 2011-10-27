@@ -431,7 +431,68 @@
               %>
               
   		}      
-  
+  		function formatPrice(price){
+  			var temp="";
+	        	var i;
+	        	for(i=price.length;i>=3;i-=3){					
+	        		temp=price.substring(i-3,i)+"."+temp;
+				
+	        	}
+			if(i!=0){
+				temp=price.substring(0,i)+"."+temp;
+	        
+			}
+  			return temp.substring(0,temp.length-1);
+  		}
+  		function isNumeric(evt)
+  	    {
+  			var priceHidden=$("#product_price_hidden").val();
+  			
+  			if(priceHidden.length<9){
+  	        var key = (evt.which) ? evt.which : window.event.keyCode;
+  	        var alphaExp;
+  	        <%if("MALL_EN".equals(lang)){%>
+  	     	 	alphaExp= /^[0-9\.]+$/;
+  	        <%}else{%>
+  	      		alphaExp= /^[0-9]+$/;
+  	        <%}%>
+  	        var keyChar = String.fromCharCode(key);
+  	        if (keyChar.valueOf().match(alphaExp)){
+  	        	//alert("match");
+  	        	var price=$("#product_price").val();
+  	        	var price = price.replace(/\./g, "");	
+  	  			price=price+keyChar;
+  	  			if(price.length>3){
+  	  				price=formatPrice(price);
+  	  				$("#product_price").val(price);
+  	  			}else if(price.length<=3){
+  	  				$("#product_price").val(price);
+  	  			}
+  	            
+  	        }else{
+  	     	var backs=/[\b]/g;  
+  	     	var price=$("#product_price").val();
+  	     	
+  	     	if(keyChar.valueOf().match(backs) && price.length>0){
+  	     		  		
+  	      		var price = price.replace(/\./g, "");	
+	  			price=price.substring(0,price.length-1);
+  	      		if(price.length>3){
+					price=formatPrice(price);
+					$("#product_price").val(price);
+				}
+  	      		else{
+  	      			$("#product_price").val(price);
+  	      		}
+  	      	}
+  	     	}
+  	        var price=$("#product_price").val();
+  	        price=price.replace(/\./g,"");
+  	    	$("#product_price_hidden").val(price);
+  			}
+  	      	return false;
+  	     
+  	    }
   		function validUpload(thisform){
             $("#validProName").text("");
             $("#validCategory").text("");
@@ -450,7 +511,8 @@
             var origin = $("#origin").val();
             var pType = $("#productType").val();
             var vPeriod = $("#validityPeriod").val();
-         
+            var price=$("#product_price_hidden").val();
+            
             if(category==0){
                 $("#validCategory").text("<%=LanguegeBUS.getValue("valid_cate", lang) %>");
                 document.getElementById("selectCategory").focus();
@@ -477,7 +539,19 @@
                 return false;
             }
             
-            
+            <%if("MALL_EN".equals(lang)){%>
+         	 if(price.length==0||isNaN(price)){
+         		$("#validProduct_price").text("<%=LanguegeBUS.getValue("", lang) %>price:1.93");
+         		document.getElementById("product_price").focus();
+        	 	return false;
+         	 }
+          <%}else{%>
+         	 if(price.length==0||isNaN(price)){
+         		$("#validProduct_price").text("( 1000000)");
+        		 document.getElementById("product_price").focus();
+      	 		return false;
+       		 }
+          <%}%>
             //new
             if(manufac==0){
                 $("#validManufacturer").text("<%=LanguegeBUS.getValue("valid_manufac", lang) %>");
@@ -861,10 +935,10 @@ input1 {
 
 										<label class="postLabel"><%=LanguegeBUS.getValue("price", lang)%>:</label>
 									</div>
-									<input  id="product_price" name="product_price" type="text" value="<%=p.getPrice() %>" style="width:150px" class="medium_text_input show_tip required" />
-									&nbsp;&nbsp;<% if(null==lang || lang.length() == 0 || lang.equals("MALL_EN")){ %>(<%=LanguegeBUS.getValue("dolar",lang) %>)<%} %>
-										<% if(null!=lang && lang.equals("MALL_VN")){%> (VND)  <%}%> 
-										<% if(null!=lang && lang.equals("MALL_KR")){%>(WON) <%}%> 
+									<input type="hidden" id="product_price_hidden" name="product_price" value="<%=p.getPrice() %>"/>
+									<input  id="product_price"  onkeypress="return isNumeric(event)"  type="text" value="<%if("MALL_VN".equals(lang)){%><%=ResourcesDefault.priceVNFormat(p.getPrice())%><%}else{%><%=p.getPrice() %><%} %>" style="width:150px" class="medium_text_input show_tip required" />
+									&nbsp;&nbsp;(<%=LanguegeBUS.getValue("dolar",lang) %>)
+										<span class="error" id="validProduct_price" style="border:none;"></span>
 										
 									
 								</div>
