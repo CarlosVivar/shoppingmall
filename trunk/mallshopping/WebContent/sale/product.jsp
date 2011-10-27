@@ -448,15 +448,16 @@
   	    {
   			var priceHidden=$("#product_price_hidden").val();
   			
-  			if(priceHidden.length<9){
+  			
   	        var key = (evt.which) ? evt.which : window.event.keyCode;
   	        var alphaExp;
   	        <%if("MALL_EN".equals(lang)){%>
   	     	 	alphaExp= /^[0-9\.]+$/;
   	        <%}else{%>
   	      		alphaExp= /^[0-9]+$/;
-  	        <%}%>
+  	        <%}%>  	        
   	        var keyChar = String.fromCharCode(key);
+  	     	if(priceHidden.length<9){
   	        if (keyChar.valueOf().match(alphaExp)){
   	        	//alert("match");
   	        	var price=$("#product_price").val();
@@ -488,6 +489,26 @@
   	     	}
   	        var price=$("#product_price").val();
   	        price=price.replace(/\./g,"");
+  	    	$("#product_price_hidden").val(price);
+  			}else{
+  				var backs=/[\b]/g;  
+  	  	     	var price=$("#product_price").val();
+  	  	     	
+  	  	     	if(keyChar.valueOf().match(backs) && price.length>0){
+  	  	     		  		
+  	  	      		var price = price.replace(/\./g, "");	
+  		  			price=price.substring(0,price.length-1);
+  	  	      		if(price.length>3){
+  						price=formatPrice(price);
+  						$("#product_price").val(price);
+  					}
+  	  	      		else{
+  	  	      			$("#product_price").val(price);
+  	  	      		}
+  	  	      	}
+  	  	    var price=$("#product_price").val();
+  	        price=price.replace(/\./g,"");
+  	       
   	    	$("#product_price_hidden").val(price);
   			}
   	      	return false;
