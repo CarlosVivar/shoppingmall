@@ -568,6 +568,8 @@
   		}
   		function isNumeric(evt)
   	    {
+			var priceHidden=$("#product_price_hidden").val();  			
+  			if(priceHidden.length<9){
   	        var key = (evt.which) ? evt.which : window.event.keyCode;
   	        var alphaExp;
   	        <%if("MALL_EN".equals(lang)){%>
@@ -608,6 +610,7 @@
   	        var price=$("#product_price").val();
   	        price=price.replace(/\./g,"");
   	    	$("#product_price_hidden").val(price);
+  			}
   	      	return false;
   	     
   	    }

@@ -130,12 +130,16 @@
                       <p class="price"><%=ResourcesDefault.priceVNFormat(pPojo.getPrice())%> <%=LanguegeBUS.getValue("dolar",lang) %></p></div>
                 <% } %>
                  <form name="formAddToCart" action="<%=ServletUtils.getBaseUrl(request) %>/cartController" method="post">
+                 <%
+                 List<Options> options=OptionBUS.getListOptionByProductID(pPojo.getProductId(),lang);
+                 if(options!=null&&options.size()>0){
+                 %>
                 <div class="detail-section">
-                <span style="width:100;"><%=LanguegeBUS.getValue("option",lang) %>:</span>&nbsp;&nbsp;               
+                <span style="width:100;"><%=LanguegeBUS.getValue("option",lang) %>:</span>&nbsp;&nbsp;                               
                 <select style="width:220px !important;" name="selectOption" id="selectOption">
                 <option value="0" ><%=LanguegeBUS.getValue("select",lang) %></option>
                 <%
-                List<Options> options=OptionBUS.getListOptionByProductID(pPojo.getProductId(),lang);
+                
                 for(int i=0;i<options.size();i++){
                 	Options option=options.get(i);%>
                 	<option value="<%=option.getOptionId()%>"><%=option.getDescription() %> (+ <%=LanguegeBUS.getValue("dolar",lang) %><%=option.getOptionPrice() %>)</option>
@@ -144,6 +148,7 @@
                 </select>
                 
                 </div>
+                <%} %>
                <p>
                        <a onclick="onLogins();">
                            <img height="40" width="120" class="fleft" src="css/images//cart/button-addcart.gif" id="addtocart" name="309219"></a>
