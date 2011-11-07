@@ -127,7 +127,7 @@ table td{border:#999 1px solid;padding: 1px;}
 .tube{padding:4px;text-align:left;}
 
 /* prod list*/
-.prodlist li{float:left;width:194px;height:245px;font-family:verdana;margin-left:3px;border:#e5e5e5 1px solid;margin-top:3px;padding-top:10px;text-align:center;}
+.prodlist li{float:left;width:194px;height:270px;font-family:verdana;margin-left:3px;border:#e5e5e5 1px solid;margin-top:3px;padding-top:10px;text-align:center;}
 .prodlist li.selected{border:#cfd6c6 1px solid;background-color:#e7e9de;}
 .prodlist li a.item{color:#777;}
 .title{color:#777;font-weight:bold;font-size:10px;}

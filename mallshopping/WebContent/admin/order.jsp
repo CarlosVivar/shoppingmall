@@ -3,10 +3,11 @@
 <%@page import="POJO.*,BUS.*,UTIL.*, java.util.List,java.util.Date" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
-            Object obj1 = request.getAttribute("lstOrders1");
-			Object obj2 = request.getAttribute("lstOrders2");
-			Object obj3 = request.getAttribute("lstOrders3");
-            if (obj1 == null || obj2 == null || obj3 == null) {
+             Object obj1 = request.getAttribute("lstOrders1"); 
+			 //Object obj2 = request.getAttribute("lstOrders2"); 
+			/* Object obj3 = request.getAttribute("lstOrders3");
+			||  || obj3 == null  */
+            if (obj1==null) {
                 String url = "/manageOrderController";
                 getServletContext().getRequestDispatcher(url).forward(request, response);
             }
@@ -20,34 +21,32 @@
         <meta name="keywords" content="Security" />
         <meta name="robots" content="index, follow" />
         <meta name="google-site-verification" content="3Bga2tEjat0imt15v39N2Wjte0Ufa99a-tU8E-Awq0E" />
-        <link rel="shortcut icon" type="image/x-icon" href="css/images/favicon.ico" /> 
-        
-		  <link href="css/style.css" media="screen" rel="stylesheet" type="text/css" />
-		 
+        <link rel="shortcut icon" type="image/x-icon" href="<%=ServletUtils.getBaseUrl(request)%>/admin/css/images/favicon.ico" /> 
+		 <link href="<%=ServletUtils.getBaseUrl(request)%>/admin/css/style.css" media="screen" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="<%=ServletUtils.getBaseUrl(request)%>/scripts/jquery-1.3.min.js"></script>
         <script type="text/javascript" src="<%=ServletUtils.getBaseUrl(request)%>/admin/scripts/js/jquery.idTabs.min.js"></script>
         <script type="text/javascript" src="<%=ServletUtils.getBaseUrl(request)%>/admin/scripts/js/jquery.popupWindow.js"></script>
         <script type="text/javascript" src="<%=ServletUtils.getBaseUrl(request)%>/admin/scripts/js/service.1.0.6.js"></script>
 		 <script type="text/javascript">
-				$(function() { 
-				    $('.tab a:first-child').click(function(){
-				        switch_tabs($(this));
-				        return false;
-				    }); 
-				    switch_tabs($('.selected'));
-				    $("#tabs1").show();
-                    $("#tabs2").hide();
-                    $("#tabs3").hide();
-				});
+				//$(function() { 
+				   // $('.tab a:first-child').click(function(){
+				      //  switch_tabs($(this));
+				     //   return false;
+				  //  }); 
+				  //  switch_tabs($('.selected'));
+				 //  $("#tabs1").show();
+                   /*  $("#tabs2").hide();
+                    $("#tabs3").hide(); */
+				//});
 		
-				function switch_tabs(obj)
-				{
-				    $('.table_ucp').hide();
-				    $('.tab a:first-child').removeClass("selected");
-				    var id = obj.attr("rel");
-				    $('#'+id).show();
-				    obj.addClass("selected");
-				}
+				//function switch_tabs(obj)
+				//{
+				 //   $('.table_ucp').hide();
+				 //   $('.tab a:first-child').removeClass("selected");
+				   // var id = obj.attr("rel");
+				   // $('#'+id).show();
+				 //   obj.addClass("selected");
+				//}
 				function openPage(path)
 	             {
 	             		window.location.href = path;
@@ -110,13 +109,16 @@
                         <div id="usual2">
 
                             <ul class="tab">
-                                <li><a rel="tabs1" href="#tabs1" class="selected"><span><%=LanguegeBUS.getValue("orderhandle", lang) %></span></a></li>
-                                <li><a rel="tabs2" href="#tabs2"><span><%=LanguegeBUS.getValue("ordercomplete", lang) %></span></a></li>
-                                <li><a rel="tabs3" href="#tabs3"><span><%=LanguegeBUS.getValue("orderpending", lang) %></span></a></li>
+                                <li><a rel="tabs1" href="<%=ServletUtils.getBaseUrl(request) %>/manageOrderController?status=1"" ><span><%=LanguegeBUS.getValue("orderhandle", lang) %></span></a></li>
+                                <li><a rel="tabs2" href="<%=ServletUtils.getBaseUrl(request) %>/manageOrderController?status=2"><span><%=LanguegeBUS.getValue("ordercomplete", lang) %></span></a></li>
+                                <li><a rel="tabs3" href="<%=ServletUtils.getBaseUrl(request) %>/manageOrderController?status=3"><span><%=LanguegeBUS.getValue("orderpending", lang) %></span></a></li>
+                                  <li><a rel="tabs4" href="<%=ServletUtils.getBaseUrl(request) %>/manageOrderController?status=4"><span><%=LanguegeBUS.getValue("orderchange", lang) %></span></a></li>
+                                    <li><a rel="tabs5" href="<%=ServletUtils.getBaseUrl(request) %>/manageOrderController?status=5"><span><%=LanguegeBUS.getValue("orderfinish", lang) %></span></a></li>
                                 <!--li style="float: right ! important;"><a href="" onclick="openPage('orderform.html').call(this)"><span><--%=LanguegeBUS.getValue("neworder") %></span></a></li-->
                             </ul>
                             <div class="clear"></div>
-                            <table  id="tabs1" class="table_ucp" border="0" cellpadding="0" cellspacing="0" width="100%">
+                            
+                           <table   class="table_ucp" border="0" cellpadding="0" cellspacing="0" width="100%">
 
                                 <tbody><tr>
                                     <td class="lstitle" width="70"><%=LanguegeBUS.getValue("orderNo.", lang) %></td>
@@ -129,7 +131,7 @@
                                 </tr>
                             
                            			 <%
-                               			List<Productorder> lstOrder1 = (List<Productorder>)request.getAttribute("lstOrders3"); 
+                               			List<Productorderdetail> lstOrder1 = (List<Productorderdetail>)request.getAttribute("lstOrders1"); 
                                			if(lstOrder1==null){
                                		%>
                                		
@@ -138,25 +140,26 @@
 									<%
                                			}else{
                                				for(int i=0;i<lstOrder1.size();i++){
-                               					Productorder pd1 = (Productorder)lstOrder1.get(i);
+                               					Productorderdetail pd1 = (Productorderdetail)lstOrder1.get(i);
+                               					System.out.print("pd1.getTotalMoney():"+pd1.getTotalMoney());
                                					Date d = new Date();
-                               					Stateorder s = (Stateorder)StateorderBUS.getStateorder(pd1.getStateorder().getStateOrderId(),lang);
+                               					Orderdetailstatus s=OrderdetailstatusBUS.getOrderDetailStatusById(pd1.getOrderDetailStatusId(),lang);
+                               					
                                					
                                		%>
                                		<tr class="order_row">
-                               			<td class="nonSearch"><a title="View order information" href="orderdetail.html?Id=<%=pd1.getProductOrderId()%>" >HD00<%=pd1.getProductOrderId()%>/<%=d.getYear()+1900%></a></td>
-                               			<td class="nonSearch"><a title="View user information" href="userdetail.html?Id=<%=pd1.getUser().getAccount()%>" ><%=pd1.getUser().getAccount() %></a></td>
-                               			<td class="nonSearch"><%=pd1.getTotalMoney() %></td>
-                               			<td class="nonSearch"><%=pd1.getOrderDate() %></td>
-                               			<td class="nonSearch" ><SPAN style="color:blue;"><%=s.getStateOrderName() %></SPAN></td>
-                               			
+                               			<td class="nonSearch"><a title="View order information" href="orderdetail.html?Id=<%=pd1.getProductOrderDetailId()%>" >HD00<%=pd1.getProductOrderDetailId()%>/<%=d.getYear()+1900%></a></td>
+                               			<td class="nonSearch"><a title="View user information" href="userdetail.html?Id=<%=pd1.getProductorder().getAccount()%>" ><%=pd1.getProductorder().getAccount() %></a></td>
+                               			<td class="nonSearch"><%=pd1.getTotalMoney()%></td>
+                               			<td class="nonSearch"><%=pd1.getProductorder().getOrderDate() %></td>
+                               			<td class="nonSearch" ><SPAN style="color:blue;"><%=s.getOrderDetailStatus() %></SPAN></td> 			
                                			<td class="nonSearch" align="center">
 				                            <a href="#" title="Update">
 				                                <img alt="save" height="16" src="css/images/edit-icon.gif" width="16" />
 				                            </a>
 			                        	</td>
                                			<td class="nonSearch" align="center" >
-				                            <a href="orderdelete.html?Id=<%=pd1.getProductOrderId() %>" title="Delete" onclick="Inbox.deleteInbox();">
+				                            <a href="orderdelete.html?Id=<%=pd1.getProductOrderDetailId() %>" title="Delete" onclick="Inbox.deleteInbox();">
 				                                <img alt="save" height="16" src="css/images/delete.png" width="16" />
 				                            </a>
 				                        </td>
@@ -165,7 +168,7 @@
                                				}
                                			
 									%>
-									<tr>
+									 <%-- <tr>
 										<td colspan="7">
 												 <%	NavigationInfo pagedcust1 = (NavigationInfo)session.getAttribute("pagedcust1"); 
 			                            	if(pagedcust1.getPageCount()- 1 > 0){ %>
@@ -194,12 +197,16 @@
 			                              <!-- span class="total">(Có <b>3837</b> kết quả)</span--></div></div></div>  
 											<% } %>				
 										</td>
-									</tr>
+									</tr>   --%>
 									<% } %>	
 									
-                            </tbody></table>
+                           
+                           
+                           
+                           
+                            </tbody></table> 
 									
-                            <table  id="tabs2" class="table_ucp" border="0" cellpadding="0" cellspacing="0" width="100%">
+                              <%-- <table  id="tabs2" class="table_ucp" border="0" cellpadding="0" cellspacing="0" width="100%">
                                 <tbody><tr>
                                      <td class="lstitle" width="70"><%=LanguegeBUS.getValue("orderNo.", lang) %></td>
                                     <td class="lstitle" width="80"><%=LanguegeBUS.getValue("buyer", lang) %></td>
@@ -211,25 +218,25 @@
                                 </tr>
                            
                              		<%
-                               			List<Productorder> lstOrder2 = (List<Productorder>)request.getAttribute("lstOrders1"); 
-                               			if(lstOrder2==null){
+                               			List<Productorderdetail> lstOrders2 = (List<Productorderdetail>)request.getAttribute("lstOrders2"); 
+                               			if(lstOrders2==null){
                                		%>
                                		
                                     	 <tr class="order_row"><td class="nonSearch" colspan="6" align="center">Currently, don`t have any orders.2</td></tr>
                                    	
 									<%
                                			}else{
-                               				for(int i=0;i<lstOrder2.size();i++){
-                               					Productorder pd2 = (Productorder)lstOrder2.get(i);
+                               				for(int i=0;i<lstOrders2.size();i++){
+                               					Productorderdetail pd2 = (Productorderdetail)lstOrders2.get(i);
                                					Date d = new Date();
-                               					Stateorder s = (Stateorder)StateorderBUS.getStateorder(pd2.getStateorder().getStateOrderId(),lang);
+                               					Stateorder s = (Stateorder)StateorderBUS.getStateorder(pd2.getOrderDetailStatusId(),lang);
                                					
                                		%>
                                		<tr class="order_row">
-                               			<td class="nonSearch"><a title="View order information" href="orderdetail.html?Id=<%=pd2.getProductOrderId()%>" >HD00<%=pd2.getProductOrderId()%>/<%=d.getYear()+1900%></a></td>
-                               			<td class="nonSearch"><a title="View user information" href="userdetail.html?Id=<%=pd2.getUser().getAccount()%>" ><%=pd2.getUser().getAccount() %></a></td>
+                               			<td class="nonSearch"><a title="View order information" href="orderdetail.html?Id=<%=pd2.getProductOrderDetailId()%>" >HD00<%=pd2.getProductOrderDetailId()%>/<%=d.getYear()+1900%></a></td>
+                               			<td class="nonSearch"><a title="View user information" href="userdetail.html?Id=<%=pd2.getProductorder().getAccount()%>" ><%=pd2.getProductorder().getAccount() %></a></td>
                                			<td class="nonSearch"><%=pd2.getTotalMoney() %></td>
-                               			<td class="nonSearch"><%=pd2.getOrderDate() %></td>
+                               			<td class="nonSearch"><%=pd2.getProductorder().getOrderDate() %></td>
                                			<td class="nonSearch" ><SPAN style="color:blue;"><%=s.getStateOrderName()%></SPAN></td>
                                			
                                			<td class="nonSearch" align="center">
@@ -238,7 +245,7 @@
 				                            </a>
 			                        	</td>
                                			<td class="nonSearch" align="center" >
-				                            <a href="orderdelete.jsp?Id=<%=pd2.getProductOrderId() %>" title="Delete" onclick="Inbox.deleteInbox();">
+				                            <a href="orderdelete.jsp?Id=<%=pd2.getProductOrderDetailId() %>" title="Delete" onclick="Inbox.deleteInbox();">
 				                                <img alt="save" height="16" src="css/images/delete.png" width="16" />
 				                            </a>
 				                        </td>
@@ -278,10 +285,10 @@
 										</td>
 									</tr>	
 									<% } %>
-                            </tbody></table>
+                            </tbody></table>  --%>
 							
 								
-                            <table  id="tabs3" class="table_ucp" border="0" cellpadding="0" cellspacing="0" width="100%">
+                           <%--  <table  id="tabs3" class="table_ucp" border="0" cellpadding="0" cellspacing="0" width="100%">
                                 <tbody><tr>
                                      <td class="lstitle" width="70"><%=LanguegeBUS.getValue("orderNo.", lang) %></td>
                                     <td class="lstitle" width="80"><%=LanguegeBUS.getValue("buyer", lang) %></td>
@@ -360,7 +367,7 @@
 										</td>
 									</tr>
 								<%} %>	
-                            </tbody></table>
+                            </tbody></table> --%>
 							 
                         </div>
                     </div>
@@ -387,15 +394,15 @@
 
 </body>
 <script language="javascript" type="text/javascript">
-	var Inbox = {	
-		deleteInbox: function()
-		{
+	//var Inbox = {	
+	//	deleteInbox: function()
+	//	{
 			
-			if (confirm("Are you sure you want to delete this product?")) 
-			{
-				$('#Are you sure you want to delete this product?').submit();
-			}		
-		}
-	};
+		//	if (confirm("Are you sure you want to delete this product?")) 
+		//	{
+		//		$('#Are you sure you want to delete this product?').submit();
+		//	}		
+		//}
+	//};
 </script>	
 </html>

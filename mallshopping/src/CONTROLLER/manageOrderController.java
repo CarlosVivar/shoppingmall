@@ -2,6 +2,7 @@ package CONTROLLER; import javax.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.GenericServlet;
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import BUS.*;
+import DAO.ProductorderDAO;
+import DAO.ProductorderdetailDAO;
 import POJO.*;
 import UTIL.NavigationInfo;
 
@@ -51,61 +54,41 @@ public class manageOrderController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        HttpSession session = request.getSession();
+       HttpSession session = request.getSession();
+        
+        
+        ServletContext app=getServletContext();
         try {
         	String url = "";
-        	
         	if(session.getAttribute("username") == null || !session.getAttribute("Role").equals("Admin")){
         		request.setAttribute("Message","Please login to access system !");
         		url = "/admin/login.html";
         	}else{
-        		ServletContext app=getServletContext();;
-        		String lang=(String)app.getAttribute("MALL_LA");
-	        		
-	                if(request.getParameter("item")!=null){
-	                    item = Integer.parseInt((String)request.getParameter("item"));
-	                }
-	               
-	            	navInfo.setPageSize(item);
-	            	navInfo.setMaxIndices(5);
-	            	String page = (String)request.getParameter("page");
-	                if (null == page)
-	                	navInfo.setCurrentPage(0);
-	                else
-	                	navInfo.setCurrentPage(Integer.parseInt(page));
-        		
-	              //List has delivered
-	                Stateorder s1 = StateorderBUS.getStateorder(1,lang); 
-	                navInfo.setRowCount(ProductorderBUS.lstProductorder(s1,lang).size());
-	                List<Productorder> lstOder1 = ProductorderBUS.lstProductorder(s1,navInfo.getCurrentPage(),navInfo.getPageSize(),lang) ;
-	                session.setAttribute("pagedcust1", navInfo);
-        			request.setAttribute("lstOrders1", lstOder1);
-        			
-        			
-        			
-        			//List unpaid
-        			Stateorder s2 = StateorderBUS.getStateorder(2,lang); 
-	                navInfo.setRowCount(ProductorderBUS.lstProductorder(s2,lang).size());
-	                List<Productorder> lstOder2 = ProductorderBUS.lstProductorder(s2,navInfo.getCurrentPage(),navInfo.getPageSize(),lang) ;
-	                session.setAttribute("pagedcust2", navInfo);
-        			request.setAttribute("lstOrders2", lstOder2);
-	                
-	                
-        			//List has payment
-        			Stateorder s3 = StateorderBUS.getStateorder(3,lang); 
-	                navInfo.setRowCount(ProductorderBUS.lstOrderPayment(lang).size());
-	                List<Productorder> lstOder3 = ProductorderBUS.lstOrderPayment(navInfo.getCurrentPage(),navInfo.getPageSize(),lang) ;
-	                session.setAttribute("pagedcust3", navInfo);
-        			request.setAttribute("lstOrders3", lstOder3);
-	                
-        			url = "/admin/order.html";
-        		
-        	}
-        	
-            ServletContext sc = getServletContext();
-            RequestDispatcher rd = sc.getRequestDispatcher(url);
-            rd.forward(request, response);
+        	String status=request.getParameter("status");
             
+            if(status==null){
+            	status="1";
+            }
+            System.out.println("status:"+status);
+        	
+        	ArrayList<Productorderdetail> lstOrders1=ProductorderdetailDAO.getOrder1(status,(String) app.getAttribute("MALL_LA"));
+        	request.setAttribute("lstOrders1", lstOrders1);
+          	
+				if (lstOrders1 == null || lstOrders1.size() == 0) {
+					request.setAttribute("Message", "Product not exist");
+				
+				request.getRequestDispatcher("admin/order.html").forward(
+						request, response);
+			} else {
+				request.getRequestDispatcher("admin/order.jsp").forward(
+						request, response);
+			}
+        	
+        	
+        	}
+            
+        	
+        	
         }catch(Exception ex){
              out.println(ex.getMessage() );
         } finally {

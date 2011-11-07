@@ -233,16 +233,12 @@
                         <p class="price" style="color:red;"> <span style="text-decoration:line-through"><%=emp.getPrice() %> <%=LanguegeBUS.getValue("dolar",lang) %></span>&nbsp;&nbsp;&nbsp;
                         <%=emp.getPrice()- emp.getPrice()*(Float.parseFloat(pr.getRate())) %> <%=LanguegeBUS.getValue("dolar",lang) %></p>
                         <% } %>
-                        </li>
-                        
+                        </li>                  
                 <%
                                
                         }
                     }
                 %>
-
-
-
             </ul>
                 <br class="clr"><br>
                 <!-- PAGI -->
