@@ -51,7 +51,6 @@ public class changePasswordController extends HttpServlet {
 		try {
 			String url = null;
 			String account = session.getAttribute("username").toString();
-
 			String pass = v.encrypt(request.getParameter("password_old"));
 			User kq = UserBUS.testLogin(account, pass, lang);
 

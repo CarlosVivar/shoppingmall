@@ -746,5 +746,71 @@ public class ProductorderdetailDAO extends HibernateDAO{
 //    	 ManageCancelView mc=list.get(0);
 //    	 System.out.println();
 	}
+     
+     public static ArrayList<Productorderdetail> getOrder1(String status,String lang) {
+         ArrayList<Productorderdetail> lstOrderdetail=new ArrayList<Productorderdetail>();
+         MySqlDataAccessHelper helper=new MySqlDataAccessHelper();
+         String where=hanldeStatus(status);
+         try{
+         	String sql="select detail.ProductOrderDetailId,ord.Acount,detail.TotalMoney,ord.OrderDate,detail.OrderDetailStatusId " +
+         			" from productorderdetail detail,productorder ord,orderdetailstatus statu " +
+         			" where detail.ProductOrderId=ord.ProductOrderId " +
+         			" and statu.OrderDetailStatusId=detail.OrderDetailStatusId " +
+         			where;
+         	helper.open(lang);
+         	ResultSet rs=helper.executeQuery(sql);
+         	System.out.print("sql:"+sql);
+         	while(rs.next()){
+         		Productorderdetail orderdetail=new Productorderdetail();
+         		Productorder order=new Productorder();
+         		//Orderdetailstatus statu=new Orderdetailstatus();
+         		User user=new User();
+         		orderdetail.setProductOrderDetailId(rs.getInt("ProductOrderDetailId"));
+         		user.setAccount(rs.getString("Acount"));
+         		orderdetail.setOrderDetailStatusId(rs.getInt("OrderDetailStatusId"));
+         		order.setUser(user);
+         		//order.setTotalMoney(rs.getFloat("TotalMoney"));
+         		orderdetail.setTotalMoney(rs.getFloat("TotalMoney"));
+         		order.setOrderDate(rs.getDate("OrderDate"));
+         		orderdetail.setProductorder(order);
+         		orderdetail.setOrderDetailStatusId(rs.getInt("OrderDetailStatusId"));
+         		
+         		lstOrderdetail.add(orderdetail);
+         	}
+         }catch (Exception ex){
+         	ex.getMessage();
+         }
+         return lstOrderdetail;
+     }
+     
+     private static String hanldeStatus(String status) {
+ 		String where="";
+ 		if("1".equals(status)){
+ 			System.out.println("1");
+ 			where=" and statu.OrderDetailStatusId=1";
+ 		}else if("2".equals(status)){
+ 			System.out.println("2");
+ 			where=" and statu.OrderDetailStatusId=2";
+ 		}else if("3".equals(status)){
+ 			System.out.println("3");
+ 			where=" and statu.OrderDetailStatusId=3";
+ 		}else if("4".equals(status)){
+ 			System.out.println("4");
+ 			where=" and statu.OrderDetailStatusId=4";
+ 		}else if("5".equals(status)){
+ 			System.out.println("5");
+ 			where=" and statu.OrderDetailStatusId=5";
+ 		}
+ 		return where;
+ 		
+ 	}
+     
+     
+     
+     
+     
+    
+    
+     
     
 }

@@ -166,6 +166,56 @@
 			</DIV>
 		</DIV>
 	</div>
+	
+	<br>
+	
+	
+	<DIV class="main-block">
+		<DIV class="border-bot">
+			<DIV class="border-left">
+				<DIV class="border-right">
+					<DIV class="corner-left-top">
+						<DIV class="corner-right-top">
+							<DIV class="corner-left-bot">
+								<DIV class="corner-right-bot">
+									<DIV class="title-block">
+										<DIV class="top"></DIV>
+										<DIV class="middle">
+											<H2>Dịch vụ Hosting</H2>
+										</DIV>
+
+									</DIV>
+									<div>
+										<div>
+										<h3> <a href="">Hosting Cá Nhân</a></h3>
+										<h3 ><a href="">Hosting Doanh Nghiệp</a></h3>
+										<h3 ><a href="">Hosting Không Giới Hạn</a></h3>
+										<h3 ><a href="">Windows hosting</a></h3>
+										<h3 ><a href="">Free Web Hosting</a></h3>
+										<h3 style="margin-top:0"><span style="color: red" >Contact:</span>&nbsp<span style="color: #0066FF; size: 10px"><%=LanguegeBUS.getValue("0938944067", mlang)%></span></h3>
+											<h3 style="height: 30px;margin-top:0">
+												
+												<a href='ymsgr:SendIM?thanhmaiwine8487'><img
+													style=" margin-right: 1px; vertical-align: middle;"
+													border='0'
+													src='images/online.gif?u=thanhmaiwine8487&amp;m=g&amp;t=1' />
+												</a>
+											</h3>
+										</div>
+										<!--End .boxes_content-->
+									</div>
+								</DIV>
+								
+							</DIV>
+						</DIV>
+					</DIV>
+				</DIV>
+			</DIV>
+		</DIV>
+	</div>
+	
+	
+	
 	<!-- <div>
 		<a href="#"><img alt="women fashion" width="180"
 			src="images/adv/Ogage.png" /> </a> <br> <br> <a href="#"><img

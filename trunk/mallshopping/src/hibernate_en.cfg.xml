@@ -6,7 +6,7 @@
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="hibernate.connection.url">jdbc:mysql://192.168.1.203:3306/mallshopping_en</property>
 		<property name="hibernate.connection.username">cam</property>
-		<property name="hibernate.connection.password">5678</property>
+		<property name="hibernate.connection.password">5678</property> 
 		<property name="hibernate.connection.useUnicode">true</property>
 		<property name="hibernate.connection.characterEncoding">UTF-8</property>
 		<mapping resource="POJO/Promotions.hbm.xml" />

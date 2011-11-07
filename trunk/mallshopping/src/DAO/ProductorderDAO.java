@@ -4,8 +4,14 @@
  */
 package DAO;
 
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
+
+import org.hibernate.criterion.Order;
+
 import POJO.*;
+import UTIL.MySqlDataAccessHelper;
 /**
  *
  * @author admin
@@ -72,5 +78,9 @@ public class ProductorderDAO extends HibernateDAO{
         String sql="from Productorder where StateOrderID ="+id+" and Acount='"+myAccount+"'";
         return HibernateDAO.getList(sql, lang);
     }
+    
+   
+    
+   
     
 }

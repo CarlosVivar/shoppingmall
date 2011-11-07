@@ -9,7 +9,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" import="POJO.*,BUS.*, java.util.List" %>
 <!DOCTYPE html>
  <%  
- ServletContext rapp=getServletContext();;
+ ServletContext rapp=getServletContext();
  String rlang = (String)rapp.getAttribute("MALL_LA"); %>      
 <html>
     <head>
@@ -77,13 +77,11 @@
         <%
             List<Products> lstPro2 = (List<Products>)ProductBUS.lstProductNew(rlang);
         	if(lstPro2!=null){
-        		
-        		lstPro2=ResourcesDefault.sortListProductByCategory(lstPro2,rlang);
-        	}
+        	lstPro2=ResourcesDefault.sortListProductByCategory(lstPro2,rlang);
             for(int p1=0;p1<lstPro2.size();p1++){
                     Products pro2 = (Products)lstPro2.get(p1);
                     Productphotos pic2 = ProductPhotoBUS.lstProductPhoto(pro2,rlang);
-            
+                    System.out.print("pic2: "+pic2);
         %>    
                         <table>
                             <tr>
@@ -106,7 +104,7 @@
                         </table>
 
             
-        <%  } %>
+        <%  } }%>
        
         </ul>
 

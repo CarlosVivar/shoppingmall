@@ -41,7 +41,7 @@ public class MySqlDataAccessHelper {
             pros.setProperty("characterEncoding", "utf8");
             //Set username & password 
             pros.setProperty("user", "cam");
-            pros.setProperty("password", "5678");
+           pros.setProperty("password", "5678");
             this.connection = DriverManager.getConnection(connectionString, pros);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
