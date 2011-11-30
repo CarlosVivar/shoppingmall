@@ -79,7 +79,7 @@ public class NavigationInfo {
 	}
 
 	public boolean isFirstPage() {
-		if (getIndexStart()>0) {
+		if (getCurrentPage()!=0) {
 			return false;
 		}
 		return true;
